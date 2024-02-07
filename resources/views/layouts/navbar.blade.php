@@ -46,7 +46,7 @@
                     </ul>
                 </li>
                 <li><a href="peraturan" class="sub-menu-item {{ Request::is('*peraturan') ? 'active' : '' }}">Peraturan</a></li>
-                <li><a href="#" class="sub-menu-item">Peta Spasial</a></li>
+                <li><a href="peta" class="sub-menu-item {{ Request::is('peta') ? 'active' : '' }}">Peta Spasial</a></li>
                 <li><a href="statistik" class="sub-menu-item {{ Request::is('*statistik') ? 'active' : '' }}">Statistik</a></li>
                 @auth
                 <li class="list-inline-item mb-0 d-block d-sm-none mb-3">
