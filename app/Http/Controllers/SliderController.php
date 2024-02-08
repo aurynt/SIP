@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Drainase;
+use App\Models\Slider;
+use Error;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
-class DrainaseController extends Controller
+class SliderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,7 @@ class DrainaseController extends Controller
     public function index()
     {
         try {
-            $res = Drainase::all();
+            $res = Slider::all();
             return response()->json($res);
         } catch (\Throwable $th) {
             return response()->json([
@@ -36,7 +38,14 @@ class DrainaseController extends Controller
     public function store(Request $request)
     {
         try {
-            $res = Drainase::create($request->all());
+            $file = $request->file('gambar_slider');
+            if (!$file) {
+                throw new Error('file not uploaded');
+            }
+            $logo = $file->store('public/slider');
+            $data['gambar_slider'] = basename($logo);
+            $data['created_at'] = now();
+            $res = Slider::create($data);
             return response()->json($res);
         } catch (\Throwable $th) {
             return response()->json([
@@ -48,10 +57,10 @@ class DrainaseController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Drainase $drainase, $id)
+    public function show(Slider $slider, $id)
     {
         try {
-            $res = $drainase->findOrFail($id);
+            $res = $slider->findOrFail($id);
             return response()->json($res);
         } catch (\Throwable $th) {
             return response()->json([
@@ -63,7 +72,7 @@ class DrainaseController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Drainase $drainase)
+    public function edit(Slider $slider)
     {
         //
     }
@@ -71,25 +80,19 @@ class DrainaseController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Drainase $drainase, $id)
+    public function update(Request $request, Slider $slider, $id)
     {
-        try {
-            $res = $drainase->findOrFail($id)->update($request->all());
-            return response()->json($res);
-        } catch (\Throwable $th) {
-            return response()->json([
-                'message' => $th->getMessage()
-            ], 400);
-        }
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Drainase $drainase, $id)
+    public function destroy(Slider $slider, $id)
     {
         try {
-            $res = $drainase->findOrFail($id)->delete();
+            $slider = $slider->findOrFail($id);
+            $res = $slider->delete();
             return response()->json($res);
         } catch (\Throwable $th) {
             return response()->json([

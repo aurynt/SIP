@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Drainase;
+use App\Models\Beranda;
+use Error;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
-class DrainaseController extends Controller
+use function PHPUnit\Framework\fileExists;
+
+class BerandaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +17,7 @@ class DrainaseController extends Controller
     public function index()
     {
         try {
-            $res = Drainase::all();
+            $res = Beranda::all();
             return response()->json($res);
         } catch (\Throwable $th) {
             return response()->json([
@@ -36,7 +40,14 @@ class DrainaseController extends Controller
     public function store(Request $request)
     {
         try {
-            $res = Drainase::create($request->all());
+            $file = $request->file('logo');
+            if (!$file) {
+                throw new Error('file not uploaded');
+            }
+            $logo = $file->store('public/logo');
+            $data = $request->all();
+            $data['logo'] = basename($logo);
+            $res = Beranda::create($data);
             return response()->json($res);
         } catch (\Throwable $th) {
             return response()->json([
@@ -48,10 +59,10 @@ class DrainaseController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Drainase $drainase, $id)
+    public function show(Beranda $beranda, $id)
     {
         try {
-            $res = $drainase->findOrFail($id);
+            $res = $beranda->findOrFail($id);
             return response()->json($res);
         } catch (\Throwable $th) {
             return response()->json([
@@ -63,7 +74,7 @@ class DrainaseController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Drainase $drainase)
+    public function edit(Beranda $beranda)
     {
         //
     }
@@ -71,10 +82,20 @@ class DrainaseController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Drainase $drainase, $id)
+    public function update(Request $request, Beranda $beranda, $id)
     {
         try {
-            $res = $drainase->findOrFail($id)->update($request->all());
+            $file = $request->file('logo');
+            $beranda = $beranda->findOrFail($id);
+            $data = $request->all();
+            if ($file) {
+                $logo = $file->store('public/logo');
+                Storage::delete("public/logo/$beranda->logo");
+                $data['logo'] = basename($logo);
+            }
+            $data['logo'] = $beranda->logo;
+            $data['updated_at'] = now();
+            $res = $beranda->update($data);
             return response()->json($res);
         } catch (\Throwable $th) {
             return response()->json([
@@ -86,10 +107,12 @@ class DrainaseController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Drainase $drainase, $id)
+    public function destroy(Beranda $beranda, $id)
     {
         try {
-            $res = $drainase->findOrFail($id)->delete();
+            $beranda = $beranda->findOrFail($id);
+            Storage::delete("public/logo/$beranda->logo");
+            $res = $beranda->delete();
             return response()->json($res);
         } catch (\Throwable $th) {
             return response()->json([

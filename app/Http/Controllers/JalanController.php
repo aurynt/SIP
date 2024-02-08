@@ -16,7 +16,9 @@ class JalanController extends Controller
             $res = Jalan::all();
             return response()->json($res);
         } catch (\Throwable $th) {
-            throw $th;
+            return response()->json([
+                'message' => $th->getMessage()
+            ], 400);
         }
     }
 
@@ -37,7 +39,9 @@ class JalanController extends Controller
             $res = Jalan::create($request->all());
             return response()->json($res);
         } catch (\Throwable $th) {
-            throw $th;
+            return response()->json([
+                'message' => $th->getMessage()
+            ], 400);
         }
     }
 
@@ -50,7 +54,9 @@ class JalanController extends Controller
             $res = $jalan->findOrFail($id);
             return response()->json($res);
         } catch (\Throwable $th) {
-            throw $th;
+            return response()->json([
+                'message' => $th->getMessage()
+            ], 400);
         }
     }
 
@@ -71,7 +77,9 @@ class JalanController extends Controller
             $res = $jalan->findOrFail($id)->update($request->all());
             return response()->json($res);
         } catch (\Throwable $th) {
-            throw $th;
+            return response()->json([
+                'message' => $th->getMessage()
+            ], 400);
         }
     }
 
@@ -85,7 +93,9 @@ class JalanController extends Controller
             $res = $jalan->findOrFail($id)->delete();
             return response()->json($res);
         } catch (\Throwable $th) {
-            throw $th;
+            return response()->json([
+                'message' => $th->getMessage()
+            ], 400);
         }
     }
 }

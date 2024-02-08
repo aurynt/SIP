@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Drainase;
+use App\Models\Disclaimer;
 use Illuminate\Http\Request;
 
-class DrainaseController extends Controller
+class DisclaimerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class DrainaseController extends Controller
     public function index()
     {
         try {
-            $res = Drainase::all();
+            $res = Disclaimer::all();
             return response()->json($res);
         } catch (\Throwable $th) {
             return response()->json([
@@ -36,7 +36,7 @@ class DrainaseController extends Controller
     public function store(Request $request)
     {
         try {
-            $res = Drainase::create($request->all());
+            $res = Disclaimer::create($request->all());
             return response()->json($res);
         } catch (\Throwable $th) {
             return response()->json([
@@ -48,10 +48,10 @@ class DrainaseController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Drainase $drainase, $id)
+    public function show(Disclaimer $disclaimer, $id)
     {
         try {
-            $res = $drainase->findOrFail($id);
+            $res = $disclaimer->findOrFail($id);
             return response()->json($res);
         } catch (\Throwable $th) {
             return response()->json([
@@ -63,7 +63,7 @@ class DrainaseController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Drainase $drainase)
+    public function edit(Disclaimer $disclaimer)
     {
         //
     }
@@ -71,10 +71,10 @@ class DrainaseController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Drainase $drainase, $id)
+    public function update(Request $request, Disclaimer $disclaimer, $id)
     {
         try {
-            $res = $drainase->findOrFail($id)->update($request->all());
+            $res = $disclaimer->findOrFail($id)->update($request->all());
             return response()->json($res);
         } catch (\Throwable $th) {
             return response()->json([
@@ -86,10 +86,10 @@ class DrainaseController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Drainase $drainase, $id)
+    public function destroy(Disclaimer $disclaimer, $id)
     {
         try {
-            $res = $drainase->findOrFail($id)->delete();
+            $res = $disclaimer->findOrFail($id)->delete();
             return response()->json($res);
         } catch (\Throwable $th) {
             return response()->json([
