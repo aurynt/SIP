@@ -159,6 +159,12 @@
 
     <!-- Javascript -->
     <!-- JAVASCRIPT -->
+    <script>
+        const form = document.getElementById('form')
+        const button = document.getElementById('button')
+
+        button.addEventListener('click', () => console.log('oke'))
+    </script>
     <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- SLIDER -->
     <script src="assets/libs/tiny-slider/min/tiny-slider.js"></script>

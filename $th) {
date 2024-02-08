@@ -1,0 +1,17 @@
+    ->             return response()->json([
+    ->                 'message' => $th->getMessage()
+    ->             ]);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '} catch (
+            return response()->json([
+                'message' => $th' at line 1
+mysql>         }
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '}' at line 1
+mysql> select * from pengaturan_slider;
++----+-----------------------------------------------+---------------------+---------------------+
+| id | gambar_slider                                 | created_at          | deleted_at          |
++----+-----------------------------------------------+---------------------+---------------------+
+|  2 | UbzwhB2SxoJexi5H0ksG37fuARltEDiZMvsAnwXA.webp | 2024-02-08 12:47:05 | 2024-02-08 12:47:55 |
++----+-----------------------------------------------+---------------------+---------------------+
+1 row in set (0,00 sec)
+
