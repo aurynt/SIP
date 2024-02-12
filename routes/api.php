@@ -5,6 +5,7 @@ use App\Http\Controllers\DisclaimerController;
 use App\Http\Controllers\DrainaseController;
 use App\Http\Controllers\JalanController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\TanahController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -60,4 +61,20 @@ Route::name('slider.')->group(function () {
     Route::post('slider', [SliderController::class, 'store'])->name('add');
     Route::get('slider/{id}', [SliderController::class, 'show'])->name('show');
     Route::delete('slider/{id}', [SliderController::class, 'destroy'])->name('remove');
+});
+
+Route::name('tanah-lahan.')->group(function () {
+    Route::get('tanah-lahan', [TanahController::class, 'index'])->name('all');
+    Route::post('tanah-lahan', [TanahController::class, 'store'])->name('add');
+    Route::get('tanah-lahan/{id}', [TanahController::class, 'show'])->name('show');
+    Route::put('tanah-lahan/{id}', [TanahController::class, 'update'])->name('update');
+    Route::delete('tanah-lahan/{id}', [TanahController::class, 'destroy'])->name('remove');
+});
+
+Route::name('peraturan.')->group(function () {
+    Route::get('peraturan', [Peraturan::class, 'index'])->name('all');
+    Route::post('peraturan', [Peraturan::class, 'store'])->name('add');
+    Route::get('peraturan/{id}', [Peraturan::class, 'show'])->name('show');
+    Route::put('peraturan/{id}', [Peraturan::class, 'update'])->name('update');
+    Route::delete('peraturan/{id}', [Peraturan::class, 'destroy'])->name('remove');
 });
