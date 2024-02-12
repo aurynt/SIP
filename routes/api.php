@@ -30,8 +30,10 @@ Route::name('drainase.')->group(function () {
     Route::delete('drainase/{id}', [DrainaseController::class, 'destroy'])->name('remove');
 });
 
-Route::get('jalan', [JalanController::class, 'index']);
-Route::post('jalan', [JalanController::class, 'store']);
-Route::get('jalan/{id}', [JalanController::class, 'show']);
-Route::put('jalan/{id}', [JalanController::class, 'update']);
-Route::delete('jalan/{id}', [JalanController::class, 'destroy']);
+Route::name('jalan.')->group(function () {
+    Route::get('jalan', [JalanController::class, 'index'])->name('all');
+    Route::post('jalan', [JalanController::class, 'store'])->name('add');
+    Route::get('jalan/{id}', [JalanController::class, 'show'])->name('show');
+    Route::put('jalan/{id}', [JalanController::class, 'update'])->name('update');
+    Route::delete('jalan/{id}', [JalanController::class, 'destroy'])->name('remove');
+});
