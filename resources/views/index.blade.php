@@ -31,6 +31,10 @@ id="home">
                         <img src="assets/images/custom/Ruas-Jalan.png" class="w-50" alt="">
                         <p>Ruas Jalan</p>
                     </a>
+                    <a href="drainase" class="menu-item">
+                        <img src="assets/images/custom/drainase.png" class="w-50" alt="">
+                        <p>Drainase</p>
+                    </a>
                     <a href="peraturan" class="menu-item">
                         <img src="assets/images/custom/Peraturan.png" class="w-50" alt="">
                         <p>Peraturan</p>

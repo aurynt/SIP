@@ -56,7 +56,7 @@
                 <!--Login button Start-->
                 <ul class="buy-button list-inline mb-0">
                     <li class="list-inline-item mb-0">
-                        <a href="javascript:void(0)" class="btn btn-outline-light ms-3">Login</a>
+                        <a href="dashboard" class="btn btn-outline-light ms-3">Login</a>
                     </li>
                 </ul>
                 <!--Login button End-->
