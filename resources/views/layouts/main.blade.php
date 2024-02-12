@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Sistem Informasi Pertanahan | Kota Tegal </title>
+    <title>{{ $title }} Sistem Informasi Pertanahan | Kota Tegal </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Sistem Infromasi Pertanahan | Kota Tegal" />
     <meta name="keywords" content="pertanahan, kota tegal" />
@@ -69,7 +69,6 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-
     <script>
     let table = new DataTable('#myTable');
     </script>
