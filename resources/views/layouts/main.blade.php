@@ -27,6 +27,7 @@
     <link href="assets/css/custom.css" id="color-opt" class="theme-opt" rel="stylesheet" type="text/css" />
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+
 </head>
 
 <body>
@@ -71,7 +72,8 @@
 
     <script>
     let table = new DataTable('#myTable');
-        </script>
+    </script>
+
 </body>
 
 </html>

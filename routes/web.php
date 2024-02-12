@@ -36,3 +36,7 @@ Route::get('/statistik', function () {
 Route::get('/drainase', function () {
     return view('drainase');
 });
+
+Route::get('/peta', function () {
+    return view('peta');
+});
