@@ -4,9 +4,6 @@ use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\DisclaimerController;
 use App\Http\Controllers\DrainaseController;
 use App\Http\Controllers\JalanController;
-use App\Http\Controllers\PeraturanController;
-use App\Http\Controllers\SliderController;
-use App\Http\Controllers\TanahController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,49 +30,8 @@ Route::name('drainase.')->group(function () {
     Route::delete('drainase/{id}', [DrainaseController::class, 'destroy'])->name('remove');
 });
 
-Route::name('jalan.')->group(function () {
-    Route::get('jalan', [JalanController::class, 'index'])->name('all');
-    Route::post('jalan', [JalanController::class, 'store'])->name('add');
-    Route::get('jalan/{id}', [JalanController::class, 'show'])->name('show');
-    Route::put('jalan/{id}', [JalanController::class, 'update'])->name('update');
-    Route::delete('jalan/{id}', [JalanController::class, 'destroy'])->name('remove');
-});
-
-Route::name('beranda.')->group(function () {
-    Route::get('beranda', [BerandaController::class, 'index'])->name('all');
-    Route::post('beranda', [BerandaController::class, 'store'])->name('add');
-    Route::get('beranda/{id}', [BerandaController::class, 'show'])->name('show');
-    Route::post('beranda/{id}', [BerandaController::class, 'update'])->name('update');
-    Route::delete('beranda/{id}', [BerandaController::class, 'destroy'])->name('remove');
-});
-
-Route::name('disclaimer.')->group(function () {
-    Route::get('disclaimer', [DisclaimerController::class, 'index'])->name('all');
-    Route::post('disclaimer', [DisclaimerController::class, 'store'])->name('add');
-    Route::get('disclaimer/{id}', [DisclaimerController::class, 'show'])->name('show');
-    Route::post('disclaimer/{id}', [DisclaimerController::class, 'update'])->name('update');
-    Route::delete('disclaimer/{id}', [DisclaimerController::class, 'destroy'])->name('remove');
-});
-
-Route::name('slider.')->group(function () {
-    Route::get('slider', [SliderController::class, 'index'])->name('all');
-    Route::post('slider', [SliderController::class, 'store'])->name('add');
-    Route::get('slider/{id}', [SliderController::class, 'show'])->name('show');
-    Route::delete('slider/{id}', [SliderController::class, 'destroy'])->name('remove');
-});
-
-Route::name('tanah-lahan.')->group(function () {
-    Route::get('tanah-lahan', [TanahController::class, 'index'])->name('all');
-    Route::post('tanah-lahan', [TanahController::class, 'store'])->name('add');
-    Route::get('tanah-lahan/{id}', [TanahController::class, 'show'])->name('show');
-    Route::put('tanah-lahan/{id}', [TanahController::class, 'update'])->name('update');
-    Route::delete('tanah-lahan/{id}', [TanahController::class, 'destroy'])->name('remove');
-});
-
-Route::name('peraturan.')->group(function () {
-    Route::get('peraturan', [PeraturanController::class, 'index'])->name('all');
-    Route::post('peraturan', [PeraturanController::class, 'store'])->name('add');
-    Route::get('peraturan/{id}', [PeraturanController::class, 'show'])->name('show');
-    Route::put('peraturan/{id}', [PeraturanController::class, 'update'])->name('update');
-    Route::delete('peraturan/{id}', [PeraturanController::class, 'destroy'])->name('remove');
-});
+Route::get('jalan', [JalanController::class, 'index']);
+Route::post('jalan', [JalanController::class, 'store']);
+Route::get('jalan/{id}', [JalanController::class, 'show']);
+Route::put('jalan/{id}', [JalanController::class, 'update']);
+Route::delete('jalan/{id}', [JalanController::class, 'destroy']);
