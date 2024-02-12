@@ -64,7 +64,7 @@
 
                         <div class="form-group col-md-2">
                             <label>&nbsp;</label>
-                            <a href="https://ministry.phicos.co.id/tegal-sip/operator/tanah_dan_lahan/tambah/eXZCQ1FUREhBallhTjNGQ05WNmdFd3NsNDdrbFdqUHdpSU9wNzV3RWRyTytQZk5acmNMdUROSWplQVBiSjFmemxmS3RKRllERWdiZG1XV2xOV3EvbGc9PQ=="
+                            <a href="createTanahDanLahan"
                                 class="btn btn-primary waves-effect waves-light w-md mt-4"><i
                                     class="bx bx-edit font-size-16"></i> Tambah</a>
                         </div>
@@ -125,13 +125,13 @@
                                         <p class="text-xs font-weight-bold mb-0">KALKUL 03</p>
                                     </td>
                                     <td class="align-middle">
-                                        <div class="btn-group btn-sm">
-                                            <button class="btn btn-outline-success btn-up-sertifikat"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Upload Sertifikat" fdprocessedid="z5y08e"><i class="bx bxs-file-pdf" ></i></button>
-                                            <button class="btn btn-outline-info btn-up-lokasi" data-toggle="tooltip" data-placement="top" title="" data-original-title="Upload Foto Tanah" fdprocessedid="ey05c"><i class="bx bx-image-add" ></i></button>
-                                            <a class="btn btn-outline-primary" href="#" target="_blank"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Patok"><i class="bx bx-map"></i></a>
-                                            <a class="btn btn-outline-dark" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Detail"><i class="bx bx-detail"></i></a>
-                                            <a class="btn btn-outline-warning btn-update" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah"><i class="bx bx-pencil"></i></a>
-                                            <button class="btn btn-outline-danger btn-remove"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus" fdprocessedid="80ivbm"><i class="bx bx-trash" ></i></button>
+                                        <div class="btn-group">
+                                            <button class="btn btn-outline-success btn-up-sertifikat btn-tooltip"  data-bs-toggle="tooltip" data-bs-placement="top" title="Upload Sertifikat" data-container="body" data-animation="true"><i class="bx bxs-file-pdf" ></i></button>
+                                            <button class="btn btn-outline-info btn-up-lokasi btn-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Upload Foto Tanah" data-container="body" data-animation="true"><i class="bx bx-image-add" ></i></button>
+                                            <a class="btn btn-outline-primary btn-tooltip" href="#" target="_blank"  data-bs-toggle="tooltip" data-bs-placement="top" title="Patok" data-container="body" data-animation="true"><i class="bx bx-map"></i></a>
+                                            <a class="btn btn-outline-dark btn-tooltip" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Detail" data-container="body" data-animation="true"><i class="bx bx-detail"></i></a>
+                                            <a class="btn btn-outline-warning btn-update btn-tooltip" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah" data-container="body" data-animation="true"><i class="bx bx-pencil"></i></a>
+                                            <button class="btn btn-outline-danger btn-remove btn-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus" data-container="body" data-animation="true"><i class="bx bx-trash" ></i></button>
                                         </div>
                                     </td>
                                 </tr>
@@ -164,16 +164,15 @@
                                         <p class="text-xs font-weight-bold mb-0">CB 01</p>
                                     </td>
                                     <td class="align-middle">
-                                        <div class="btn-group btn-sm">
-                                            <button class="btn btn-outline-success btn-up-sertifikat" data-id="eDRNb05wWnQ5WXRlS2x5V3NId3krQ1RFMDlnTHR1eWlVdGovUTlMZzA5az0=" data-toggle="tooltip" data-placement="top" title="" data-original-title="Upload Sertifikat" fdprocessedid="z5y08e"><i class="bx bxs-file-pdf" data-id="eDRNb05wWnQ5WXRlS2x5V3NId3krQ1RFMDlnTHR1eWlVdGovUTlMZzA5az0="></i></button>
-                                            <button class="btn btn-outline-info btn-up-lokasi" data-id="eDRNb05wWnQ5WXRlS2x5V3NId3krQ1RFMDlnTHR1eWlVdGovUTlMZzA5az0=" data-toggle="tooltip" data-placement="top" title="" data-original-title="Upload Foto Tanah" fdprocessedid="ey05c"><i class="bx bx-image-add" data-id="eDRNb05wWnQ5WXRlS2x5V3NId3krQ1RFMDlnTHR1eWlVdGovUTlMZzA5az0="></i></button>
-                                            <a class="btn btn-outline-primary" href="https://ministry.phicos.co.id/tegal-sip/back/tanah_dan_lahan/patok/eXZCQ1FUREhBallhTjNGQ05WNmdFd3NsNDdrbFdqUHdpSU9wNzV3RWRyTytQZk5acmNMdUROSWplQVBiSjFmemxmS3RKRllERWdiZG1XV2xOV3EvbGc9PQ==/eDRNb05wWnQ5WXRlS2x5V3NId3krQ1RFMDlnTHR1eWlVdGovUTlMZzA5az0=" target="_blank" data-id="eDRNb05wWnQ5WXRlS2x5V3NId3krQ1RFMDlnTHR1eWlVdGovUTlMZzA5az0=" data-toggle="tooltip" data-placement="top" title="" data-original-title="Patok"><i class="bx bx-map"></i></a>
-                                            <a class="btn btn-outline-dark" href="https://ministry.phicos.co.id/tegal-sip/operator/tanah_dan_lahan/detail/eXZCQ1FUREhBallhTjNGQ05WNmdFd3NsNDdrbFdqUHdpSU9wNzV3RWRyTytQZk5acmNMdUROSWplQVBiSjFmemxmS3RKRllERWdiZG1XV2xOV3EvbGc9PQ==/eDRNb05wWnQ5WXRlS2x5V3NId3krQ1RFMDlnTHR1eWlVdGovUTlMZzA5az0=" data-id="eDRNb05wWnQ5WXRlS2x5V3NId3krQ1RFMDlnTHR1eWlVdGovUTlMZzA5az0=" data-toggle="tooltip" data-placement="top" title="" data-original-title="Detail"><i class="bx bx-detail"></i></a>
-                                            <a class="btn btn-outline-warning btn-update" href="https://ministry.phicos.co.id/tegal-sip/operator/tanah_dan_lahan/edit/eXZCQ1FUREhBallhTjNGQ05WNmdFd3NsNDdrbFdqUHdpSU9wNzV3RWRyTytQZk5acmNMdUROSWplQVBiSjFmemxmS3RKRllERWdiZG1XV2xOV3EvbGc9PQ==/eDRNb05wWnQ5WXRlS2x5V3NId3krQ1RFMDlnTHR1eWlVdGovUTlMZzA5az0=" data-id="eDRNb05wWnQ5WXRlS2x5V3NId3krQ1RFMDlnTHR1eWlVdGovUTlMZzA5az0=" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah"><i class="bx bx-pencil"></i></a>
-                                            <button class="btn btn-outline-danger btn-remove" data-id="eDRNb05wWnQ5WXRlS2x5V3NId3krQ1RFMDlnTHR1eWlVdGovUTlMZzA5az0=" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus" fdprocessedid="80ivbm"><i class="bx bx-trash" data-id="eDRNb05wWnQ5WXRlS2x5V3NId3krQ1RFMDlnTHR1eWlVdGovUTlMZzA5az0="></i></button>
+                                        <div class="btn-group">
+                                            <button class="btn btn-outline-success btn-up-sertifikat btn-tooltip"  data-bs-toggle="tooltip" data-bs-placement="top" title="Upload Sertifikat" data-container="body" data-animation="true"><i class="bx bxs-file-pdf" ></i></button>
+                                            <button class="btn btn-outline-info btn-up-lokasi btn-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Upload Foto Tanah" data-container="body" data-animation="true"><i class="bx bx-image-add" ></i></button>
+                                            <a class="btn btn-outline-primary btn-tooltip" href="#" target="_blank"  data-bs-toggle="tooltip" data-bs-placement="top" title="Patok" data-container="body" data-animation="true"><i class="bx bx-map"></i></a>
+                                            <a class="btn btn-outline-dark btn-tooltip" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Detail" data-container="body" data-animation="true"><i class="bx bx-detail"></i></a>
+                                            <a class="btn btn-outline-warning btn-update btn-tooltip" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah" data-container="body" data-animation="true"><i class="bx bx-pencil"></i></a>
+                                            <button class="btn btn-outline-danger btn-remove btn-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus" data-container="body" data-animation="true"><i class="bx bx-trash" ></i></button>
                                         </div>
                                     </td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>

@@ -79,7 +79,7 @@
             <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Data</h6>
           </li>
         <li class="nav-item">
-          <a class="nav-link {{ Request::is('tanahDanLahan') ? 'active' : '' }}" href="tanahDanLahan">
+          <a class="nav-link {{ Request::is('tanahDanLahan*') ? 'active' : '' }}" href="tanahDanLahan">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>box-3d-50</title>
@@ -100,7 +100,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ Request::is('ruasJalan') ? 'active' : '' }}" href="ruasJalan">
+          <a class="nav-link {{ Request::is('ruasJalan*') ? 'active' : '' }}" href="ruasJalan">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>settings</title>
@@ -121,7 +121,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ Request::is('peraturanDashboard') ? 'active' : '' }}" href="peraturanDashboard">
+          <a class="nav-link {{ Request::is('peraturanDashboard*') ? 'active' : '' }}" href="peraturanDashboard">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>customer-support</title>
@@ -142,7 +142,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ Request::is('drainaseDashboard') ? 'active' : '' }}" href="drainaseDashboard">
+          <a class="nav-link {{ Request::is('drainaseDashboard*') ? 'active' : '' }}" href="drainaseDashboard">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 40 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>document</title>
