@@ -14,5 +14,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+});
+
+Route::get('/tanah-lahan', function () {
+    return view('tanah-lahan');
+});
+
+Route::get('/ruas-jalan', function () {
+    return view('ruas-jalan');
+});
+
+Route::get('/peraturan', function () {
+    return view('peraturan');
+});
+
+Route::get('/statistik', function () {
+    return view('statistik');
+});
+
+Route::get('/drainase', function () {
+    return view('drainase');
 });

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AsetJalanProject;
+use App\Models\Tanah;
 use Illuminate\Http\Request;
 
-class AsetJalanProjectController extends Controller
+class TanahController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class AsetJalanProjectController extends Controller
     public function index()
     {
         try {
-            $res = AsetJalanProject::all();
+            $res = Tanah::all();
             return response()->json($res);
         } catch (\Throwable $th) {
             throw $th;
@@ -34,7 +34,7 @@ class AsetJalanProjectController extends Controller
     public function store(Request $request)
     {
         try {
-            $res = AsetJalanProject::create($request->all());
+            $res = Tanah::create($request->all());
             return response()->json($res);
         } catch (\Throwable $th) {
             throw $th;
@@ -44,10 +44,10 @@ class AsetJalanProjectController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(AsetJalanProject $asetJalanProject, $id)
+    public function show(Tanah $tanah, $id)
     {
         try {
-            $res = $asetJalanProject->findOrFail($id);
+            $res = $tanah->findOrFail($id);
             return response()->json($res);
         } catch (\Throwable $th) {
             throw $th;
@@ -57,7 +57,7 @@ class AsetJalanProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(AsetJalanProject $asetJalanProject)
+    public function edit(Tanah $tanah)
     {
         //
     }
@@ -65,10 +65,10 @@ class AsetJalanProjectController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, AsetJalanProject $asetJalanProject, $id)
+    public function update(Request $request, Tanah $tanah, $id)
     {
         try {
-            $res = $asetJalanProject->findOrFail($id)->update($request->all());
+            $res = $tanah->findOrFail($id)->update($request->all());
             return response()->json($res);
         } catch (\Throwable $th) {
             throw $th;
@@ -78,10 +78,10 @@ class AsetJalanProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(AsetJalanProject $asetJalanProject, $id)
+    public function destroy(Tanah $tanah, $id)
     {
         try {
-            $res = $asetJalanProject->findOrFail($id)->delete();
+            $res = $tanah->findOrFail($id)->delete();
             return response()->json($res);
         } catch (\Throwable $th) {
             throw $th;
