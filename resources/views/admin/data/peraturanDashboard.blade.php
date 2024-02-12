@@ -37,7 +37,7 @@
                     </div>
                     <div class="form-group col-md-4 col-12 text-right">
                         <label>&nbsp;</label>
-                        <a href="https://ministry.phicos.co.id/tegal-sip/operator/peraturan/tambah/ajhtb2kxa2w2Y2pYOVNSL25iRjAwRUZFdDBNSS9UWnRWbmN5VzJnYkh0ZmVVeVlkc0lhQWNONFBRRDZhZGxBVWZBTVNoM1ArcGNXTGxSQ1BhUEtyRmc9PQ=="
+                        <a href="createRuasJalan"
                             class="btn btn-primary waves-effect waves-light w-md mt-4">Tambah</a>
                     </div>
                 </div>

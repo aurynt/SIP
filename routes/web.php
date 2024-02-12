@@ -96,3 +96,27 @@ Route::get('/drainaseDashboard', function () {
         'title' => 'Drainase'
     ]);
 });
+
+Route::get('/createTanahDanLahan', function () {
+    return view('admin.create.createTanahDanLahan',[
+        'title' => 'Tambah Tanah Dan Lahan'
+    ]);
+});
+
+Route::get('/createRuasJalan', function () {
+    return view('admin.create.createRuasJalan',[
+        'title' => 'Tambah Ruas Jalan'
+    ]);
+});
+
+Route::get('/createRuasJalan', function () {
+    return view('admin.create.createPeraturan',[
+        'title' => 'Tambah Peraturan'
+    ]);
+});
+
+Route::get('/createDrainase', function () {
+    return view('admin.create.createDrainase',[
+        'title' => 'Tambah Drainase'
+    ]);
+});

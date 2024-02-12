@@ -64,7 +64,7 @@
 
                     <div class="form-group col-md-2 col-12">
                         <label>&nbsp;</label>
-                        <a href="https://ministry.phicos.co.id/tegal-sip/operator/tanah_dan_lahan/tambah/eXZCQ1FUREhBallhTjNGQ05WNmdFd3NsNDdrbFdqUHdpSU9wNzV3RWRyTytQZk5acmNMdUROSWplQVBiSjFmemxmS3RKRllERWdiZG1XV2xOV3EvbGc9PQ=="
+                        <a href="createRuasJalan"
                             class="btn btn-primary waves-effect waves-light w-md mt-4"><i
                                 class="bx bx-edit font-size-16"></i> Tambah</a>
                     </div>
