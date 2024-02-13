@@ -12,9 +12,6 @@ class DisclaimerController extends Controller
      */
     public function index()
     {
-        return view('admin.manajemen.pengaturanDisclaimer',[
-            'title' => 'Pengaturan Discalimer'
-        ]);
         try {
             $res = Disclaimer::all();
             return response()->json($res);
@@ -53,14 +50,7 @@ class DisclaimerController extends Controller
      */
     public function show(Disclaimer $disclaimer, $id)
     {
-        try {
-            $res = $disclaimer->findOrFail($id);
-            return response()->json($res);
-        } catch (\Throwable $th) {
-            return response()->json([
-                'message' => $th->getMessage()
-            ], 400);
-        }
+        //
     }
 
     /**
@@ -74,10 +64,10 @@ class DisclaimerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Disclaimer $disclaimer, $id)
+    public function update(Request $request, Disclaimer $disclaimer)
     {
         try {
-            $res = $disclaimer->findOrFail($id)->update($request->all());
+            $res = $disclaimer->first()->update($request->all());
             return response()->json($res);
         } catch (\Throwable $th) {
             return response()->json([

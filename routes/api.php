@@ -42,18 +42,16 @@ Route::name('jalan.')->group(function () {
 });
 
 Route::name('beranda.')->group(function () {
-    Route::get('beranda', [BerandaController::class, 'index'])->name('all');
+    Route::get('beranda', [BerandaController::class, 'index'])->name('first');
     Route::post('beranda', [BerandaController::class, 'store'])->name('add');
-    Route::get('beranda/{id}', [BerandaController::class, 'show'])->name('show');
-    Route::post('beranda/{id}', [BerandaController::class, 'update'])->name('update');
+    Route::post('beranda', [BerandaController::class, 'update'])->name('update');
     Route::delete('beranda/{id}', [BerandaController::class, 'destroy'])->name('remove');
 });
 
 Route::name('disclaimer.')->group(function () {
     Route::get('disclaimer', [DisclaimerController::class, 'index'])->name('all');
     Route::post('disclaimer', [DisclaimerController::class, 'store'])->name('add');
-    Route::get('disclaimer/{id}', [DisclaimerController::class, 'show'])->name('show');
-    Route::post('disclaimer/{id}', [DisclaimerController::class, 'update'])->name('update');
+    Route::put('disclaimer', [DisclaimerController::class, 'update'])->name('update');
     Route::delete('disclaimer/{id}', [DisclaimerController::class, 'destroy'])->name('remove');
 });
 
