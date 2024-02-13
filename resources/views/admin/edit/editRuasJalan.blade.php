@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card h-100 p-4">
-                <div class="row">
+                <div class="card-body">
                     <div class="row mb-2">
                         <div class="col-sm-12">
                             <div class="text-sm-left">
@@ -20,23 +20,29 @@
                             <form id="form-input" method="POST"
                                 action=""
                                 onsubmit="return false;">
-
                                 <div class="form-group">
                                     <label for="kode_kec">Kecamatan *</label>
                                     <select id="kode_kec" name="kode_kec" class="form-control" required="">
                                         <option value="" selected="" disabled="">Pilih Kecamatan</option>
                                         <option value="337601">Tegal Barat</option>
-                                        <option value="337602">Tegal Timur</option>
+                                        <option value="337602"  >Tegal Timur</option>
                                         <option value="337603">Tegal Selatan</option>
                                         <option value="337604">Margadana</option>
                                     </select>
-                                    <input type="hidden" name="kecamatan" id="kecamatan">
+                                    <input type="hidden" name="kecamatan" id="kecamatan" value="Tegal Timur">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="kode_kel">Kelurahan *</label>
-                                    <select id="kode_kel" name="kode_kel" class="form-control" required=""></select>
-                                    <input type="hidden" name="kel" id="kel">
+                                    <select id="kode_kel" name="kode_kel" class="form-control" required="">
+                                        <option value="3376021001"></option>
+                                        <option value="3376021001">Kejambon</option>
+                                        <option value="3376021002">Slerok</option>
+                                        <option value="3376021003">Panggung</option>
+                                        <option value="3376021004">Mangkukusuman</option>
+                                        <option value="3376021005">Mintaragen</option>
+                                    </select>
+                                    <input type="hidden" name="kel" id="kel" value="Kejambon">
                                 </div>
 
                                 <div class="form-group">
@@ -60,7 +66,7 @@
                                 <div class="form-group">
                                     <label for="luas_sertifikat">Luas Sertifikat (meter persegi) *</label>
                                     <input type="text" id="luas_sertifikat" name="luas_sertifikat"
-                                        class="form-control decimal" value="" required="">
+                                        class="form-control decimal" value="11828" required="">
                                 </div>
 
                                 <div class="form-group">
@@ -77,8 +83,8 @@
 
                                 <div class="form-group">
                                     <label for="fungsi">Fungsi *</label>
-                                    <input type="text" id="fungsi" name="fungsi" class="form-control" value=""
-                                        required="">
+                                    <input type="text" id="fungsi" name="fungsi" class="form-control"
+                                        value="" required="">
                                 </div>
 
                                 <div class="form-group">
@@ -88,14 +94,14 @@
                                 </div>
 
                                 <!-- <div class="form-group">
-                                    <label for="tipe_produk">Tipe Produk *</label>
-                                    <input type="text" id="tipe_produk" name="tipe_produk" class="form-control" value="" required>
-                                </div>
+                                        <label for="tipe_produk">Tipe Produk *</label>
+                                        <input type="text" id="tipe_produk" name="tipe_produk" class="form-control" value="" required>
+                                    </div>
 
-                                <div class="form-group">
-                                    <label for="tipe_jalan">Tipe Jalan *</label>
-                                    <input type="text" id="tipe_jalan" name="tipe_jalan" class="form-control" value="" required>
-                                </div> -->
+                                    <div class="form-group">
+                                        <label for="tipe_jalan">Tipe Jalan *</label>
+                                        <input type="text" id="tipe_jalan" name="tipe_jalan" class="form-control" value="" required>
+                                    </div> -->
 
                                 <div class="form-group">
                                     <label for="hp">HP *</label>
@@ -152,14 +158,14 @@
                                 </div>
 
                                 <!-- <div class="form-group">
-                                    <label for="vcr">VCR</label>
-                                    <input type="text" id="vcr" name="vcr" class="form-control" value="">
-                                </div>
+                                        <label for="vcr">VCR</label>
+                                        <input type="text" id="vcr" name="vcr" class="form-control" value="">
+                                    </div>
 
-                                <div class="form-group">
-                                    <label for="mst">MST</label>
-                                    <input type="text" id="mst" name="mst" class="form-control" value="">
-                                </div> -->
+                                    <div class="form-group">
+                                        <label for="mst">MST</label>
+                                        <input type="text" id="mst" name="mst" class="form-control" value="">
+                                    </div> -->
 
                                 <div class="form-group">
                                     <label for="tanah">Tanah (meter)</label>
@@ -196,142 +202,159 @@
                                             <div class="leaflet-pane leaflet-tile-pane">
                                                 <div class="leaflet-layer " style="z-index: 1; opacity: 1;">
                                                     <div class="leaflet-tile-container leaflet-zoom-animated"
+                                                        style="z-index: 16; transform: translate3d(-3346px, -2543px, 0px) scale(8);">
+                                                    </div>
+                                                    <div class="leaflet-tile-container leaflet-zoom-animated"
                                                         style="z-index: 19; transform: translate3d(0px, 0px, 0px) scale(1);">
                                                         <img alt=""
-                                                            src="https://b.tile.openstreetmap.org/13/6579/4252.png"
+                                                            src="https://b.tile.openstreetmap.org/16/52635/34024.png"
                                                             class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(360px, 89px, 0px); opacity: 1;"><img
+                                                            style="width: 256px; height: 256px; transform: translate3d(302px, 217px, 0px); opacity: 1;"><img
                                                             alt=""
-                                                            src="https://a.tile.openstreetmap.org/13/6579/4251.png"
+                                                            src="https://a.tile.openstreetmap.org/16/52635/34023.png"
                                                             class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(360px, -167px, 0px); opacity: 1;"><img
+                                                            style="width: 256px; height: 256px; transform: translate3d(302px, -39px, 0px); opacity: 1;"><img
                                                             alt=""
-                                                            src="https://a.tile.openstreetmap.org/13/6578/4252.png"
+                                                            src="https://a.tile.openstreetmap.org/16/52634/34024.png"
                                                             class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(104px, 89px, 0px); opacity: 1;"><img
+                                                            style="width: 256px; height: 256px; transform: translate3d(46px, 217px, 0px); opacity: 1;"><img
                                                             alt=""
-                                                            src="https://c.tile.openstreetmap.org/13/6580/4252.png"
+                                                            src="https://c.tile.openstreetmap.org/16/52636/34024.png"
                                                             class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(616px, 89px, 0px); opacity: 1;"><img
+                                                            style="width: 256px; height: 256px; transform: translate3d(558px, 217px, 0px); opacity: 1;"><img
                                                             alt=""
-                                                            src="https://c.tile.openstreetmap.org/13/6579/4253.png"
+                                                            src="https://c.tile.openstreetmap.org/16/52635/34025.png"
                                                             class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(360px, 345px, 0px); opacity: 1;"><img
+                                                            style="width: 256px; height: 256px; transform: translate3d(302px, 473px, 0px); opacity: 1;"><img
                                                             alt=""
-                                                            src="https://c.tile.openstreetmap.org/13/6578/4251.png"
+                                                            src="https://c.tile.openstreetmap.org/16/52634/34023.png"
                                                             class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(104px, -167px, 0px); opacity: 1;"><img
+                                                            style="width: 256px; height: 256px; transform: translate3d(46px, -39px, 0px); opacity: 1;"><img
                                                             alt=""
-                                                            src="https://b.tile.openstreetmap.org/13/6580/4251.png"
+                                                            src="https://b.tile.openstreetmap.org/16/52636/34023.png"
                                                             class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(616px, -167px, 0px); opacity: 1;"><img
+                                                            style="width: 256px; height: 256px; transform: translate3d(558px, -39px, 0px); opacity: 1;"><img
                                                             alt=""
-                                                            src="https://b.tile.openstreetmap.org/13/6578/4253.png"
+                                                            src="https://b.tile.openstreetmap.org/16/52634/34025.png"
                                                             class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(104px, 345px, 0px); opacity: 1;"><img
+                                                            style="width: 256px; height: 256px; transform: translate3d(46px, 473px, 0px); opacity: 1;"><img
                                                             alt=""
-                                                            src="https://a.tile.openstreetmap.org/13/6580/4253.png"
+                                                            src="https://a.tile.openstreetmap.org/16/52636/34025.png"
                                                             class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(616px, 345px, 0px); opacity: 1;"><img
+                                                            style="width: 256px; height: 256px; transform: translate3d(558px, 473px, 0px); opacity: 1;"><img
                                                             alt=""
-                                                            src="https://c.tile.openstreetmap.org/13/6577/4252.png"
+                                                            src="https://c.tile.openstreetmap.org/16/52633/34024.png"
                                                             class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(-152px, 89px, 0px); opacity: 1;"><img
+                                                            style="width: 256px; height: 256px; transform: translate3d(-210px, 217px, 0px); opacity: 1;"><img
                                                             alt=""
-                                                            src="https://a.tile.openstreetmap.org/13/6581/4252.png"
+                                                            src="https://a.tile.openstreetmap.org/16/52637/34024.png"
                                                             class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(872px, 89px, 0px); opacity: 1;"><img
+                                                            style="width: 256px; height: 256px; transform: translate3d(814px, 217px, 0px); opacity: 1;"><img
                                                             alt=""
-                                                            src="https://b.tile.openstreetmap.org/13/6577/4251.png"
+                                                            src="https://b.tile.openstreetmap.org/16/52633/34023.png"
                                                             class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(-152px, -167px, 0px); opacity: 1;"><img
+                                                            style="width: 256px; height: 256px; transform: translate3d(-210px, -39px, 0px); opacity: 1;"><img
                                                             alt=""
-                                                            src="https://c.tile.openstreetmap.org/13/6581/4251.png"
+                                                            src="https://c.tile.openstreetmap.org/16/52637/34023.png"
                                                             class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(872px, -167px, 0px); opacity: 1;"><img
+                                                            style="width: 256px; height: 256px; transform: translate3d(814px, -39px, 0px); opacity: 1;"><img
                                                             alt=""
-                                                            src="https://a.tile.openstreetmap.org/13/6577/4253.png"
+                                                            src="https://a.tile.openstreetmap.org/16/52633/34025.png"
                                                             class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(-152px, 345px, 0px); opacity: 1;"><img
+                                                            style="width: 256px; height: 256px; transform: translate3d(-210px, 473px, 0px); opacity: 1;"><img
                                                             alt=""
-                                                            src="https://b.tile.openstreetmap.org/13/6581/4253.png"
+                                                            src="https://b.tile.openstreetmap.org/16/52637/34025.png"
                                                             class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(872px, 345px, 0px); opacity: 1;">
+                                                            style="width: 256px; height: 256px; transform: translate3d(814px, 473px, 0px); opacity: 1;">
                                                     </div>
                                                 </div>
                                                 <div class="leaflet-layer " style="z-index: 1; opacity: 1;">
                                                     <div class="leaflet-tile-container leaflet-zoom-animated"
+                                                        style="z-index: 16; transform: translate3d(-3346px, -2543px, 0px) scale(8);">
+                                                    </div>
+                                                    <div class="leaflet-tile-container leaflet-zoom-animated"
                                                         style="z-index: 19; transform: translate3d(0px, 0px, 0px) scale(1);">
                                                         <img alt=""
-                                                            src="https://b.tile.openstreetmap.org/13/6579/4252.png"
+                                                            src="https://b.tile.openstreetmap.org/16/52635/34024.png"
                                                             class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(360px, 89px, 0px); opacity: 1;"><img
+                                                            style="width: 256px; height: 256px; transform: translate3d(302px, 217px, 0px); opacity: 1;"><img
                                                             alt=""
-                                                            src="https://a.tile.openstreetmap.org/13/6579/4251.png"
+                                                            src="https://a.tile.openstreetmap.org/16/52635/34023.png"
                                                             class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(360px, -167px, 0px); opacity: 1;"><img
+                                                            style="width: 256px; height: 256px; transform: translate3d(302px, -39px, 0px); opacity: 1;"><img
                                                             alt=""
-                                                            src="https://a.tile.openstreetmap.org/13/6578/4252.png"
+                                                            src="https://a.tile.openstreetmap.org/16/52634/34024.png"
                                                             class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(104px, 89px, 0px); opacity: 1;"><img
+                                                            style="width: 256px; height: 256px; transform: translate3d(46px, 217px, 0px); opacity: 1;"><img
                                                             alt=""
-                                                            src="https://c.tile.openstreetmap.org/13/6580/4252.png"
+                                                            src="https://c.tile.openstreetmap.org/16/52636/34024.png"
                                                             class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(616px, 89px, 0px); opacity: 1;"><img
+                                                            style="width: 256px; height: 256px; transform: translate3d(558px, 217px, 0px); opacity: 1;"><img
                                                             alt=""
-                                                            src="https://c.tile.openstreetmap.org/13/6579/4253.png"
+                                                            src="https://c.tile.openstreetmap.org/16/52635/34025.png"
                                                             class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(360px, 345px, 0px); opacity: 1;"><img
+                                                            style="width: 256px; height: 256px; transform: translate3d(302px, 473px, 0px); opacity: 1;"><img
                                                             alt=""
-                                                            src="https://c.tile.openstreetmap.org/13/6578/4251.png"
+                                                            src="https://c.tile.openstreetmap.org/16/52634/34023.png"
                                                             class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(104px, -167px, 0px); opacity: 1;"><img
+                                                            style="width: 256px; height: 256px; transform: translate3d(46px, -39px, 0px); opacity: 1;"><img
                                                             alt=""
-                                                            src="https://b.tile.openstreetmap.org/13/6580/4251.png"
+                                                            src="https://b.tile.openstreetmap.org/16/52636/34023.png"
                                                             class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(616px, -167px, 0px); opacity: 1;"><img
+                                                            style="width: 256px; height: 256px; transform: translate3d(558px, -39px, 0px); opacity: 1;"><img
                                                             alt=""
-                                                            src="https://b.tile.openstreetmap.org/13/6578/4253.png"
+                                                            src="https://b.tile.openstreetmap.org/16/52634/34025.png"
                                                             class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(104px, 345px, 0px); opacity: 1;"><img
+                                                            style="width: 256px; height: 256px; transform: translate3d(46px, 473px, 0px); opacity: 1;"><img
                                                             alt=""
-                                                            src="https://a.tile.openstreetmap.org/13/6580/4253.png"
+                                                            src="https://a.tile.openstreetmap.org/16/52636/34025.png"
                                                             class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(616px, 345px, 0px); opacity: 1;"><img
+                                                            style="width: 256px; height: 256px; transform: translate3d(558px, 473px, 0px); opacity: 1;"><img
                                                             alt=""
-                                                            src="https://c.tile.openstreetmap.org/13/6577/4252.png"
+                                                            src="https://c.tile.openstreetmap.org/16/52633/34024.png"
                                                             class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(-152px, 89px, 0px); opacity: 1;"><img
+                                                            style="width: 256px; height: 256px; transform: translate3d(-210px, 217px, 0px); opacity: 1;"><img
                                                             alt=""
-                                                            src="https://a.tile.openstreetmap.org/13/6581/4252.png"
+                                                            src="https://a.tile.openstreetmap.org/16/52637/34024.png"
                                                             class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(872px, 89px, 0px); opacity: 1;"><img
+                                                            style="width: 256px; height: 256px; transform: translate3d(814px, 217px, 0px); opacity: 1;"><img
                                                             alt=""
-                                                            src="https://b.tile.openstreetmap.org/13/6577/4251.png"
+                                                            src="https://b.tile.openstreetmap.org/16/52633/34023.png"
                                                             class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(-152px, -167px, 0px); opacity: 1;"><img
+                                                            style="width: 256px; height: 256px; transform: translate3d(-210px, -39px, 0px); opacity: 1;"><img
                                                             alt=""
-                                                            src="https://c.tile.openstreetmap.org/13/6581/4251.png"
+                                                            src="https://c.tile.openstreetmap.org/16/52637/34023.png"
                                                             class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(872px, -167px, 0px); opacity: 1;"><img
+                                                            style="width: 256px; height: 256px; transform: translate3d(814px, -39px, 0px); opacity: 1;"><img
                                                             alt=""
-                                                            src="https://a.tile.openstreetmap.org/13/6577/4253.png"
+                                                            src="https://a.tile.openstreetmap.org/16/52633/34025.png"
                                                             class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(-152px, 345px, 0px); opacity: 1;"><img
+                                                            style="width: 256px; height: 256px; transform: translate3d(-210px, 473px, 0px); opacity: 1;"><img
                                                             alt=""
-                                                            src="https://b.tile.openstreetmap.org/13/6581/4253.png"
+                                                            src="https://b.tile.openstreetmap.org/16/52637/34025.png"
                                                             class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(872px, 345px, 0px); opacity: 1;">
+                                                            style="width: 256px; height: 256px; transform: translate3d(814px, 473px, 0px); opacity: 1;">
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="leaflet-pane leaflet-overlay-pane"></div>
+                                            <div class="leaflet-pane leaflet-overlay-pane"><svg pointer-events="none"
+                                                    class="leaflet-zoom-animated" width="595" height="600"
+                                                    viewBox="162 -50 595 600"
+                                                    style="transform: translate3d(162px, -50px, 0px);">
+                                                    <g>
+                                                        <path class="leaflet-interactive" stroke="#3388ff"
+                                                            stroke-opacity="1" stroke-width="3" stroke-linecap="round"
+                                                            stroke-linejoin="round" fill="#3388ff" fill-opacity="0.2"
+                                                            fill-rule="evenodd"
+                                                            d="M454 412L451 412L460 108L461 94L468 87L457 412z"></path>
+                                                    </g>
+                                                </svg></div>
                                             <div class="leaflet-pane leaflet-shadow-pane"></div>
                                             <div class="leaflet-pane leaflet-marker-pane"></div>
                                             <div class="leaflet-pane leaflet-tooltip-pane"></div>
                                             <div class="leaflet-pane leaflet-popup-pane"></div>
                                             <div class="leaflet-proxy leaflet-zoom-animated"
-                                                style="transform: translate3d(1.68432e+06px, 1.08867e+06px, 0px) scale(4096);">
+                                                style="transform: translate3d(1.34747e+07px, 8.71018e+06px, 0px) scale(32768);">
                                             </div>
                                         </div>
                                         <div class="leaflet-control-container">

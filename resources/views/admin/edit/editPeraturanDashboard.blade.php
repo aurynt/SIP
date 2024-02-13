@@ -39,25 +39,25 @@
                                         <option value="13">Peraturan Menteri</option>
                                         <option value="14">Permendagri</option>
                                         <option value="15">Inpres</option>
-                                        <option value="16">Keputusan Menteri</option>
+                                        <option value="16" selected="">Keputusan Menteri</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="nomor">Nomor<span class="text-danger">*</span></label>
-                                    <input type="number" id="nomor" name="nomor" class="form-control" value="">
+                                    <input type="number" id="nomor" name="nomor" class="form-control" value="1589">
                                 </div>
                                 <div class="form-group">
                                     <label for="tahun">Tahun<span class="text-danger">*</span></label>
-                                    <input type="number" id="tahun" name="tahun" class="form-control" value="">
+                                    <input type="number" id="tahun" name="tahun" class="form-control" value="2021">
                                 </div>
                                 <!-- <div class="form-group">
-            <label for="instansi">Instansi<span class="text-danger">*</span></label>
-            <input type="text" id="instansi" name="instansi" class="form-control" value="" required>
-           </div> -->
+                                        <label for="instansi">Instansi<span class="text-danger">*</span></label>
+                                        <input type="text" id="instansi" name="instansi" class="form-control" value="" required>
+                                    </div> -->
                                 <div class="form-group">
                                     <label for="tentang">Tentang<span class="text-danger">*</span></label>
-                                    <input type="text" id="tentang" name="tentang" class="form-control" value=""
-                                        required="">
+                                    <input type="text" id="tentang" name="tentang" class="form-control"
+                                        value="PENETAPAN PETA LSD" required="">
                                 </div>
                                 <div class="form-group">
                                     <label for="file">File Peraturan<span class="text-danger font-italic text-sm">(Hanya

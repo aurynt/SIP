@@ -12,9 +12,6 @@ class JalanController extends Controller
      */
     public function index()
     {
-        return view('admin.data.ruasJalan',[
-            'title' => 'Ruas Jalan'
-        ]);
         try {
             $res = Jalan::all();
             return response()->json($res);
@@ -30,7 +27,9 @@ class JalanController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.create.createRuasJalan',[
+            'title' => 'Tambah Ruas Jalan'
+        ]);
     }
 
     /**
@@ -68,7 +67,9 @@ class JalanController extends Controller
      */
     public function edit(Jalan $jalan)
     {
-        //
+        return view('admin.edit.editRuasJalan',[
+            'title' => 'Edit Ruas Jalan'
+        ]);
     }
 
     /**
