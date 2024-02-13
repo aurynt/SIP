@@ -165,7 +165,27 @@
                                     </td>
                                     <td class="align-middle">
                                         <div class="btn-group">
-                                            <button class="btn btn-outline-success btn-up-sertifikat btn-tooltip"  data-bs-toggle="tooltip" data-bs-placement="top" title="Upload Sertifikat" data-container="body" data-animation="true"><i class="bx bxs-file-pdf" ></i></button>
+                                            <button class="btn btn-outline-success btn-tooltip" data-bs-toggle="modal" data-bs-target="#modal-default"  data-bs-toggle="tooltip" data-bs-placement="top" title="Upload Sertifikat" data-container="body" data-animation="true"><i class="bx bxs-file-pdf" ></i></button>
+                                            <div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+                                                <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+                                                  <div class="modal-content">
+                                                    <div class="modal-header">
+                                                      <h6 class="modal-title" id="modal-title-default">Type your modal title</h6>
+                                                      <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                      </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                      <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                                                      <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                      <button type="button" class="btn bg-gradient-primary">Save changes</button>
+                                                      <button type="button" class="btn btn-link  ml-auto" data-bs-dismiss="modal">Close</button>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
                                             <button class="btn btn-outline-info btn-up-lokasi btn-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Upload Foto Tanah" data-container="body" data-animation="true"><i class="bx bx-image-add" ></i></button>
                                             <a class="btn btn-outline-primary btn-tooltip" href="#" target="_blank"  data-bs-toggle="tooltip" data-bs-placement="top" title="Patok" data-container="body" data-animation="true"><i class="bx bx-map"></i></a>
                                             <a class="btn btn-outline-dark btn-tooltip" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Detail" data-container="body" data-animation="true"><i class="bx bx-detail"></i></a>
