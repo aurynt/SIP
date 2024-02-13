@@ -57,6 +57,7 @@
                 <ul class="buy-button list-inline mb-0">
                     <li class="list-inline-item mb-0">
                         <a href="{{ route('page.home') }}" class="btn btn-outline-light ms-3">Login</a>
+                        <a href="sign_in" class="btn btn-outline-light ms-3">cek sign</a>
                     </li>
                 </ul>
                 <!--Login button End-->
