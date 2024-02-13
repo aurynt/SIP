@@ -56,7 +56,6 @@ Route::get('/peta', function () {
     ]);
 });
 
-
 Route::name('page.')->group(function () {
     Route::get('/dashboard', [AppController::class, 'dashboard'])->name('home');
     Route::get('/pengaturan-beranda', [AppController::class, 'pengaturanBeranda'])->name('setBeranda');
