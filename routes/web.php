@@ -57,6 +57,16 @@ Route::get('/peta', function () {
     ]);
 });
 
+Route::get('/sign_in', function () {
+    return view('sign.sign-in',[
+        'title' => 'Login |'
+    ]);
+});
+
+// Route::name('sign.')->group(function () {
+
+// });
+
 Route::name('page.')->group(function () {
     Route::get('/dashboard', [AppController::class, 'dashboard'])->name('home');
     Route::get('/pengaturan-beranda', [AppController::class, 'pengaturanBeranda'])->name('setBeranda');
