@@ -64,7 +64,7 @@
 
                         <div class="form-group col-md-2">
                             <label>&nbsp;</label>
-                            <a href="createTanahDanLahan"
+                            <a href="{{ route('tanah-lahan.make') }}"
                                 class="btn btn-primary waves-effect waves-light w-md mt-4"><i
                                     class="bx bx-edit font-size-16"></i> Tambah</a>
                         </div>

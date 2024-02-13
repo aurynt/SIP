@@ -12,6 +12,9 @@ class PeraturanController extends Controller
      */
     public function index()
     {
+        return view('admin.data.peraturanDashboard',[
+            'title' => 'Peraturan'
+        ]);
         try {
             $res = Peraturan::all();
             return response()->json($res);

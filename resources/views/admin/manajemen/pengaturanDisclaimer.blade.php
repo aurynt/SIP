@@ -5,7 +5,7 @@
       <div class="card h-100 p-4">
         <div class="row">
             <div class="col-12 col-md-6 mb-4">
-                <form id="form-input" method="POST" action="https://ministry.phicos.co.id/tegal-sip/operator/pengaturan_disclaimer/simpan/S2RhdnRDQmhTQUNwTlRlVDBpOUdkdlJSZkh0NTJxUmh2SVEzeFFWQ1hHbFZJVkIvaTBSWDBFRGtkNXBraGw0c2VKMzROd1c4Y0I3aElMa0NPclRtYWc9PQ==" onsubmit="return false;" enctype="multipart/form-data">
+                <form id="form-input" method="POST" action="" onsubmit="return false;" enctype="multipart/form-data">
                     <input type="hidden" name="tegal-sip-token" value="bc89b2d07be137b73ea079535b040b6d">
                     <input type="hidden" name="id" id="id" value="">
                     <div class="form-group col-12">
