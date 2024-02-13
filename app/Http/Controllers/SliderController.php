@@ -14,9 +14,6 @@ class SliderController extends Controller
      */
     public function index()
     {
-        return view('admin.manajemen.pengaturanBeranda',[
-            'title' => 'Pengaturan Beranda'
-        ]);
         try {
             $res = Slider::all();
             return response()->json($res);

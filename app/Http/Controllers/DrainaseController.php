@@ -12,9 +12,6 @@ class DrainaseController extends Controller
      */
     public function index()
     {
-        return view('admin.data.drainaseDashboard',[
-            'title' => 'Drainase'
-        ]);
         try {
             $res = Drainase::all();
             return response()->json($res);
@@ -30,7 +27,9 @@ class DrainaseController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.create.createDrainase',[
+            'title' => 'Tambah Drainase'
+        ]);
     }
 
     /**
@@ -68,7 +67,9 @@ class DrainaseController extends Controller
      */
     public function edit(Drainase $drainase)
     {
-        //
+        return view('admin.edit.editDrainaseDashboard',[
+            'title' => 'Edit Drainase'
+        ]);
     }
 
     /**

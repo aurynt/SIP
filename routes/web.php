@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AppController;
+use App\Http\Controllers\DetailController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,8 +61,15 @@ Route::name('page.')->group(function () {
     Route::get('/dashboard', [AppController::class, 'dashboard'])->name('home');
     Route::get('/pengaturan-beranda', [AppController::class, 'pengaturanBeranda'])->name('setBeranda');
     Route::get('/pengaturan-disclaimer', [AppController::class, 'pengaturanDisclaimer'])->name('setDisclaimer');
-    Route::get('/tanah-dan-lahan', [AppController::class, 'tanahDanLahan'])->name('tanahLahan');
-    Route::get('/ruas-jalan', [AppController::class, 'ruasJalan'])->name('ruasJalan');
+    Route::get('/tanah-lahan', [AppController::class, 'tanahDanLahan'])->name('tanah-lahan');
+    Route::get('/ruas-jalan', [AppController::class, 'ruasJalan'])->name('jalan');
     Route::get('/peraturan', [AppController::class, 'peraturanDashboard'])->name('peraturan');
     Route::get('/drainase', [AppController::class, 'drainaseDashboard'])->name('drainase');
+});
+
+Route::name('detail.')->group(function(){
+    Route::get('detail-tanah-lahan', [DetailController::class, 'detailTanahLahan'])->name('detail-tanah');
+    Route::get('detail-ruas-jalan', [DetailController::class, 'detailRuasJalan'])->name('jalan');
+    Route::get('detail-peraturan', [DetailController::class, 'detailPeraturan'])->name('peraturan');
+    Route::get('detail-drainase', [DetailController::class, 'detailDrainase'])->name('drainase');
 });

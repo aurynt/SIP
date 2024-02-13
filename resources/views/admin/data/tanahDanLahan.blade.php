@@ -129,7 +129,7 @@
                                             <button class="btn btn-outline-success btn-up-sertifikat btn-tooltip"  data-bs-toggle="tooltip" data-bs-placement="top" title="Upload Sertifikat" data-container="body" data-animation="true"><i class="bx bxs-file-pdf" ></i></button>
                                             <button class="btn btn-outline-info btn-up-lokasi btn-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Upload Foto Tanah" data-container="body" data-animation="true"><i class="bx bx-image-add" ></i></button>
                                             <a class="btn btn-outline-primary btn-tooltip" href="#" target="_blank"  data-bs-toggle="tooltip" data-bs-placement="top" title="Patok" data-container="body" data-animation="true"><i class="bx bx-map"></i></a>
-                                            <a class="btn btn-outline-dark btn-tooltip" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Detail" data-container="body" data-animation="true"><i class="bx bx-detail"></i></a>
+                                            <a class="btn btn-outline-dark btn-tooltip" href="{{ route('detail.detail-tanah') }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Detail" data-container="body" data-animation="true"><i class="bx bx-detail"></i></a>
                                             <a class="btn btn-outline-warning btn-update btn-tooltip" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah" data-container="body" data-animation="true"><i class="bx bx-pencil"></i></a>
                                             <button class="btn btn-outline-danger btn-remove btn-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus" data-container="body" data-animation="true"><i class="bx bx-trash" ></i></button>
                                         </div>
@@ -189,7 +189,7 @@
                                             <button class="btn btn-outline-info btn-up-lokasi btn-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Upload Foto Tanah" data-container="body" data-animation="true"><i class="bx bx-image-add" ></i></button>
                                             <a class="btn btn-outline-primary btn-tooltip" href="#" target="_blank"  data-bs-toggle="tooltip" data-bs-placement="top" title="Patok" data-container="body" data-animation="true"><i class="bx bx-map"></i></a>
                                             <a class="btn btn-outline-dark btn-tooltip" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Detail" data-container="body" data-animation="true"><i class="bx bx-detail"></i></a>
-                                            <a class="btn btn-outline-warning btn-update btn-tooltip" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah" data-container="body" data-animation="true"><i class="bx bx-pencil"></i></a>
+                                            <a class="btn btn-outline-warning btn-update btn-tooltip" href="{{ route('tanah-lahan.edit') }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah" data-container="body" data-animation="true"><i class="bx bx-pencil"></i></a>
                                             <button class="btn btn-outline-danger btn-remove btn-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus" data-container="body" data-animation="true"><i class="bx bx-trash" ></i></button>
                                         </div>
                                     </td>

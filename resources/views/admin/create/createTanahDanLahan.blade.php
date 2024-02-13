@@ -7,7 +7,7 @@
                 <div class="row mb-2">
                     <div class="col-sm-12">
                         <div class="text-sm-left">
-                            <a href="{{ route('tanah-lahan.all') }}"
+                            <a href="{{ route('page.tanah-lahan') }}"
                                 class="btn btn-outline-secondary w-md"><i class="mdi mdi-arrow-left ml-1"></i> Kembali</a>
                         </div>
                     </div>
@@ -261,7 +261,7 @@
                                 </div>
                             </div> --}}
                             <div>
-                                <a href="{{ route('tanah-lahan.all') }}"
+                                <a href="{{ route('page.tanah-lahan') }}"
                                     class="btn btn-default w-md">Cancel</a>
                                 <button type="submit" class="btn btn-primary w-md">Simpan</button>
                             </div>

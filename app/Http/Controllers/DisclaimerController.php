@@ -12,9 +12,6 @@ class DisclaimerController extends Controller
      */
     public function index()
     {
-        return view('admin.manajemen.pengaturanDisclaimer',[
-            'title' => 'Pengaturan Discalimer'
-        ]);
         try {
             $res = Disclaimer::all();
             return response()->json($res);

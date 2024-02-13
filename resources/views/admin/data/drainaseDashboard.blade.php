@@ -52,7 +52,7 @@
 
                             <div class="form-group col-md-2 col-12 text-right">
                                 <label>&nbsp;</label>
-                                <a href="createDrainase"
+                                <a href="{{ route('drainase.make') }}"
                                     class="btn btn-primary waves-effect waves-light w-md mt-4"><i
                                         class="bx bx-edit font-size-16"></i> Tambah</a>
                             </div>
@@ -66,8 +66,6 @@
         <div class="col-lg-12">
             <div class="card h-100 p-4">
                 <form action="" method="POST">
-                    <input type="hidden" name="" value="">
-                    <input type="hidden" name="jenis" value="back">
                     <div class="table-responsive">
                         <table id="myTable" class="table align-items-center mb-0 table-hover">
                             <thead>
@@ -105,8 +103,8 @@
                                     <td>903</td>
                                     <td>
                                         <div class="btn-group">
-                                            <a class="btn btn-outline-dark btn-tooltip" href="#"  data-bs-toggle="tooltip" data-bs-placement="top" title="Detail" data-container="body" data-animation="true"><i class="bx bx-detail"></i></a>
-                                            <a class="btn btn-outline-warning btn-tooltip" href="#"  data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah" data-container="body" data-animation="true"><i class="bx bx-pencil"></i></a>
+                                            <a class="btn btn-outline-dark btn-tooltip" href="{{ route('detail.drainase') }}"  data-bs-toggle="tooltip" data-bs-placement="top" title="Detail" data-container="body" data-animation="true"><i class="bx bx-detail"></i></a>
+                                            <a class="btn btn-outline-warning btn-tooltip" href="{{ route('drainase.edit') }}"  data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah" data-container="body" data-animation="true"><i class="bx bx-pencil"></i></a>
                                             <button class="btn btn-outline-danger btn-remove btn-tooltip"  data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus" data-container="body" data-animation="true"><i class="bx bx-trash"></i></button></div>
                                     </td>
                                   </tr>
