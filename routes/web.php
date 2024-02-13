@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AppController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -55,68 +56,13 @@ Route::get('/peta', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return view('admin.index',[
-        'title' => 'Dashboard'
-    ]);
+
+Route::name('page.')->group(function () {
+    Route::get('/dashboard', [AppController::class, 'dashboard'])->name('home');
+    Route::get('/pengaturan-beranda', [AppController::class, 'pengaturanBeranda'])->name('setBeranda');
+    Route::get('/pengaturan-disclaimer', [AppController::class, 'pengaturanDisclaimer'])->name('setDisclaimer');
+    Route::get('/tanah-dan-lahan', [AppController::class, 'tanahDanLahan'])->name('tanahLahan');
+    Route::get('/ruas-jalan', [AppController::class, 'ruasJalan'])->name('ruasJalan');
+    Route::get('/peraturan', [AppController::class, 'peraturanDashboard'])->name('peraturan');
+    Route::get('/drainase', [AppController::class, 'drainaseDashboard'])->name('drainase');
 });
-
-// Route::get('/pengaturanBeranda', function () {
-//     return view('admin.manajemen.pengaturanBeranda',[
-//         'title' => 'Pengaturan Beranda'
-//     ]);
-// });
-
-// Route::get('/pengaturanDisclaimer', function () {
-//     return view('admin.manajemen.pengaturanDisclaimer',[
-//         'title' => 'Pengaturan Disclaimer'
-//     ]);
-// });
-
-// Route::get('/tanahDanLahan', function () {
-//     return view('admin.data.tanahDanLahan',[
-//         'title' => 'Tanah dan Lahan'
-//     ]);
-// });
-
-// Route::get('/ruasJalan', function () {
-//     return view('admin.data.ruasJalan',[
-//         'title' => 'Ruas Jalan'
-//     ]);
-// });
-
-// Route::get('/peraturanDashboard', function () {
-//     return view('admin.data.peraturanDashboard',[
-//         'title' => 'Peraturan'
-//     ]);
-// });
-
-// Route::get('/drainaseDashboard', function () {
-//     return view('admin.data.drainaseDashboard',[
-//         'title' => 'Drainase'
-//     ]);
-// });
-
-// Route::get('/createTanahDanLahan', function () {
-//     return view('admin.create.createTanahDanLahan',[
-//         'title' => 'Tambah Tanah Dan Lahan'
-//     ]);
-// });
-
-// Route::get('/createRuasJalan', function () {
-//     return view('admin.create.createRuasJalan',[
-//         'title' => 'Tambah Ruas Jalan'
-//     ]);
-// });
-
-// Route::get('/createRuasJalan', function () {
-//     return view('admin.create.createPeraturan',[
-//         'title' => 'Tambah Peraturan'
-//     ]);
-// });
-
-// Route::get('/createDrainase', function () {
-//     return view('admin.create.createDrainase',[
-//         'title' => 'Tambah Drainase'
-//     ]);
-// });

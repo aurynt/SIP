@@ -3,8 +3,8 @@
     <div class="container">
         <!-- Logo container-->
         <a class="logo pb-0" href="index.html">
-            <span class="logo-light-mode p-logo">
-                <span class="l-dark">
+            <span class="logo-light-mode p-logo ">
+                <span class="l-dark p-2">
                     <img src="assets/images/logo_kota_tegal.png" class="l-dark" height="34" alt="">
                     <h6 class="mb-0 font-logo">PEMERINTAH KOTA TEGAL <br> SISTEM INFORMASI PERTANAHAN</h6>
                 </span>
@@ -56,7 +56,7 @@
                 <!--Login button Start-->
                 <ul class="buy-button list-inline mb-0">
                     <li class="list-inline-item mb-0">
-                        <a href="{{ route('beranda.all') }}" class="btn btn-outline-light ms-3">Login</a>
+                        <a href="{{ route('page.home') }}" class="btn btn-outline-light ms-3">Login</a>
                     </li>
                 </ul>
                 <!--Login button End-->
