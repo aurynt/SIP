@@ -53,7 +53,42 @@
                 </div>
             </div>
         </div>
-    </div>deskripsi_disclaimer })
-    })
+    </div>
+    <script>
+        $(document).ready(() => {
+
+            $('#form-input').on('submit', (e) => {
+                e.preventDefault()
+
+                const formData = new FormData()
+                formData.append('deskripsi_disclaimer', $('#deskripsi_disclaimer').val())
+                formData.append('pernyataan_persetujuan', $('#pernyataan_persetujuan').val())
+                formData.append('konfirmasi_persetujuan', $('#konfirmasi_persetujuan').val())
+
+                $.ajax({
+                    url: "{{ route('disclaimer.update') }}",
+                    method: 'PUT',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: (res) => {
+                        Swal.fire({
+                            title: "Woke",
+                            text: "successfuly updated beranda",
+                            icon: "success"
+                        });
+
+                    },
+                    error: (err) => {
+                        // displayError(err.responseJSON.errors)
+                        Swal.fire({
+                            title: "Failed!",
+                            text: err.responseJSON.message,
+                            icon: "error"
+                        })
+                    }
+                })
+            })
+        })
     </script>
 @endsection
