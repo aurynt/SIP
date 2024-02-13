@@ -7,7 +7,7 @@
                     <div class="row mb-2">
                         <div class="col-sm-12">
                             <div class="text-sm-left">
-                                <a href="drainaseDashboard" class="btn btn-outline-secondary w-md"><i
+                                <a href="{{ route('page.drainase') }}" class="btn btn-outline-secondary w-md"><i
                                         class="mdi mdi-arrow-left ml-1"></i> Kembali</a>
                             </div>
                         </div>
@@ -320,7 +320,7 @@
                                 </div> --}}
 
                                 <div>
-                                    <a href="drainaseDashboard" class="btn btn-default w-md">Cancel</a>
+                                    <a href="{{ route('page.drainase') }}" class="btn btn-default w-md">Cancel</a>
                                     <button type="submit" class="btn btn-primary w-md">Simpan</button>
                                 </div>
                             </form>

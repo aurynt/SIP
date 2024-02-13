@@ -62,7 +62,7 @@ class TanahController extends Controller
     public function edit(Tanah $tanah)
     {
         return view('admin.edit.editTanahDanLahanDashboard',[
-            'title' => 'Edit Tanah Dan Lahan'
+            'title' => 'Edit Tanah Dan Lahan',
         ]);
     }
 

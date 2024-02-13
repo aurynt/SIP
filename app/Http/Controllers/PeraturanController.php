@@ -12,9 +12,6 @@ class PeraturanController extends Controller
      */
     public function index()
     {
-        return view('admin.data.peraturanDashboard',[
-            'title' => 'Peraturan'
-        ]);
         try {
             $res = Peraturan::all();
             return response()->json($res);
@@ -28,7 +25,9 @@ class PeraturanController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.create.createPeraturan', [
+            'title' => 'Tambah Peraturan'
+        ]);
     }
 
     /**
@@ -62,7 +61,9 @@ class PeraturanController extends Controller
      */
     public function edit(Peraturan $peraturan)
     {
-        //
+        return view('admin.edit.editPeraturanDashboard', [
+            'title' => 'Edit Peraturan'
+        ]);
     }
 
     /**
