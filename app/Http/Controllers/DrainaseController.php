@@ -12,6 +12,9 @@ class DrainaseController extends Controller
      */
     public function index()
     {
+        return view('admin.data.drainaseDashboard',[
+            'title' => 'Drainase'
+        ]);
         try {
             $res = Drainase::all();
             return response()->json($res);

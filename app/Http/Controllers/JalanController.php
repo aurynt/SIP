@@ -12,6 +12,9 @@ class JalanController extends Controller
      */
     public function index()
     {
+        return view('admin.data.ruasJalan',[
+            'title' => 'Ruas Jalan'
+        ]);
         try {
             $res = Jalan::all();
             return response()->json($res);
