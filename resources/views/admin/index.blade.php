@@ -19,7 +19,9 @@
         <div class="overflow-hidden position-relative border-radius-lg bg-cover h-100" style="background-image: url('../assets/img/ivancik.jpg');">
           <span class="mask bg-gradient-dark"></span>
           <div class="card-body position-relative z-index-1 d-flex flex-column h-100 p-3 text-center">
-            <img class="w-100" src="/assets/images/logo_kota_tegal.png" alt="">
+            <a href="/">
+                <img class="w-100" src="/assets/images/logo_kota_tegal.png" alt="">
+            </a>
           </div>
         </div>
       </div>

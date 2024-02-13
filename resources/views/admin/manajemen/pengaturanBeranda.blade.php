@@ -5,7 +5,7 @@
       <div class="card h-100 p-4">
         <div class="row">
             <div class="col-12 col-md-6 mb-4">
-                <form id="form-input" method="POST" action="https://ministry.phicos.co.id/tegal-sip/operator/pengaturan_beranda/simpan/TFNsOER5RURCVlZXZG5GQ2dpaHZMOE10bUptL2IxNkxsNlJDQ0prUTg1V2NnOWJmMXFtM1pCdkxSdWFubFhaYWdVQlhiRUtpcDJRMjBiSUtMRmV5dGc9PQ==" onsubmit="return false;" enctype="multipart/form-data">
+                <form id="form-input" method="POST" action="" onsubmit="return false;" enctype="multipart/form-data">
                     <input type="hidden" name="tegal-sip-token" value="bc89b2d07be137b73ea079535b040b6d">
                     <input type="hidden" name="id" id="id" value="">
                     <div class="form-group col-12">
@@ -35,7 +35,7 @@
                 </form>
             </div>
             <div class="col-12 col-md-6 mb-4">
-                <form id="form-slider" method="POST" action="https://ministry.phicos.co.id/tegal-sip/operator/pengaturan_beranda/simpan_slider/TFNsOER5RURCVlZXZG5GQ2dpaHZMOE10bUptL2IxNkxsNlJDQ0prUTg1V2NnOWJmMXFtM1pCdkxSdWFubFhaYWdVQlhiRUtpcDJRMjBiSUtMRmV5dGc9PQ==" onsubmit="return false;" enctype="multipart/form-data">
+                <form id="form-slider" method="POST" action="" onsubmit="return false;" enctype="multipart/form-data">
                     <div class="col-12 row">
                         <div class="form-group col-8">
                             <label for="slider">Gambar Slider</label>
@@ -47,9 +47,6 @@
                         </div>
                     </div>
                 </form>
-                <div class="row">
-
-                </div>
             </div>
         </div>
       </div>

@@ -4,6 +4,7 @@ use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\DisclaimerController;
 use App\Http\Controllers\DrainaseController;
 use App\Http\Controllers\JalanController;
+use App\Http\Controllers\PeraturanController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\TanahController;
 use Illuminate\Http\Request;
@@ -65,6 +66,7 @@ Route::name('slider.')->group(function () {
 
 Route::name('tanah-lahan.')->group(function () {
     Route::get('tanah-lahan', [TanahController::class, 'index'])->name('all');
+    Route::get('tambah-tanah-dan-lahan', [TanahController::class, 'create'])->name('make');
     Route::post('tanah-lahan', [TanahController::class, 'store'])->name('add');
     Route::get('tanah-lahan/{id}', [TanahController::class, 'show'])->name('show');
     Route::put('tanah-lahan/{id}', [TanahController::class, 'update'])->name('update');
@@ -72,9 +74,9 @@ Route::name('tanah-lahan.')->group(function () {
 });
 
 Route::name('peraturan.')->group(function () {
-    Route::get('peraturan', [Peraturan::class, 'index'])->name('all');
-    Route::post('peraturan', [Peraturan::class, 'store'])->name('add');
-    Route::get('peraturan/{id}', [Peraturan::class, 'show'])->name('show');
-    Route::put('peraturan/{id}', [Peraturan::class, 'update'])->name('update');
-    Route::delete('peraturan/{id}', [Peraturan::class, 'destroy'])->name('remove');
+    Route::get('peraturan', [PeraturanController::class, 'index'])->name('all');
+    Route::post('peraturan', [PeraturanController::class, 'store'])->name('add');
+    Route::get('peraturan/{id}', [PeraturanController::class, 'show'])->name('show');
+    Route::put('peraturan/{id}', [PeraturanController::class, 'update'])->name('update');
+    Route::delete('peraturan/{id}', [PeraturanController::class, 'destroy'])->name('remove');
 });

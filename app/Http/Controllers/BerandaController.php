@@ -16,6 +16,9 @@ class BerandaController extends Controller
      */
     public function index()
     {
+        return  view('admin.index',[
+            'title' => 'Dashboard'
+        ]);
         try {
             $res = Beranda::all();
             return response()->json($res);
