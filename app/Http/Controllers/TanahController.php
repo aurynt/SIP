@@ -12,9 +12,6 @@ class TanahController extends Controller
      */
     public function index()
     {
-        return view('admin.data.tanahDanLahan',[
-            'title' => 'Tanah Dan Lahan'
-        ]);
         try {
             $res = Tanah::all();
             return response()->json($res);
@@ -64,7 +61,9 @@ class TanahController extends Controller
      */
     public function edit(Tanah $tanah)
     {
-        //
+        return view('admin.edit.editTanahDanLahanDashboard',[
+            'title' => 'Edit Tanah Dan Lahan'
+        ]);
     }
 
     /**
