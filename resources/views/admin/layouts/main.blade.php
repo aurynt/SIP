@@ -19,21 +19,21 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="/admin/assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="/admin/assets/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="/assets/assets/img/favicon.png">
   <title>
     Sistem Informasi Pertanahan Kota Tegal - {{ $title }}
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
   <!-- Nucleo Icons -->
-  <link href="/admin/assets/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="/admin/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link href="/assets/assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="/assets/assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-  <link href="/admin/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link href="/assets/assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
-  <link id="pagestyle" href="/admin/assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
+  <link id="pagestyle" href="/assets/admin/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
 
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
@@ -117,18 +117,18 @@
     </div>
   </div>
   <!--   Core JS Files   -->
-  <script src="/admin/assets/js/core/popper.min.js"></script>
-  <script src="/admin/assets/js/core/bootstrap.min.js"></script>
-  <script src="/admin/assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="/admin/assets/js/plugins/smooth-scrollbar.min.js"></script>
-  <script src="/admin/assets/js/plugins/chartjs.min.js"></script>
+  <script src="/assets/assets/js/core/popper.min.js"></script>
+  <script src="/assets/assets/js/core/bootstrap.min.js"></script>
+  <script src="/assets/assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="/assets/assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src="/assets/assets/js/plugins/chartjs.min.js"></script>
 
   @include('admin.layouts.configurator')
 
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="/admin/assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
+  <script src="/assets/assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
 
   <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 
