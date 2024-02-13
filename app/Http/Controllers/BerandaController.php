@@ -17,7 +17,7 @@ class BerandaController extends Controller
     public function index()
     {
         try {
-            $res = Beranda::all();
+            $res = Beranda::first();
             return response()->json($res);
         } catch (\Throwable $th) {
             return response()->json([
@@ -61,14 +61,7 @@ class BerandaController extends Controller
      */
     public function show(Beranda $beranda, $id)
     {
-        try {
-            $res = $beranda->findOrFail($id);
-            return response()->json($res);
-        } catch (\Throwable $th) {
-            return response()->json([
-                'message' => $th->getMessage()
-            ], 400);
-        }
+        //
     }
 
     /**
@@ -82,18 +75,18 @@ class BerandaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Beranda $beranda, $id)
+    public function update(Request $request, Beranda $beranda)
     {
         try {
             $file = $request->file('logo');
-            $beranda = $beranda->findOrFail($id);
+            $beranda = $beranda->first();
             $data = $request->all();
+            $data['logo'] = $beranda->logo;
             if ($file) {
-                $logo = $file->store('public/logo');
                 Storage::delete("public/logo/$beranda->logo");
+                $logo = $file->store('public/logo');
                 $data['logo'] = basename($logo);
             }
-            $data['logo'] = $beranda->logo;
             $data['updated_at'] = now();
             $res = $beranda->update($data);
             return response()->json($res);
