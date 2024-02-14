@@ -24,8 +24,5 @@ class Peraturan extends Model
         'tentang',
         'didownload',
         'dilihat',
-        'created_at',
-        'updated_at',
-        'deleted_at',
     ];
 }

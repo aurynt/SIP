@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Drainase;
+use App\Models\Kecamatan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DrainaseController extends Controller
 {
@@ -27,8 +29,9 @@ class DrainaseController extends Controller
      */
     public function create()
     {
-        return view('admin.create.createDrainase',[
-            'title' => 'Tambah Drainase'
+        return view('admin.create.createDrainase', [
+            'title' => 'Tambah Drainase',
+            'kecamatan' => DB::table('ref_kecamatan')->get(),
         ]);
     }
 
@@ -67,7 +70,7 @@ class DrainaseController extends Controller
      */
     public function edit(Drainase $drainase)
     {
-        return view('admin.edit.editDrainaseDashboard',[
+        return view('admin.edit.editDrainaseDashboard', [
             'title' => 'Edit Drainase'
         ]);
     }
