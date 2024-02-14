@@ -4,6 +4,7 @@ use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\DisclaimerController;
 use App\Http\Controllers\DrainaseController;
 use App\Http\Controllers\JalanController;
+use App\Http\Controllers\KelurahanController;
 use App\Http\Controllers\PeraturanController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\TanahController;
@@ -85,3 +86,4 @@ Route::name('peraturan.')->group(function () {
     Route::put('peraturan/{id}', [PeraturanController::class, 'update'])->name('update');
     Route::delete('peraturan/{id}', [PeraturanController::class, 'destroy'])->name('remove');
 });
+Route::get('kelurahan/{id_kecamatan}', [KelurahanController::class, 'show'])->name('kelurahan.show');

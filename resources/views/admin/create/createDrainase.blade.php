@@ -17,50 +17,47 @@
 
                     <div class="row mb-2">
                         <div class="col-sm-12">
-                            <form id="form-input" method="POST"
-                                action=""
-                                onsubmit="return false;">
+                            <form id="form-input">
 
                                 <div class="form-group">
                                     <label for="kode_kec">Kecamatan *</label>
-                                    <select id="kode_kec" name="kode_kec" class="form-control" required="">
-                                        <option value="" selected="" disabled="">Pilih Kecamatan</option>
-                                        <option value="337601">Tegal Barat</option>
-                                        <option value="337602">Tegal Timur</option>
-                                        <option value="337603">Tegal Selatan</option>
-                                        <option value="337604">Margadana</option>
+                                    <select id="kode_kec" name="kode_kec" class="form-control">
+                                        <option value="" selected disabled>Pilih Kecamatan</option>
+                                        @foreach ($kecamatan as $item)
+                                            <option value="{{ $item->id_kecamatan }}">{{ $item->nama_kecamatan }}</option>
+                                        @endforeach
                                     </select>
                                     <input type="hidden" name="kecamatan" id="kecamatan">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="kode_kel">Kelurahan *</label>
-                                    <select id="kode_kel" name="kode_kel" class="form-control" required=""></select>
+                                    <select id="kode_kel" name="kode_kel" class="form-control">
+                                    </select>
                                     <input type="hidden" name="kel" id="kel">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="nama_ruas">Nama Ruas Jalan *</label>
                                     <input type="text" id="nama_ruas" name="nama_ruas" class="form-control"
-                                        value="" required="">
+                                        value="">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="luas_sertifikat">Luas Sertifikat (meter persegi) *</label>
                                     <input type="text" id="luas_sertifikat" name="luas_sertifikat"
-                                        class="form-control decimal" value="" required="">
+                                        class="form-control decimal" value="">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="tipe_hak">Tipe Hak *</label>
-                                    <input type="text" id="tipe_hak" name="tipe_hak" class="form-control" value=""
-                                        required="">
+                                    <input type="text" id="tipe_hak" name="tipe_hak" class="form-control"
+                                        value="">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="hp">HP *</label>
-                                    <input type="text" id="hp" name="hp" class="form-control" value=""
-                                        required="">
+                                    <input type="text" id="hp" name="hp" class="form-control" value="">
                                 </div>
 
                                 <!-- map -->
@@ -233,7 +230,8 @@
                                                                     marker</span></a><a
                                                                 class="leaflet-draw-draw-circlemarker" href="#"
                                                                 title="Draw a circlemarker"><span class="sr-only">Draw a
-                                                                    circlemarker</span></a></div>
+                                                                    circlemarker</span></a>
+                                                        </div>
                                                         <ul class="leaflet-draw-actions"></ul>
                                                     </div>
                                                 </div>
@@ -256,7 +254,8 @@
                                                             class="leaflet-draw-toolbar leaflet-bar leaflet-draw-toolbar-top">
                                                             <a class="leaflet-draw-draw-polygon" href="#"
                                                                 title="Draw a polygon"><span class="sr-only">Draw a
-                                                                    polygon</span></a></div>
+                                                                    polygon</span></a>
+                                                        </div>
                                                         <ul class="leaflet-draw-actions"></ul>
                                                     </div>
                                                     <div class="leaflet-draw-section">
@@ -330,4 +329,59 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(() => {
+            const appName = "{{ env('APP_URL') }}" + ':8000'
+            $('#kode_kec').on('change', (e) => {
+                $('#kode_kel').empty()
+
+                $.get(`${appName}/api/kelurahan/${e.target.value}`, (res) => {
+                    console.log(res);
+                    res.map((item) => (
+                        $('<option></option>').attr('value', item.id_kelurahan).text(item
+                            .nama_kelurahan)
+                        .appendTo(
+                            '#kode_kel')
+                    ))
+                })
+            })
+
+            $('#form-input').on('submit', (e) => {
+                e.preventDefault();
+
+                const formData = new FormData();
+                formData.append('kode_kec', $('#kode_kec').val());
+                formData.append('kode_kel', $('#kode_kel').val());
+                formData.append('nama_ruas', $('#nama_ruas').val());
+                formData.append('luas_sertifikat', $('#luas_sertifikat').val());
+                formData.append('tipe_hak', $('#tipe_hak').val());
+                formData.append('hp', $('#hp').val());
+
+                $.ajax({
+                    url: "{{ route('drainase.add') }}",
+                    method: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: (res) => {
+                        Swal.fire({
+                            title: "Woke",
+                            text: "successfuly added drainase",
+                            icon: "success"
+                        });
+
+                    },
+                    error: (err) => {
+                        // displayError(err.responseJSON.errors)
+                        Swal.fire({
+                            title: "Failed!",
+                            text: err.responseJSON.message,
+                            icon: "error"
+                        })
+                    }
+                }).done((res) => console.log(res))
+
+            })
+        })
+    </script>
 @endsection

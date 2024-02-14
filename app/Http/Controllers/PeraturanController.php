@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Peraturan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PeraturanController extends Controller
 {
@@ -26,7 +27,8 @@ class PeraturanController extends Controller
     public function create()
     {
         return view('admin.create.createPeraturan', [
-            'title' => 'Tambah Peraturan'
+            'title' => 'Tambah Peraturan',
+            'jenisPeraturan' => DB::table('ref_jenis_peraturan')->get()
         ]);
     }
 
