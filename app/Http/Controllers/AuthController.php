@@ -21,10 +21,10 @@ class AuthController extends Controller
         if (!$user) {
             return response()->json(['error' => 'Username tidak ditemukan'], 401);
         } else if (!Hash::check($request->password, $user->password)) {
-            return response()->json(['error' => 'Kata sandi salah'], 401);
+            return response()->json(['error' => 'Kata sandi salah',], 401);
         }
 
-        return  response()->json([ 'token' => $user->createToken('access token')->plainTextToken ], 200);
+        return  response()->json(['token' => $user->createToken('access token')->plainTextToken], 200);
     }
 
     public function logout(Request $request)
@@ -34,7 +34,8 @@ class AuthController extends Controller
         return response()->json(['message' => 'Berhasil Logout'], 200);
     }
 
-    public function register(Request $request) {
+    public function register(Request $request)
+    {
         $uuid = Uuid::uuid4();
         $user = User::create([
             'id'       => $uuid,
@@ -43,6 +44,6 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return response()->json(['message' => 'Berhasil Register','data' => $user], 201);
+        return response()->json(['message' => 'Berhasil Register', 'data' => $user], 201);
     }
 }
