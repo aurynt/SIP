@@ -52,7 +52,7 @@
 
                             <div class="form-group col-md-2 col-12 text-right">
                                 <label>&nbsp;</label>
-                                <a href="{{ route('drainase.make') }}"
+                                <a href="{{ route('create.drainase') }}"
                                     class="btn btn-primary waves-effect waves-light w-md mt-4"><i
                                         class="bx bx-edit font-size-16"></i> Tambah</a>
                             </div>

@@ -64,7 +64,7 @@
 
                     <div class="form-group col-md-2 col-12">
                         <label>&nbsp;</label>
-                        <a href="{{ route('jalan.make') }}"
+                        <a href="{{ route('create.jalan') }}"
                             class="btn btn-primary waves-effect waves-light w-md mt-4"><i
                                 class="bx bx-edit font-size-16"></i> Tambah</a>
                     </div>
@@ -161,7 +161,7 @@
                                 <td class="align-middle">
                                     <div class="btn-group">
                                         <a class="btn btn-outline-dark" href="{{ route('detail.jalan') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Detail"><i class="bx bx-detail"></i></a>
-                                        <a class="btn btn-outline-warning btn-update" href="{{ route('jalan.edit') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah"><i class="bx bx-pencil"></i></a>
+                                        <a class="btn btn-outline-warning btn-update" href="{{ route('edit.jalan') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah"><i class="bx bx-pencil"></i></a>
                                         <button class="btn btn-outline-danger btn-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus" fdprocessedid="eru1p"><i class="bx bx-trash"></i></button>
                                     </div>
                                 </td>

@@ -37,7 +37,7 @@
                     </div>
                     <div class="form-group col-md-4 col-12 text-right">
                         <label>&nbsp;</label>
-                        <a href="{{ route('peraturan.make') }}"
+                        <a href="{{ route('create.peraturan') }}"
                             class="btn btn-primary waves-effect waves-light w-md mt-4">Tambah</a>
                     </div>
                 </div>

@@ -55,7 +55,7 @@
                     <p class="mb-0">Masukkan username dan Password</p>
                 </div>
                 <div class="card-body">
-                    <form action="/auth/login" method="POST">
+                    <form action="login" method="POST">
                         @csrf
                         <label>Username</label>
                         <div class="input-group mb-3">

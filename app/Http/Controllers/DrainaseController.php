@@ -29,10 +29,7 @@ class DrainaseController extends Controller
      */
     public function create()
     {
-        return view('admin.create.createDrainase', [
-            'title' => 'Tambah Drainase',
-            'kecamatan' => DB::table('ref_kecamatan')->get(),
-        ]);
+        //
     }
 
     /**
@@ -70,9 +67,7 @@ class DrainaseController extends Controller
      */
     public function edit(Drainase $drainase)
     {
-        return view('admin.edit.editDrainaseDashboard', [
-            'title' => 'Edit Drainase'
-        ]);
+        //
     }
 
     /**
