@@ -11,7 +11,7 @@ class Peraturan extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $table = 'aset_jalan_project';
+    protected $table = 'peraturan';
     protected $primaryKey = 'id';
     public $incrementing = true;
     protected $fillable = [
