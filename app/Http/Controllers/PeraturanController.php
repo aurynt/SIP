@@ -26,10 +26,7 @@ class PeraturanController extends Controller
      */
     public function create()
     {
-        return view('admin.create.createPeraturan', [
-            'title' => 'Tambah Peraturan',
-            'jenisPeraturan' => DB::table('ref_jenis_peraturan')->get()
-        ]);
+        //
     }
 
     /**
@@ -63,9 +60,7 @@ class PeraturanController extends Controller
      */
     public function edit(Peraturan $peraturan)
     {
-        return view('admin.edit.editPeraturanDashboard', [
-            'title' => 'Edit Peraturan'
-        ]);
+        //
     }
 
     /**

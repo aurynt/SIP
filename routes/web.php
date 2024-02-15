@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AppController;
+use App\Http\Controllers\CreateController;
 use App\Http\Controllers\DetailController;
+use App\Http\Controllers\EditController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -82,4 +84,18 @@ Route::name('detail.')->group(function(){
     Route::get('detail-ruas-jalan', [DetailController::class, 'detailRuasJalan'])->name('jalan');
     Route::get('detail-peraturan', [DetailController::class, 'detailPeraturan'])->name('peraturan');
     Route::get('detail-drainase', [DetailController::class, 'detailDrainase'])->name('drainase');
+});
+
+Route::name('create.')->group(function(){
+    Route::get('tambah-tanah-lahan', [CreateController::class, 'tanahDanLahan'])->name('tanah-lahan');
+    Route::get('tambah-ruas-jalan', [CreateController::class, 'ruasJalan'])->name('jalan');
+    Route::get('tambah-peraturan', [CreateController::class, 'peraturan'])->name('peraturan');
+    Route::get('tambah-drainase', [CreateController::class, 'drainase'])->name('drainase');
+});
+
+Route::name('edit.')->group(function(){
+    Route::get('edit-tanah-lahan', [EditController::class, 'editTanahLahan'])->name('tanah-lahan');
+    Route::get('edit-ruas-jalan', [EditController::class, 'editRuasJalan'])->name('jalan');
+    Route::get('edit-peraturan', [EditController::class, 'editPeraturan'])->name('peraturan');
+    Route::get('edit-drainase', [EditController::class, 'editDrainase'])->name('drainase');
 });

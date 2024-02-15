@@ -25,9 +25,7 @@ class TanahController extends Controller
      */
     public function create()
     {
-        return view('admin.create.createTanahDanLahan',[
-            'title' => 'Tambah Tanah dan Lahan'
-        ]);
+        //
     }
 
     /**
@@ -61,9 +59,7 @@ class TanahController extends Controller
      */
     public function edit(Tanah $tanah)
     {
-        return view('admin.edit.editTanahDanLahanDashboard',[
-            'title' => 'Edit Tanah Dan Lahan',
-        ]);
+        //
     }
 
     /**

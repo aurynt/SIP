@@ -52,7 +52,7 @@
 
                             <div class="form-group col-md-2 col-12 text-right">
                                 <label>&nbsp;</label>
-                                <a href="{{ route('drainase.make') }}"
+                                <a href="{{ route('create.drainase') }}"
                                     class="btn btn-primary waves-effect waves-light w-md mt-4"><i
                                         class="bx bx-edit font-size-16"></i> Tambah</a>
                             </div>
@@ -104,7 +104,7 @@
                                     <td>
                                         <div class="btn-group">
                                             <a class="btn btn-outline-dark btn-tooltip" href="{{ route('detail.drainase') }}"  data-bs-toggle="tooltip" data-bs-placement="top" title="Detail" data-container="body" data-animation="true"><i class="bx bx-detail"></i></a>
-                                            <a class="btn btn-outline-warning btn-tooltip" href="{{ route('drainase.edit') }}"  data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah" data-container="body" data-animation="true"><i class="bx bx-pencil"></i></a>
+                                            <a class="btn btn-outline-warning btn-tooltip" href="{{ route('edit.drainase') }}"  data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah" data-container="body" data-animation="true"><i class="bx bx-pencil"></i></a>
                                             <button class="btn btn-outline-danger btn-remove btn-tooltip"  data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus" data-container="body" data-animation="true"><i class="bx bx-trash"></i></button></div>
                                     </td>
                                   </tr>
