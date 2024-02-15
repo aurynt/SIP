@@ -71,12 +71,18 @@
                             <thead>
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder">No.</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder ps-2">Nama Ruas Jalan</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Kecamatan</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Kelurahan</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Nomor Sertifikat</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Luas Sertifikat (m<sup>2</sup>)</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Aksi</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder ps-2">Nama Ruas
+                                        Jalan</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
+                                        Kecamatan</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
+                                        Kelurahan</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Nomor
+                                        Sertifikat</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Luas
+                                        Sertifikat (m<sup>2</sup>)</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Aksi
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>

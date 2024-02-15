@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Peraturan;
+use Error;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class PeraturanController extends Controller
 {
@@ -35,6 +37,11 @@ class PeraturanController extends Controller
     public function store(Request $request)
     {
         try {
+            $file = $request->file('file');
+            if (!$file) {
+                throw new Error('file not uploaded');
+            }
+            $file_peraturan = $file->store('public/peraturan/');
             $res = Peraturan::create($request->all());
             return response()->json($res);
         } catch (\Throwable $th) {
@@ -69,7 +76,21 @@ class PeraturanController extends Controller
     public function update(Request $request, Peraturan $peraturan, $id)
     {
         try {
-            $res = $peraturan->findOrFail($id)->update($request->all());
+            $dataToUpdate = $request->all();
+            $getPeraturan = $peraturan->findOrFail($id);
+            if ($request->hasFile('file')) {
+                $file = $request->file('file');
+                if (!$file) {
+                    throw new Error('File cannot be null');
+                }
+                $file_peraturan = $file->store('public/peraturan/');
+                Storage::delete('public/peraturan/'.$getPeraturan->file);
+                $dataToUpdate['file'] = $file_peraturan;
+            }
+
+            $dataToUpdate['file'] = $getPeraturan->file;
+
+            $res = $getPeraturan->update($dataToUpdate);
             return response()->json($res);
         } catch (\Throwable $th) {
             throw $th;
@@ -82,7 +103,9 @@ class PeraturanController extends Controller
     public function destroy(Peraturan $peraturan, $id)
     {
         try {
-            $res = $peraturan->findOrFail($id)->delete();
+            $getPeraturan = $peraturan->findOrFail($id);
+            Storage::delete('public/peraturan/'.$getPeraturan->file);
+            $res = $getPeraturan->delete();
             return response()->json($res);
         } catch (\Throwable $th) {
             throw $th;

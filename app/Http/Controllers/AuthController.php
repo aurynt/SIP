@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Ramsey\Uuid\Uuid;
 
 class AuthController extends Controller
 {
@@ -31,5 +32,17 @@ class AuthController extends Controller
         $user = Auth::user();
         $request->user()->currentAccessToken()->delete();
         return response()->json(['message' => 'Berhasil Logout'], 200);
+    }
+
+    public function register(Request $request) {
+        $uuid = Uuid::uuid4();
+        $user = User::create([
+            'id'       => $uuid,
+            'username' => $request->username,
+            'full_name' => $request->full_name,
+            'password' => Hash::make($request->password),
+        ]);
+
+        return response()->json(['message' => 'Berhasil Register','data' => $user], 201);
     }
 }

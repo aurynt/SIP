@@ -56,8 +56,10 @@
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder">No.</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder ps-2">Judul</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Download</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Aksi</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
+                                        Download</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Aksi
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -100,4 +102,49 @@
             </div>
         </div>
     </div>
+    <script>
+        // $(document).ready(() => {
+        //     const generateElement = (data) => {
+        //         return data.map((item, i) => (
+        //             `
+    //             <tr>
+    //                 <td>${i}.</td>
+    //                 <td>${ item.tentang }
+    //                     <hr><span class="badge bg-success text-white">Dilihat: ${ item.dilihat ?? 0 }
+    //                         kali</span> <span class="badge bg-primary text-white">Diunduh:
+    //                         ${ item.didownload ?? 0 } kali</span>
+    //                 </td>
+    //                 <td>
+    //                     <a target="_blank" href="#"
+    //                         class="lihat btn bg-gradient-success btn-sm col-12 mb-1">Lihat File</a><br>
+    //                     <a target="_blank" href="#"
+    //                         class="download btn bg-gradient-primary btn-sm col-12">Download File</a>
+    //                 </td>
+    //                 <td>
+    //                     <div class="btn-group btn-sm">
+    //                         <a class="btn btn-outline-dark btn-tooltip" href="#"
+    //                             data-bs-toggle="tooltip" data-bs-placement="top" title="Detail"
+    //                             data-container="body" data-animation="true"><i
+    //                                 class="bx bx-detail"></i></a>
+    //                         <a class="btn btn-outline-warning btn-tooltip" href="#"
+    //                             data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah"
+    //                             data-container="body" data-animation="true"><i
+    //                                 class="bx bx-pencil"></i></a>
+    //                         <button class="btn btn-outline-danger btn-remove btn-tooltip"
+    //                             data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"
+    //                             data-container="body" data-animation="true"><i
+    //                                 class="bx bx-trash"></i></button>
+    //                     </div>
+    //                 </td>
+    //             </tr>
+    //             `
+        //         ))
+        //     }
+        //     $.get("{{ route('peraturan.all') }}", (res) => {
+        //         const el = generateElement(res)
+        //         $('#tabel-body').empty()
+        //         $('#tabel-body').append(el)
+        //     })
+        // })
+    </script>
 @endsection
