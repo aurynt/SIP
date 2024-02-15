@@ -8,6 +8,7 @@ use App\Models\Drainase;
 use App\Models\Peraturan;
 use App\Models\Slider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AppController extends Controller
 {
@@ -53,6 +54,7 @@ class AppController extends Controller
         return view('admin.data.peraturanDashboard', [
             'title' => 'Peraturan',
             'data' => Peraturan::all(),
+            'jenisPeraturan' => DB::table('ref_jenis_peraturan')->get()
         ]);
     }
 
@@ -64,6 +66,8 @@ class AppController extends Controller
                 ->join('ref_kecamatan', 'drainase.kode_kec', '=', 'ref_kecamatan.id_kecamatan')
                 ->join('ref_kelurahan', 'drainase.kode_kel', '=', 'ref_kelurahan.id_kelurahan')
                 ->get(),
+            'kecamatan' => DB::table('ref_kecamatan')->get(),
+            'kelurahan' => DB::table('ref_kelurahan')->get(),
         ]);
     }
 }

@@ -24,13 +24,13 @@ Route::get('/', function () {
 });
 
 Route::get('/tanah-lahan', function () {
-    return view('tanah-lahan',[
+    return view('tanah-lahan', [
         'title' => 'Tanah dan Lahan |'
     ]);
 });
 
 Route::get('/ruas-jalan', function () {
-    return view('ruas-jalan',[
+    return view('ruas-jalan', [
         'title' => 'Ruas Jalan |'
     ]);
 });
@@ -42,25 +42,25 @@ Route::get('/peraturan', function () {
 });
 
 Route::get('/statistik', function () {
-    return view('statistik',[
+    return view('statistik', [
         'title' => 'Statistik |'
     ]);
 });
 
 Route::get('/drainase', function () {
-    return view('drainase',[
+    return view('drainase', [
         'title' => 'Drainase |'
     ]);
 });
 
 Route::get('/peta', function () {
-    return view('peta',[
+    return view('peta', [
         'title' => 'Peta |'
     ]);
 });
 
 Route::get('/sign_in', function () {
-    return view('sign.sign-in',[
+    return view('sign.sign-in', [
         'title' => 'Login |'
     ]);
 });
@@ -79,23 +79,23 @@ Route::name('page.')->group(function () {
     Route::get('/drainase', [AppController::class, 'drainaseDashboard'])->name('drainase');
 });
 
-Route::name('detail.')->group(function(){
-    Route::get('detail-tanah-lahan', [DetailController::class, 'detailTanahLahan'])->name('detail-tanah');
-    Route::get('detail-ruas-jalan', [DetailController::class, 'detailRuasJalan'])->name('jalan');
-    Route::get('detail-peraturan', [DetailController::class, 'detailPeraturan'])->name('peraturan');
-    Route::get('detail-drainase', [DetailController::class, 'detailDrainase'])->name('drainase');
+Route::name('detail.')->group(function () {
+    Route::get('detail-tanah-lahan/{id}', [DetailController::class, 'detailTanahLahan'])->name('detail-tanah');
+    Route::get('detail-ruas-jalan/{id}', [DetailController::class, 'detailRuasJalan'])->name('jalan');
+    Route::get('detail-peraturan/{id}', [DetailController::class, 'detailPeraturan'])->name('peraturan');
+    Route::get('detail-drainase/{id}', [DetailController::class, 'detailDrainase'])->name('drainase');
 });
 
-Route::name('create.')->group(function(){
+Route::name('create.')->group(function () {
     Route::get('tambah-tanah-lahan', [CreateController::class, 'tanahDanLahan'])->name('tanah-lahan');
     Route::get('tambah-ruas-jalan', [CreateController::class, 'ruasJalan'])->name('jalan');
     Route::get('tambah-peraturan', [CreateController::class, 'peraturan'])->name('peraturan');
     Route::get('tambah-drainase', [CreateController::class, 'drainase'])->name('drainase');
 });
 
-Route::name('edit.')->group(function(){
-    Route::get('edit-tanah-lahan', [EditController::class, 'editTanahLahan'])->name('tanah-lahan');
-    Route::get('edit-ruas-jalan', [EditController::class, 'editRuasJalan'])->name('jalan');
-    Route::get('edit-peraturan', [EditController::class, 'editPeraturan'])->name('peraturan');
-    Route::get('edit-drainase', [EditController::class, 'editDrainase'])->name('drainase');
+Route::name('edit.')->group(function () {
+    Route::get('edit-tanah-lahan/{id}', [EditController::class, 'editTanahLahan'])->name('tanah-lahan');
+    Route::get('edit-ruas-jalan/{id}', [EditController::class, 'editRuasJalan'])->name('jalan');
+    Route::get('edit-peraturan/{id}', [EditController::class, 'editPeraturan'])->name('peraturan');
+    Route::get('edit-drainase/{id}', [EditController::class, 'editDrainase'])->name('drainase');
 });

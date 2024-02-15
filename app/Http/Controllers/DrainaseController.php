@@ -15,7 +15,10 @@ class DrainaseController extends Controller
     public function index()
     {
         try {
-            $res = Drainase::all();
+            $res = Drainase::select('drainase.*', 'ref_kecamatan.nama_kecamatan', 'ref_kelurahan.nama_kelurahan')
+                ->join('ref_kecamatan', 'drainase.kode_kec', '=', 'ref_kecamatan.id_kecamatan')
+                ->join('ref_kelurahan', 'drainase.kode_kel', '=', 'ref_kelurahan.id_kelurahan')
+                ->get();
             return response()->json($res);
         } catch (\Throwable $th) {
             return response()->json([
