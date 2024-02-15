@@ -22,37 +22,37 @@
                                     <tr>
                                         <td class="form-label fs-6" width="30%">Kecamatan</td>
                                         <td width="2%">:</td>
-                                        <td></td>
+                                        <td>{{ $jalan->kecamatan }}</td>
                                     </tr>
                                     <tr>
                                         <td class="form-label fs-6">Kelurahan</td>
                                         <td>:</td>
-                                        <td></td>
+                                        <td>{{ $jalan->kel }}</td>
                                     </tr>
                                     <tr>
                                         <td class="form-label fs-6">Nama Ruas Jalan</td>
                                         <td>:</td>
-                                        <td></td>
+                                        <td>{{ $jalan->nama_ruas }}</td>
                                     </tr>
                                     <tr>
                                         <td class="form-label fs-6">Nomor Sertipikat</td>
                                         <td>:</td>
-                                        <td></td>
+                                        <td>Hak Pakai {{ $jalan->hp}}</td>
                                     </tr>
                                     <tr>
                                         <td class="form-label fs-6">Luas Sertifikat</td>
                                         <td>:</td>
-                                        <td>m<sup>2</sup></td>
+                                        <td>{{ $jalan->luas_sertifikat }} m<sup>2</sup></td>
                                     </tr>
                                     <tr>
                                         <td class="form-label fs-6">Status</td>
                                         <td>:</td>
-                                        <td></td>
+                                        <td>{{ $jalan->status }}</td>
                                     </tr>
                                     <tr>
                                         <td class="form-label fs-6">Fungsi</td>
                                         <td>:</td>
-                                        <td></td>
+                                        <td>{{ $jalan->fungsi }}</td>
                                     </tr>
                                 </tbody>
                             </table>

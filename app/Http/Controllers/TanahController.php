@@ -33,6 +33,10 @@ class TanahController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'kode_kec' => 'required',
+            ''
+        ]);
         try {
             $res = Tanah::create($request->all());
             return response()->json($res);

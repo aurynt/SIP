@@ -82,7 +82,7 @@
                         <thead>
                             <tr>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder">No.</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder ps-2">Nama Ruas</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ps-2">Nama Ruas</th>
                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Kecamatan</th>
                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Kelurahan</th>
                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Luas Sertifikat</th>
@@ -94,78 +94,44 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($ruas as $item)
                             <tr>
                                 <td class="align-middle text-center">
-                                    <p class="text-xs font-weight-bold mb-0">1.</p>
+                                    <p class="text-xs font-weight-bold mb-0">{{ $loop->iteration }}</p>
                                 </td>
                                 <td class="align-middle text-center">
-                                    <p class="text-xs font-weight-bold mb-0">Jalan K.S Tubun</p>
+                                    <p class="text-xs font-weight-bold mb-0">{{ $item->nama_ruas }}</p>
                                 </td>
                                 <td class="align-middle text-center">
-                                    <p class="text-xs font-weight-bold mb-0">Tegal Timur</p>
+                                    <p class="text-xs font-weight-bold mb-0">{{ $item->kecamatan }}</p>
                                 </td>
                                 <td class="align-middle text-center">
-                                    <p class="text-xs font-weight-bold mb-0">Kejambon</p>
+                                    <p class="text-xs font-weight-bold mb-0">{{ $item->kel }}</p>
                                 </td>
                                 <td class="align-middle text-center">
-                                    <p class="text-xs font-weight-bold mb-0">11828</p>
+                                    <p class="text-xs font-weight-bold mb-0">{{ $item->luas_sertifikat }}</p>
                                 </td>
                                 <td class="align-middle text-center">
-                                    <p class="text-xs font-weight-bold mb-0">Jalan Kota</p>
+                                    <p class="text-xs font-weight-bold mb-0">{{ $item->status }}</p>
                                 </td>
                                 <td class="align-middle text-center">
-                                    <p class="text-xs font-weight-bold mb-0">Jalan Arteri Sekunder</p>
+                                    <p class="text-xs font-weight-bold mb-0">{{ $item->fungsi }}</p>
                                 </td>
                                 <td class="align-middle text-center">
-                                    <p class="text-xs font-weight-bold mb-0">Hak Pakai</p>
+                                    <p class="text-xs font-weight-bold mb-0">{{ $item->tipe_hak }}</p>
                                 </td>
                                 <td class="align-middle text-center">
-                                    <p class="text-xs font-weight-bold mb-0">-</p>
+                                    <p class="text-xs font-weight-bold mb-0">{{ $item->ruas_awal }}</p>
                                 </td>
                                 <td class="align-middle">
                                     <div class="btn-group">
-                                        <a class="btn btn-outline-dark" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Detail"><i class="bx bx-detail"></i></a>
-                                        <a class="btn btn-outline-warning btn-update" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah"><i class="bx bx-pencil"></i></a>
-                                        <button class="btn btn-outline-danger btn-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus" fdprocessedid="eru1p"><i class="bx bx-trash"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="align-middle text-center">
-                                    <p class="text-xs font-weight-bold mb-0">6.</p>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <p class="text-xs font-weight-bold mb-0">Jalan Perumahan Arum Indah</p>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <p class="text-xs font-weight-bold mb-0">Tegal Selatan</p>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <p class="text-xs font-weight-bold mb-0">Randugunting</p>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <p class="text-xs font-weight-bold mb-0">531</p>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <p class="text-xs font-weight-bold mb-0">Jalan Kota</p>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <p class="text-xs font-weight-bold mb-0">Jalan Lingkungan Sekunder</p>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <p class="text-xs font-weight-bold mb-0">Hak Pakai</p>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <p class="text-xs font-weight-bold mb-0">-</p>
-                                </td>
-                                <td class="align-middle">
-                                    <div class="btn-group">
-                                        <a class="btn btn-outline-dark" href="{{ route('detail.jalan') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Detail"><i class="bx bx-detail"></i></a>
+                                        <a class="btn btn-outline-dark" href="{{ route('detail.jalan', $item->id) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Detail"><i class="bx bx-detail"></i></a>
                                         <a class="btn btn-outline-warning btn-update" href="{{ route('edit.jalan') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah"><i class="bx bx-pencil"></i></a>
                                         <button class="btn btn-outline-danger btn-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus" fdprocessedid="eru1p"><i class="bx bx-trash"></i></button>
                                     </div>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

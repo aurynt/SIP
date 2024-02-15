@@ -2,7 +2,7 @@
 @section('page')
     <!-- Hero Start -->
     <section class="bg-half-170 d-table w-100"
-        style="background: url('https://ministry.phicos.co.id/tegal-sip/assets/front/images/bg-alun-tegal.jpeg') center center; background-repeat: no-repeat; background-size: cover;">
+        style="background: url('assets/images/bg-alun-tegal.jpeg') center center; background-repeat: no-repeat; background-size: cover;">
         <div class="bg-overlay"></div>
         <div class="container">
             <div class="row mt-5 justify-content-center">

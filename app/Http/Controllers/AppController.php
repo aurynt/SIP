@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Beranda;
 use App\Models\Disclaimer;
 use App\Models\Drainase;
+use App\Models\Jalan;
 use App\Models\Peraturan;
 use App\Models\Slider;
+use App\Models\Tanah;
 use Illuminate\Http\Request;
 
 class AppController extends Controller
@@ -37,14 +39,16 @@ class AppController extends Controller
     function tanahDanLahan()
     {
         return view('admin.data.tanahDanLahan', [
-            'title' => 'Tanah dan Lahan'
+            'title' => 'Tanah dan Lahan',
+            'tanah' => Tanah::all(),
         ]);
     }
 
     function ruasJalan()
     {
         return view('admin.data.ruasJalan', [
-            'title' => 'Ruas Jalan'
+            'title' => 'Ruas Jalan',
+            'ruas' => Jalan::all()
         ]);
     }
 

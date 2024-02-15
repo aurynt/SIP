@@ -32,8 +32,7 @@
                                 <textarea type="text" class="form-control" rows="3" name="deskripsi" id="deskripsi">{{ $beranda->deskripsi }}</textarea>
                             </div>
                             <div class="form-group col-12 text-right">
-                                <button type="submit" class="btn btn-primary waves-effect waves-light w-md mt-4"
-                                    fdprocessedid="y8rsqh">simpan</button>
+                                <button class="btn btn-primary waves-effect waves-light w-md mt-4">simpan</button>
                             </div>
                         </form>
                     </div>

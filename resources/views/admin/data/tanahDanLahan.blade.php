@@ -84,115 +84,85 @@
                             <thead>
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder">No.</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder ps-2">Kecamatan</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Kelurahan</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Pemegang Hak</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Lahan Terbangun</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Status</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Penggunaan Lahan</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Kode</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Nomor</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Aksi</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder ps-2">Kecamatan
+                                    </th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
+                                        Kelurahan</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
+                                        Pemegang Hak</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Lahan
+                                        Terbangun</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Status
+                                    </th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
+                                        Penggunaan Lahan</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Kode
+                                    </th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Nomor
+                                    </th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Aksi
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($tanah as $item)
                                 <tr>
                                     <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">1.</p>
+                                        <p class="text-xs font-weight-bold mb-0">{{ $loop->iteration }}</p>
                                     </td>
                                     <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">Tegal Timur</p>
+                                        <p class="text-xs font-weight-bold mb-0">{{ $item->kecamatan }}</p>
                                     </td>
                                     <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">Panggung</p>
+                                        <p class="text-xs font-weight-bold mb-0">{{ $item->kelurahan }}</p>
                                     </td>
                                     <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">Pemerintah Kota Tegal</p>
+                                        <p class="text-xs font-weight-bold mb-0">{{ $item->pemegang_hak }}</p>
                                     </td>
                                     <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">Terbangun</p>
+                                        <p class="text-xs font-weight-bold mb-0">{{ $item->lahan_terbangun }}</p>
                                     </td>
                                     <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">Tanah SK</p>
+                                        <p class="text-xs font-weight-bold mb-0">{{ $item->status }}</p>
                                     </td>
                                     <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">Tambak</p>
+                                        <p class="text-xs font-weight-bold mb-0">{{ $item->penggunaan }}</p>
                                     </td>
                                     <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">BLM HP</p>
+                                        <p class="text-xs font-weight-bold mb-0">{{ $item->kode }}</p>
                                     </td>
                                     <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">KALKUL 03</p>
+                                        <p class="text-xs font-weight-bold mb-0">{{ $item->nomor }}</p>
                                     </td>
                                     <td class="align-middle">
                                         <div class="btn-group">
-                                            <button class="btn btn-outline-success btn-up-sertifikat btn-tooltip"  data-bs-toggle="tooltip" data-bs-placement="top" title="Upload Sertifikat" data-container="body" data-animation="true"><i class="bx bxs-file-pdf" ></i></button>
-                                            <button class="btn btn-outline-info btn-up-lokasi btn-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Upload Foto Tanah" data-container="body" data-animation="true"><i class="bx bx-image-add" ></i></button>
-                                            <a class="btn btn-outline-primary btn-tooltip" href="#" target="_blank"  data-bs-toggle="tooltip" data-bs-placement="top" title="Patok" data-container="body" data-animation="true"><i class="bx bx-map"></i></a>
-                                            <a class="btn btn-outline-dark btn-tooltip" href="{{ route('detail.detail-tanah') }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Detail" data-container="body" data-animation="true"><i class="bx bx-detail"></i></a>
-                                            <a class="btn btn-outline-warning btn-update btn-tooltip" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah" data-container="body" data-animation="true"><i class="bx bx-pencil"></i></a>
-                                            <button class="btn btn-outline-danger btn-remove btn-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus" data-container="body" data-animation="true"><i class="bx bx-trash" ></i></button>
+                                            <button class="btn btn-outline-success btn-up-sertifikat btn-tooltip"
+                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                title="Upload Sertifikat" data-container="body" data-animation="true"><i
+                                                    class="bx bxs-file-pdf"></i></button>
+                                            <button class="btn btn-outline-info btn-up-lokasi btn-tooltip"
+                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                title="Upload Foto Tanah" data-container="body" data-animation="true"><i
+                                                    class="bx bx-image-add"></i></button>
+                                            <a class="btn btn-outline-primary btn-tooltip" href="#" target="_blank"
+                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Patok"
+                                                data-container="body" data-animation="true"><i class="bx bx-map"></i></a>
+                                            <a class="btn btn-outline-dark btn-tooltip"
+                                                href="{{ route('detail.detail-tanah', $item->id) }}" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" title="Detail" data-container="body"
+                                                data-animation="true"><i class="bx bx-detail"></i></a>
+                                            <a class="btn btn-outline-warning btn-update btn-tooltip" href="#"
+                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah"
+                                                data-container="body" data-animation="true"><i
+                                                    class="bx bx-pencil"></i></a>
+                                            <button class="btn btn-outline-danger btn-remove btn-tooltip"
+                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"
+                                                data-container="body" data-animation="true"><i
+                                                    class="bx bx-trash"></i></button>
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">5.</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">Margadana</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">Cabawan</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">Pemerintah Kota Tegal</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">Non Terbangun</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">Belum bersertfikat</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">SD N Cabawan 2</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">BLM HP</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">CB 01</p>
-                                    </td>
-                                    <td class="align-middle">
-                                        <div class="btn-group">
-                                            <button class="btn btn-outline-success btn-tooltip" data-bs-toggle="modal" data-bs-target="#modal-default"  data-bs-toggle="tooltip" data-bs-placement="top" title="Upload Sertifikat" data-container="body" data-animation="true"><i class="bx bxs-file-pdf" ></i></button>
-                                            <div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
-                                                <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
-                                                  <div class="modal-content">
-                                                    <div class="modal-header">
-                                                      <h6 class="modal-title" id="modal-title-default">Type your modal title</h6>
-                                                      <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                      </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                      <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                                                      <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                      <button type="button" class="btn bg-gradient-primary">Save changes</button>
-                                                      <button type="button" class="btn btn-link  ml-auto" data-bs-dismiss="modal">Close</button>
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            <button class="btn btn-outline-info btn-up-lokasi btn-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Upload Foto Tanah" data-container="body" data-animation="true"><i class="bx bx-image-add" ></i></button>
-                                            <a class="btn btn-outline-primary btn-tooltip" href="#" target="_blank"  data-bs-toggle="tooltip" data-bs-placement="top" title="Patok" data-container="body" data-animation="true"><i class="bx bx-map"></i></a>
-                                            <a class="btn btn-outline-dark btn-tooltip" href="{{ route('detail.detail-tanah') }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Detail" data-container="body" data-animation="true"><i class="bx bx-detail"></i></a>
-                                            <a class="btn btn-outline-warning btn-update btn-tooltip" href="{{ route('edit.tanah-lahan') }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah" data-container="body" data-animation="true"><i class="bx bx-pencil"></i></a>
-                                            <button class="btn btn-outline-danger btn-remove btn-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus" data-container="body" data-animation="true"><i class="bx bx-trash" ></i></button>
-                                        </div>
-                                    </td>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
