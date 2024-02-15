@@ -41,6 +41,13 @@
         crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+
+    <script src="
+            https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
+            "></script>
+    <link href="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css
+    " rel="stylesheet">
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
@@ -141,8 +148,6 @@
     <script src="assets/admin/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="assets/admin/js/plugins/smooth-scrollbar.min.js"></script>
     <script src="assets/admin/js/plugins/chartjs.min.js"></script>
-
-    @include('admin.layouts.configurator')
 
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>

@@ -7,8 +7,8 @@
                     <div class="row mb-2">
                         <div class="col-sm-12">
                             <div class="text-sm-left">
-                                <a href="{{ route('page.drainase') }}"
-                                    class="btn btn-outline-secondary w-md"><i class="mdi mdi-arrow-left ml-1"></i> Kembali</a>
+                                <a href="{{ route('page.drainase') }}" class="btn btn-outline-secondary w-md"><i
+                                        class="mdi mdi-arrow-left ml-1"></i> Kembali</a>
                             </div>
                         </div>
                     </div>
@@ -22,27 +22,27 @@
                                     <tr>
                                         <td class="form-label fs-6" width="30%">Kecamatan</td>
                                         <td width="2%">:</td>
-                                        <td></td>
+                                        <td>{{ $data->nama_kecamatan }}</td>
                                     </tr>
                                     <tr>
                                         <td class="form-label fs-6">Kelurahan</td>
                                         <td>:</td>
-                                        <td></td>
+                                        <td>{{ $data->nama_kelurahan }}</td>
                                     </tr>
                                     <tr>
                                         <td class="form-label fs-6">Nama Ruas Jalan</td>
                                         <td>:</td>
-                                        <td></td>
+                                        <td>{{ $data->nama_ruas }}</td>
                                     </tr>
                                     <tr>
                                         <td class="form-label fs-6">Nomor Sertipikat</td>
                                         <td>:</td>
-                                        <td></td>
+                                        <td>{{ $data->nomor_sertifikat }}</td>
                                     </tr>
                                     <tr>
                                         <td class="form-label fs-6">Luas Sertifikat</td>
                                         <td>:</td>
-                                        <td> m<sup>2</sup></td>
+                                        <td>{{ $data->luas_sertifikat }} m<sup>2</sup></td>
                                     </tr>
                                 </tbody>
                             </table>

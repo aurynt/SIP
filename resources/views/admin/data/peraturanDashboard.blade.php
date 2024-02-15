@@ -9,22 +9,9 @@
                         <select class="form-control" name="id_jenis" id="filter-jenis" style="width: 100%;"
                             fdprocessedid="fm6n6c">
                             <option value="">-- Semua --</option>
-                            <option value="1">Peraturan Pemerintah</option>
-                            <option value="2">Putusan Mahkamah Konstitusi</option>
-                            <option value="3">TAP MPR</option>
-                            <option value="4">Peraturan Daerah</option>
-                            <option value="5">Undang-Undang</option>
-                            <option value="6">Undang-Undang Dasar</option>
-                            <option value="7">Perpres</option>
-                            <option value="8">Perpu</option>
-                            <option value="9">Peraturan Walikota</option>
-                            <option value="10">Peraturan Bupati</option>
-                            <option value="11">Peraturan Daerah</option>
-                            <option value="12">Peraturan Gubernur</option>
-                            <option value="13">Peraturan Menteri</option>
-                            <option value="14">Permendagri</option>
-                            <option value="15">Inpres</option>
-                            <option value="16">Keputusan Menteri</option>
+                            @foreach ($jenisPeraturan as $item)
+                                <option value="{{ $item->id }}">{{ $item->jenis }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group col-md-2 col-12">
@@ -82,14 +69,15 @@
                                         </td>
                                         <td>
                                             <div class="btn-group btn-sm">
-                                                <a class="btn btn-outline-dark btn-tooltip" href="#"
+                                                <a class="btn btn-outline-dark btn-tooltip"
+                                                    href="{{ route('detail.peraturan', $item->id) }}"
                                                     data-bs-toggle="tooltip" data-bs-placement="top" title="Detail"
                                                     data-container="body" data-animation="true"><i
                                                         class="bx bx-detail"></i></a>
-                                                <a class="btn btn-outline-warning btn-tooltip" href="#"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah"
-                                                    data-container="body" data-animation="true"><i
-                                                        class="bx bx-pencil"></i></a>
+                                                <a class="btn btn-outline-warning btn-tooltip"
+                                                    href="{{ route('edit.peraturan', $item->id) }}" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" title="Ubah" data-container="body"
+                                                    data-animation="true"><i class="bx bx-pencil"></i></a>
                                                 <button class="btn btn-outline-danger btn-remove btn-tooltip"
                                                     data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"
                                                     data-container="body" data-animation="true"><i

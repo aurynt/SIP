@@ -10,43 +10,18 @@
                                 <label for="filter-kec">Filter Kecamatan</label>
                                 <select class="form-control" name="kecamatan" id="filter-kec" style="width: 100%;">
                                     <option value="">-- Semua Kecamatan --</option>
-                                    <option value="337601">Tegal Barat</option>
-                                    <option value="337602">Tegal Timur</option>
-                                    <option value="337603">Tegal Selatan</option>
-                                    <option value="337604">Margadana</option>
+                                    @foreach ($kecamatan as $item)
+                                        <option value="{{ $item->id_kecamatan }}">{{ $item->nama_kecamatan }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group col-md-3 col-12">
                                 <label for="filter-kel">Filter Kelurahan</label>
                                 <select class="form-control" name="kelurahan" id="filter-kel" style="width: 100%;">
                                     <option value="">-- Semua Kelurahan --</option>
-                                    <option value="3376011001">Pesurungan Kidul</option>
-                                    <option value="3376011002">Debong Lor</option>
-                                    <option value="3376011003">Kemandungan</option>
-                                    <option value="3376011004">Pekauman</option>
-                                    <option value="3376011005">Kraton</option>
-                                    <option value="3376011006">Tegalsari</option>
-                                    <option value="3376011007">Muarareja</option>
-                                    <option value="3376021001">Kejambon</option>
-                                    <option value="3376021002">Slerok</option>
-                                    <option value="3376021003">Panggung</option>
-                                    <option value="3376021004">Mangkukusuman</option>
-                                    <option value="3376021005">Mintaragen</option>
-                                    <option value="3376031001">Kalinyamat Wetan</option>
-                                    <option value="3376031002">Bandung</option>
-                                    <option value="3376031003">Debong Kidul</option>
-                                    <option value="3376031004">Tunon</option>
-                                    <option value="3376031005">Keturen</option>
-                                    <option value="3376031006">Debong Kulon</option>
-                                    <option value="3376031007">Debong Tengah</option>
-                                    <option value="3376031008">Randugunting</option>
-                                    <option value="3376041001">Kaligangsa</option>
-                                    <option value="3376041002">Krandon</option>
-                                    <option value="3376041003">Cabawan</option>
-                                    <option value="3376041004">Kalinyamat Kulon</option>
-                                    <option value="3376041005">Margadana</option>
-                                    <option value="3376041006">Sumurpanggang</option>
-                                    <option value="3376041007">Pesurungan Lor</option>
+                                    @foreach ($kelurahan as $item)
+                                        <option value="{{ $item->id_kelurahan }}">{{ $item->nama_kelurahan }}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
@@ -65,64 +40,139 @@
     <div class="row mt-4">
         <div class="col-lg-12">
             <div class="card h-100 p-4">
-                <form action="" method="POST">
-                    <div class="table-responsive">
-                        <table id="myTable" class="table align-items-center mb-0 table-hover">
-                            <thead>
+                <div class="table-responsive">
+                    <table id="myTable" class="table align-items-center mb-0 table-hover">
+                        <thead>
+                            <tr>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder">No.</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder ps-2">Nama Ruas
+                                    Jalan</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
+                                    Kecamatan</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
+                                    Kelurahan</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Nomor
+                                    Sertifikat</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Luas
+                                    Sertifikat (m<sup>2</sup>)</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Aksi
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $no = 1;
+                            @endphp
+                            @foreach ($data as $item)
                                 <tr>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder">No.</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder ps-2">Nama Ruas
-                                        Jalan</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
-                                        Kecamatan</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
-                                        Kelurahan</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Nomor
-                                        Sertifikat</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Luas
-                                        Sertifikat (m<sup>2</sup>)</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Aksi
-                                    </th>
+                                    <td>{{ $no }}.</td>
+                                    <td>{{ $item->nama_ruas }}</td>
+                                    <td>{{ $item->nama_kecamatan }}</td>
+                                    <td>{{ $item->nama_kelurahan }}</td>
+                                    <td>{{ $item->tipe_hak }} {{ $item->hp }}</td>
+                                    <td>{{ $item->luas_sertifikat }}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a class="btn btn-outline-dark btn-tooltip"
+                                                href="{{ route('detail.drainase', $item->id) }}" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" title="Detail" data-container="body"
+                                                data-animation="true"><i class="bx bx-detail"></i></a>
+                                            <a class="btn btn-outline-warning btn-tooltip"
+                                                href="{{ route('edit.drainase', $item->id) }}" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" title="Ubah" data-container="body"
+                                                data-animation="true"><i class="bx bx-pencil"></i></a>
+                                            <button value="{{ $item->id }}"
+                                                class="btn btn-outline-danger btn-remove btn-tooltip"
+                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"
+                                                data-container="body" data-animation="true"><i
+                                                    class="bx bx-trash"></i></button>
+                                        </div>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
                                 @php
-                                    $no = 1;
+                                    $no++;
                                 @endphp
-                                @foreach ($data as $item)
-                                    <tr>
-                                        <td>{{ $no }}.</td>
-                                        <td>{{ $item->nama_ruas }}</td>
-                                        <td>{{ $item->nama_kecamatan }}</td>
-                                        <td>{{ $item->nama_kelurahan }}</td>
-                                        <td>{{ $item->tipe_hak }}</td>
-                                        <td>{{ $item->luas_sertifikat }}</td>
-                                        <td>
-                                            <div class="btn-group">
-                                                <a class="btn btn-outline-dark btn-tooltip" href="#"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Detail"
-                                                    data-container="body" data-animation="true"><i
-                                                        class="bx bx-detail"></i></a>
-                                                <a class="btn btn-outline-warning btn-tooltip" href="#"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah"
-                                                    data-container="body" data-animation="true"><i
-                                                        class="bx bx-pencil"></i></a>
-                                                <button class="btn btn-outline-danger btn-remove btn-tooltip"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"
-                                                    data-container="body" data-animation="true"><i
-                                                        class="bx bx-trash"></i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    @php
-                                        $no++;
-                                    @endphp
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </form>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(() => {
+            const appUrl = "{{ env('APP_URL') }}" + ':8000'
+            const generateElement = (data) => {
+                return data.map((item, i) => {
+                    return `
+                    <tr class=${i%2==0?'odd':'even'}>
+                        <td class="sorting_1">${ i+1 }.</td>
+                        <td>${ item.nama_ruas }</td>
+                        <td>${ item.nama_kecamatan }</td>
+                        <td>${ item.nama_kelurahan }</td>
+                        <td>${ item.tipe_hak } ${item.hp}</td>
+                        <td>${ item.luas_sertifikat }</td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-outline-dark btn-tooltip" href="#"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Detail"
+                                    data-container="body" data-animation="true"><i class="bx bx-detail"></i></a>
+                                <a class="btn btn-outline-warning btn-tooltip" href="#"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah"
+                                    data-container="body" data-animation="true"><i class="bx bx-pencil"></i></a>
+                                <button value="${ item.id }"
+                                    class="btn btn-outline-danger btn-remove btn-tooltip"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"
+                                    data-container="body" data-animation="true"><i
+                                        class="bx bx-trash"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                `
+                })
+            }
+
+            $(document).on('click', '.btn-remove', (e) => {
+                console.log(e.target.value);
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: `${appUrl}/api/drainase/${e.target.value}`,
+                            method: "DELETE",
+                            success: (res) => {
+                                Swal.fire({
+                                    title: "Woke",
+                                    text: "successfuly deleted drainase",
+                                    icon: "success"
+                                });
+
+                            },
+                            error: (err) => {
+                                // displayError(err.responseJSON.errors)
+                                Swal.fire({
+                                    title: "Failed!",
+                                    text: err.responseJSON.message,
+                                    icon: "error"
+                                })
+                            }
+                        }).done(() => {
+                            $.get("{{ route('drainase.all') }}", (res) => {
+                                const el = generateElement(res)
+                                $('#myTable > tbody').empty()
+                                $('#myTable > tbody').append(el);
+                            })
+                        })
+                    }
+                });
+            })
+        })
+    </script>
 @endsection
