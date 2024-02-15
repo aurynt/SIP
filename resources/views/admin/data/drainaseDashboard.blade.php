@@ -71,43 +71,53 @@
                             <thead>
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder">No.</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder ps-2">Nama Ruas Jalan</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Kecamatan</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Kelurahan</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Nomor Sertifikat</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Luas Sertifikat (m<sup>2</sup>)</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Aksi</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder ps-2">Nama Ruas
+                                        Jalan</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
+                                        Kecamatan</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
+                                        Kelurahan</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Nomor
+                                        Sertifikat</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Luas
+                                        Sertifikat (m<sup>2</sup>)</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Aksi
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1.</td>
-                                    <td>Saluran Jalan Gurame</td>
-                                    <td>Tegal Barat</td>
-                                    <td>Tegalsari</td>
-                                    <td>Hak Pakai 00270</td>
-                                    <td>109</td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a class="btn btn-outline-dark btn-tooltip" href="#"  data-bs-toggle="tooltip" data-bs-placement="top" title="Detail" data-container="body" data-animation="true"><i class="bx bx-detail"></i></a>
-                                            <a class="btn btn-outline-warning btn-tooltip" href="#"  data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah" data-container="body" data-animation="true"><i class="bx bx-pencil"></i></a>
-                                            <button class="btn btn-outline-danger btn-remove btn-tooltip"  data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus" data-container="body" data-animation="true"><i class="bx bx-trash"></i></button></div>
-                                    </td>
-                                  </tr>
-                                <tr>
-                                    <td>7.</td>
-                                    <td>Saluran Jalan KOi</td>
-                                    <td>Tegal Tenggara</td>
-                                    <td>Tegalsari</td>
-                                    <td>Hak Pakai 0399</td>
-                                    <td>903</td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a class="btn btn-outline-dark btn-tooltip" href="{{ route('detail.drainase') }}"  data-bs-toggle="tooltip" data-bs-placement="top" title="Detail" data-container="body" data-animation="true"><i class="bx bx-detail"></i></a>
-                                            <a class="btn btn-outline-warning btn-tooltip" href="{{ route('drainase.edit') }}"  data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah" data-container="body" data-animation="true"><i class="bx bx-pencil"></i></a>
-                                            <button class="btn btn-outline-danger btn-remove btn-tooltip"  data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus" data-container="body" data-animation="true"><i class="bx bx-trash"></i></button></div>
-                                    </td>
-                                  </tr>
+                                @php
+                                    $no = 1;
+                                @endphp
+                                @foreach ($data as $item)
+                                    <tr>
+                                        <td>{{ $no }}.</td>
+                                        <td>{{ $item->nama_ruas }}</td>
+                                        <td>{{ $item->nama_kecamatan }}</td>
+                                        <td>{{ $item->nama_kelurahan }}</td>
+                                        <td>{{ $item->tipe_hak }}</td>
+                                        <td>{{ $item->luas_sertifikat }}</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a class="btn btn-outline-dark btn-tooltip" href="#"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Detail"
+                                                    data-container="body" data-animation="true"><i
+                                                        class="bx bx-detail"></i></a>
+                                                <a class="btn btn-outline-warning btn-tooltip" href="#"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah"
+                                                    data-container="body" data-animation="true"><i
+                                                        class="bx bx-pencil"></i></a>
+                                                <button class="btn btn-outline-danger btn-remove btn-tooltip"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"
+                                                    data-container="body" data-animation="true"><i
+                                                        class="bx bx-trash"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @php
+                                        $no++;
+                                    @endphp
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
