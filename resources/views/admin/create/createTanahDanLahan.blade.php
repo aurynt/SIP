@@ -25,10 +25,9 @@
                                 <label for="kode_kec">Kecamatan *</label>
                                 <select id="kode_kec" name="kode_kec" class="form-control" required="">
                                     <option value="" selected="" disabled="">Pilih Kecamatan</option>
-                                    <option value="337601">Tegal Barat</option>
-                                    <option value="337602">Tegal Timur</option>
-                                    <option value="337603">Tegal Selatan</option>
-                                    <option value="337604">Margadana</option>
+                                    @foreach ($data as $item)
+                                    <option value="{{ $item->id_kecamatan }}">{{ $item->nama_kecamatan }}</option>
+                                    @endforeach
                                 </select>
                                 <input type="hidden" name="kecamatan" id="kecamatan">
                             </div>

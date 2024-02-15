@@ -73,17 +73,17 @@ Route::name('page.')->group(function () {
     Route::get('/dashboard', [AppController::class, 'dashboard'])->name('home');
     Route::get('/pengaturan-beranda', [AppController::class, 'pengaturanBeranda'])->name('setBeranda');
     Route::get('/pengaturan-disclaimer', [AppController::class, 'pengaturanDisclaimer'])->name('setDisclaimer');
-    Route::get('/tanah-lahan', [AppController::class, 'tanahDanLahan'])->name('tanah-lahan');
-    Route::get('/ruas-jalan', [AppController::class, 'ruasJalan'])->name('jalan');
-    Route::get('/peraturan', [AppController::class, 'peraturanDashboard'])->name('peraturan');
-    Route::get('/drainase', [AppController::class, 'drainaseDashboard'])->name('drainase');
+    Route::get('/tanah-lahan-dashboard', [AppController::class, 'tanahDanLahan'])->name('tanah-lahan');
+    Route::get('/ruas-jalan-dashboard', [AppController::class, 'ruasJalan'])->name('jalan');
+    Route::get('/peraturan-dashboard', [AppController::class, 'peraturanDashboard'])->name('peraturan');
+    Route::get('/drainase-dashboard', [AppController::class, 'drainaseDashboard'])->name('drainase');
 });
 
 Route::name('detail.')->group(function(){
-    Route::get('detail-tanah-lahan', [DetailController::class, 'detailTanahLahan'])->name('detail-tanah');
-    Route::get('detail-ruas-jalan', [DetailController::class, 'detailRuasJalan'])->name('jalan');
-    Route::get('detail-peraturan', [DetailController::class, 'detailPeraturan'])->name('peraturan');
-    Route::get('detail-drainase', [DetailController::class, 'detailDrainase'])->name('drainase');
+    Route::get('detail-tanah-lahan/{id}', [DetailController::class, 'detailTanahLahan'])->name('detail-tanah');
+    Route::get('detail-ruas-jalan/{id}', [DetailController::class, 'detailRuasJalan'])->name('jalan');
+    Route::get('detail-peraturan/{id}', [DetailController::class, 'detailPeraturan'])->name('peraturan');
+    Route::get('detail-drainase/{id}', [DetailController::class, 'detailDrainase'])->name('drainase');
 });
 
 Route::name('create.')->group(function(){

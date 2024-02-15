@@ -30,21 +30,21 @@ Route::post('/auth/login', [AuthController::class, 'login'])->name('login');
 
 Route::get('/auth/logout', [AuthController::class, 'logout']);
 
-    Route::name('drainase.')->group(function () {
-        Route::get('drainase', [DrainaseController::class, 'index'])->name('all');
-        Route::post('drainase', [DrainaseController::class, 'store'])->name('add');
-        Route::get('drainase/{id}', [DrainaseController::class, 'show'])->name('show');
-        Route::put('drainase/{id}', [DrainaseController::class, 'update'])->name('update');
-        Route::delete('drainase/{id}', [DrainaseController::class, 'destroy'])->name('remove');
-    });
+Route::name('drainase.')->group(function () {
+    Route::get('drainase', [DrainaseController::class, 'index'])->name('all');
+    Route::post('drainase', [DrainaseController::class, 'store'])->name('add');
+    Route::get('drainase/{id}', [DrainaseController::class, 'show'])->name('show');
+    Route::put('drainase/{id}', [DrainaseController::class, 'update'])->name('update');
+    Route::delete('drainase/{id}', [DrainaseController::class, 'destroy'])->name('remove');
+});
 
-    Route::name('jalan.')->group(function () {
-        Route::get('jalan', [JalanController::class, 'index'])->name('all');
-        Route::post('jalan', [JalanController::class, 'store'])->name('add');
-        Route::get('jalan/{id}', [JalanController::class, 'show'])->name('show');
-        Route::put('jalan/{id}', [JalanController::class, 'update'])->name('update');
-        Route::delete('jalan/{id}', [JalanController::class, 'destroy'])->name('remove');
-    });
+Route::name('jalan.')->group(function () {
+    Route::get('jalan', [JalanController::class, 'index'])->name('all');
+    Route::post('jalan', [JalanController::class, 'store'])->name('add');
+    Route::get('jalan/{id}', [JalanController::class, 'show'])->name('show');
+    Route::put('jalan/{id}', [JalanController::class, 'update'])->name('update');
+    Route::delete('jalan/{id}', [JalanController::class, 'destroy'])->name('remove');
+});
 
 Route::name('beranda.')->group(function () {
     Route::get('beranda', [BerandaController::class, 'index'])->name('first');
@@ -67,19 +67,19 @@ Route::name('slider.')->group(function () {
     Route::delete('slider/{id}', [SliderController::class, 'destroy'])->name('remove');
 });
 
-    Route::name('tanah-lahan.')->group(function () {
-        Route::get('tanah-lahan', [TanahController::class, 'index'])->name('all');
-        Route::post('tanah-lahan', [TanahController::class, 'store'])->name('add');
-        Route::get('tanah-lahan/{id}', [TanahController::class, 'show'])->name('show');
-        Route::put('tanah-lahan/{id}', [TanahController::class, 'update'])->name('update');
-        Route::delete('tanah-lahan/{id}', [TanahController::class, 'destroy'])->name('remove');
-    });
+Route::name('tanah-lahan.')->group(function () {
+    Route::get('tanah-lahan', [TanahController::class, 'index'])->name('all');
+    Route::post('tanah-lahan', [TanahController::class, 'store'])->name('add');
+    Route::get('tanah-lahan/{id}', [TanahController::class, 'show'])->name('show');
+    Route::put('tanah-lahan/{id}', [TanahController::class, 'update'])->name('update');
+    Route::delete('tanah-lahan/{id}', [TanahController::class, 'destroy'])->name('remove');
+});
 
-    Route::name('peraturan.')->group(function () {
-        Route::get('peraturan', [PeraturanController::class, 'index'])->name('all');
-        Route::post('peraturan', [PeraturanController::class, 'store'])->name('add');
-        Route::get('peraturan/{id}', [PeraturanController::class, 'show'])->name('show');
-        Route::put('peraturan/{id}', [PeraturanController::class, 'update'])->name('update');
-        Route::delete('peraturan/{id}', [PeraturanController::class, 'destroy'])->name('remove');
-    });
-    Route::get('kelurahan/{id_kecamatan}', [KelurahanController::class, 'show'])->name('kelurahan.show');
+Route::name('peraturan.')->group(function () {
+    Route::get('peraturan', [PeraturanController::class, 'index'])->name('all');
+    Route::post('peraturan', [PeraturanController::class, 'store'])->name('add');
+    Route::get('peraturan/{id}', [PeraturanController::class, 'show'])->name('show');
+    Route::put('peraturan/{id}', [PeraturanController::class, 'update'])->name('update');
+    Route::delete('peraturan/{id}', [PeraturanController::class, 'destroy'])->name('remove');
+});
+Route::get('kelurahan/{id_kecamatan}', [KelurahanController::class, 'show'])->name('kelurahan.show');
