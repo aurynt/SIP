@@ -19,6 +19,11 @@
                         <div class="col-sm-12">
                             <form id="form-input">
                                 <input type="hidden" id="id" value="{{ $data->id }}">
+                                <input id="coordinat" value="{{ old('coordinat', $data->koordinat) }}"
+                                    class="border rounded border-black p-2" type="hidden" name="coordinat">
+                                <input id="type" value="{{ old('type', $data->type) }}"
+                                    class="border rounded border-black p-2" type="hidden" name="type">
+
                                 <div class="form-group">
                                     <label for="kode_kec">Kecamatan *</label>
                                     <select id="kode_kec" name="kode_kec" class="form-control">
@@ -64,8 +69,11 @@
                                         value="{{ $data->hp }}">
                                 </div>
 
-                                <!-- map -->
-                                {{-- --}}
+                                <div class="flex flex-col mb-3">
+                                    <label for="map" class="capitalize">location</label>
+                                    <div id="map" style="height: 300px"></div>
+                                    <p id="mapError" class="text-red-500 text-xs"></p>
+                                </div>
 
                                 <div>
                                     <a href="{{ route('page.drainase') }}" class="btn btn-default w-md">Cancel</a>
@@ -105,6 +113,8 @@
                 formData.append('luas_sertifikat', $('#luas_sertifikat').val());
                 formData.append('tipe_hak', $('#tipe_hak').val());
                 formData.append('hp', $('#hp').val());
+                formData.append('koordinat', $('#coordinat').val());
+                formData.append('type', $('#type').val());
 
                 $.ajax({
                     url: `${appName}/api/drainase/${$('#id').val()}`,
