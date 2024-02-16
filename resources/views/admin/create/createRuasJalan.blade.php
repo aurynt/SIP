@@ -23,68 +23,67 @@
 
                                 <div class="form-group">
                                     <label for="kode_kec">Kecamatan *</label>
-                                    <select id="kode_kec" name="kode_kec" class="form-control" required="">
-                                        <option value="" selected="" disabled="">Pilih Kecamatan</option>
-                                        <option value="337601">Tegal Barat</option>
-                                        <option value="337602">Tegal Timur</option>
-                                        <option value="337603">Tegal Selatan</option>
-                                        <option value="337604">Margadana</option>
+                                    <select id="kode_kec" name="kode_kec" class="form-control">
+                                        <option value="" selected disabled>Pilih Kecamatan</option>
+                                        @foreach ($data as $item)
+                                        <option value="{{ $item->id_kecamatan }}">{{ $item->nama_kecamatan }}</option>
+                                        @endforeach
                                     </select>
-                                    <input type="hidden" name="kecamatan" id="kecamatan">
+                                    <input type="hidden" value="" name="kecamatan" id="kecamatan">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="kode_kel">Kelurahan *</label>
-                                    <select id="kode_kel" name="kode_kel" class="form-control" required=""></select>
-                                    <input type="hidden" name="kel" id="kel">
+                                    <select id="kode_kel" name="kode_kel" class="form-control"></select>
+                                    <input type="hidden" value="" name="kelurahan" id="kelurahan">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="nama_ruas">Nama Ruas Jalan *</label>
                                     <input type="text" id="nama_ruas" name="nama_ruas" class="form-control"
-                                        value="" required="">
+                                        value="" >
                                 </div>
 
                                 <div class="form-group">
                                     <label for="panjang">Panjang Jalan (meter) *</label>
                                     <input type="text" id="panjang" name="panjang" class="form-control decimal"
-                                        value="" required="">
+                                        value="" >
                                 </div>
 
                                 <div class="form-group">
                                     <label for="lebar">Lebar Perkerasan (meter) *</label>
                                     <input type="text" id="lebar" name="lebar" class="form-control decimal"
-                                        value="" required="">
+                                        value="">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="luas_sertifikat">Luas Sertifikat (meter persegi) *</label>
                                     <input type="text" id="luas_sertifikat" name="luas_sertifikat"
-                                        class="form-control decimal" value="" required="">
+                                        class="form-control decimal" value="" >
                                 </div>
 
                                 <div class="form-group">
                                     <label for="luas_peta">Luas Peta (meter persegi) *</label>
                                     <input type="text" id="luas_peta" name="luas_peta" class="form-control decimal"
-                                        value="" required="">
+                                        value="" >
                                 </div>
 
                                 <div class="form-group">
                                     <label for="input-status">Status *</label>
                                     <input type="text" id="input-status" name="status" class="form-control"
-                                        value="" required="">
+                                        value="" >
                                 </div>
 
                                 <div class="form-group">
                                     <label for="fungsi">Fungsi *</label>
                                     <input type="text" id="fungsi" name="fungsi" class="form-control" value=""
-                                        required="">
+                                        >
                                 </div>
 
                                 <div class="form-group">
                                     <label for="tipe_hak">Tipe Hak *</label>
                                     <input type="text" id="tipe_hak" name="tipe_hak" class="form-control"
-                                        value="" required="">
+                                        value="" >
                                 </div>
 
                                 <!-- <div class="form-group">
@@ -100,31 +99,31 @@
                                 <div class="form-group">
                                     <label for="hp">HP *</label>
                                     <input type="text" id="hp" name="hp" class="form-control"
-                                        value="" required="">
+                                        value="" >
                                 </div>
 
                                 <div class="form-group">
                                     <label for="nib">NIB *</label>
                                     <input type="text" id="nib" name="nib" class="form-control"
-                                        value="" required="">
+                                        value="" >
                                 </div>
 
                                 <div class="form-group">
                                     <label for="kode_patok">Kode Patok *</label>
                                     <input type="text" id="kode_patok" name="kode_patok" class="form-control"
-                                        value="" required="">
+                                        value="" >
                                 </div>
 
                                 <div class="form-group">
                                     <label for="ruas_awal">Ruas Awal *</label>
                                     <input type="text" id="ruas_awal" name="ruas_awal" class="form-control"
-                                        value="" required="">
+                                        value="" >
                                 </div>
 
                                 <div class="form-group">
                                     <label for="ruas_akhir">Ruas Akhir *</label>
                                     <input type="text" id="ruas_akhir" name="ruas_akhir" class="form-control"
-                                        value="" required="">
+                                        value="" >
                                 </div>
 
                                 <div class="form-group">
@@ -182,7 +181,7 @@
                                 <div class="form-group">
                                     <label for="tahun">Tahun Data *</label>
                                     <input type="number" id="tahun" name="tahun" class="form-control number-only"
-                                        value="" required="">
+                                        value="" >
                                 </div>
 
                                 <!-- map -->
@@ -453,4 +452,88 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(() => {
+            const appName = "{{ env('APP_URL') }}" + ':8000'
+            $('#kode_kec').on('change', (e) => {
+                $('#kode_kel').empty()
+
+                $.get(`${appName}/api/kelurahan/${e.target.value}`, (res) => {
+                    console.log(res);
+                    res.map((item) => {
+                        $('<option></option>').attr('value', item.id_kelurahan).text(item
+                                .nama_kelurahan)
+                            .appendTo(
+                                '#kode_kel');
+                        $('#kecamatan').attr('value', $('#kode_kec>option:selected')
+                    .text());
+                        $('#kelurahan').attr('value', $('#kode_kel>option:selected').text());
+                    })
+                })
+            })
+            $('#kode_kel').on('change', (e) => {
+                $('#kelurahan').attr('value', $('#kode_kel>option:selected').text());
+            })
+        })
+
+        $('#form-input').on('submit', (e) => {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append('kode_kec', $('#kode_kec').val());
+        formData.append('kode_kel', $('#kode_kel').val());
+        formData.append('kecamatan', $('#kecamatan').val());
+        formData.append('kel', $('#kelurahan').val());
+        formData.append('nama_ruas', $('#nama_ruas').val());
+        formData.append('panjang', $('#panjang').val());
+        formData.append('lebar', $('#lebar').val());
+        formData.append('luas_sertifikat', $('#luas_sertifikat').val());
+        formData.append('luas_peta', $('#luas_peta').val());
+        formData.append('status', $('#input-status').val());
+        formData.append('fungsi', $('#fungsi').val());
+        formData.append('tipe_hak', $('#tipe_hak').val());
+        formData.append('hp', $('#hp').val());
+        formData.append('nib', $('#nib').val());
+        formData.append('kode_patok', $('#kode_patok').val());
+        formData.append('ruas_awal', $('#ruas_awal').val());
+        formData.append('ruas_akhir', $('#ruas_akhir').val());
+        formData.append('kondisi_ringan', $('#kondisi_ringan').val());
+        formData.append('kondisi_sedang', $('#kondisi_sedang').val());
+        formData.append('kondisi_rusak', $('#kondisi_rusak').val());
+        formData.append('lhrt', $('#lhrt').val());
+        formData.append('tanah', $('#tanah').val());
+        formData.append('macadam', $('#macadam').val());
+        formData.append('aspal', $('#aspal').val());
+        formData.append('tahun', $('#tahun').val());
+        console.log();
+
+        $.ajax({
+            url: "{{ route('jalan.add') }}",
+            method: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: (res) => {
+                Swal.fire({
+                    title: "Done",
+                    text: "Data Successfuly added",
+                    icon: "success"
+                }).then((result)=>{
+                    if (result.isConfirmed) {
+                        window.location.href = "{{ route('page.jalan') }}";
+                    }
+                });
+            },
+            error: (err) => {
+                // displayError(err.responseJSON.errors)
+                Swal.fire({
+                    title: "Failed!",
+                    text: err.responseJSON.message,
+                    icon: "error"
+                })
+            }
+        }).done((res) => console.log(res))
+    })
+    </script>
 @endsection

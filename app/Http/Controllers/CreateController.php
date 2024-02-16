@@ -10,13 +10,14 @@ class CreateController extends Controller
     function tanahDanLahan(){
         return view('admin.create.createTanahDanLahan',[
             'title' => 'Tambah Tanah dan Lahan',
-            'data' => DB::table('ref_kecamatan')->get(),
+            'dataKec' => DB::table('ref_kecamatan')->get(),
         ]);
     }
 
     function ruasJalan(){
         return view('admin.create.createRuasJalan',[
-            'title' => 'Tambah Ruas Jalan'
+            'title' => 'Tambah Ruas Jalan',
+            'data' => DB::table('ref_kecamatan')->get()
         ]);
     }
     function peraturan(){
