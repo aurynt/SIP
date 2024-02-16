@@ -103,39 +103,9 @@
     <script>
         $(document).ready(() => {
             const appUrl = "{{ env('APP_URL') }}" + ':8000'
-            const generateElement = (data) => {
-                return data.map((item, i) => {
-                    return `
-                    <tr class=${i%2==0?'odd':'even'}>
-                        <td class="sorting_1">${ i+1 }.</td>
-                        <td>${ item.nama_ruas }</td>
-                        <td>${ item.nama_kecamatan }</td>
-                        <td>${ item.nama_kelurahan }</td>
-                        <td>${ item.tipe_hak } ${item.hp}</td>
-                        <td>${ item.luas_sertifikat }</td>
-                        <td>
-                            <div class="btn-group">
-                                <a class="btn btn-outline-dark btn-tooltip" href="#"
-                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Detail"
-                                    data-container="body" data-animation="true"><i class="bx bx-detail"></i></a>
-                                <a class="btn btn-outline-warning btn-tooltip" href="#"
-                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah"
-                                    data-container="body" data-animation="true"><i class="bx bx-pencil"></i></a>
-                                <button value="${ item.id }"
-                                    class="btn btn-outline-danger btn-remove btn-tooltip"
-                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"
-                                    data-container="body" data-animation="true"><i
-                                        class="bx bx-trash"></i></button>
-                            </div>
-                        </td>
-                    </tr>
-                `
-                })
-            }
 
             $(document).on('click', '.btn-remove', function() {
                 let id = $(this).data('id');
-                console.log(id);
                 Swal.fire({
                     title: "Are you sure?",
                     text: "You won't be able to revert this!",
@@ -159,7 +129,6 @@
                                 $('#myTable').DataTable().ajax.reload();
                             },
                             error: (err) => {
-                                // displayError(err.responseJSON.errors)
                                 Swal.fire({
                                     title: "Failed!",
                                     text: err.responseJSON.message,
