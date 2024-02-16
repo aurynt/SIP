@@ -76,6 +76,7 @@
     <div class="row mt-4">
         <div class="col-lg-12">
             <div class="card h-100 p-4">
+                <form action="" method="POST">
                     <input type="hidden" name="" value="">
                     <input type="hidden" name="jenis" value="back">
                     <div class="table-responsive">
@@ -152,11 +153,13 @@
                                                     data-bs-toggle="tooltip" data-bs-placement="top" title="Detail"
                                                     data-container="body" data-animation="true"><i
                                                         class="bx bx-detail"></i></a>
-                                                <a class="btn btn-outline-warning btn-update btn-tooltip" href="{{ route('edit.tanah-lahan', $item->id) }}"
+                                                <a class="btn btn-outline-warning btn-update btn-tooltip"
+                                                    href="{{ route('edit.tanah-lahan', $item->id) }}"
                                                     data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah"
                                                     data-container="body" data-animation="true"><i
                                                         class="bx bx-pencil"></i></a>
-                                                <button data-id="{{ $item->id }}" class="btn btn-outline-danger btn-remove btn-tooltip"
+                                                <button data-id="{{ $item->id }}"
+                                                    class="btn btn-outline-danger btn-remove btn-tooltip"
                                                     data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"
                                                     data-container="body" data-animation="true"><i
                                                         class="bx bx-trash"></i></button>
