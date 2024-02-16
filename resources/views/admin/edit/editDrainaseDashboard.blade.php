@@ -26,7 +26,8 @@
                                         @foreach ($kecamatan as $item)
                                             <option value="{{ $item->id_kecamatan }}"
                                                 {{ $data->kode_kec == $item->id_kecamatan ? 'selected' : '' }}>
-                                                {{ $item->nama_kecamatan }}</option>
+                                                {{ $item->nama_kecamatan }}
+                                            </option>
                                         @endforeach
                                     </select>
                                     <input type="hidden" name="kecamatan" id="kecamatan">
