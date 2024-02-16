@@ -1,18 +1,3 @@
-<!--
-=========================================================
-* Soft UI Dashboard - v1.0.3
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://www.creative-tim.com/license)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,43 +28,80 @@
             display: none;
         }
     </style>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
-<div class="container mt-9">
-    <div class="row justify-content-center">
-        <div class="col-lg-6">
-            <div class="card">
-                <div class="card-header pb-0 text-left">
-                    <h3 class="font-weight-bolder text-info text-gradient">SIP Kota Tegal</h3>
-                    <p class="mb-0">Masukkan username dan Password</p>
-                </div>
-                <div class="card-body">
-                    <form action="login" method="POST">
+    <div class="container mt-9">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header pb-0 text-left">
+                        <h3 class="font-weight-bolder text-info text-gradient">SIP Kota Tegal</h3>
+                        <p class="mb-0">Masukkan username dan Password</p>
+                    </div>
+                    <div class="card-body">
                         @csrf
                         <label>Username</label>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Username" aria-label="Username" name="username">
+                            <input id="username" type="text" class="form-control" placeholder="Username"
+                                aria-label="Username" name="username">
                         </div>
                         <label>Password</label>
                         <div class="input-group mb-3">
-                            <input type="password" class="form-control" placeholder="Password" aria-label="Password" name="password">
+                            <input id="password" type="password" class="form-control" placeholder="Password"
+                                aria-label="Password" name="password">
                         </div>
                         <div class="text-center">
-                            <button class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0">Sign in</button>
+                            <button type="button" id="btn-login"
+                                class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0">Sign in</button>
                         </div>
-                    </form>
-                </div>
-                {{-- <div class="card-footer text-center pt-0 px-lg-2 px-1">
+                    </div>
+                    {{-- <div class="card-footer text-center pt-0 px-lg-2 px-1">
                     <p class="mb-4 text-sm mx-auto">
                         Don't have an account?
                         <a href="" class="text-info text-gradient font-weight-bold">Sign up</a>
                     </p>
                 </div> --}}
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+    <script>
+        window.csrfToken = "{{ csrf_token() }}";
+    </script>
+    <script>
+        $('button').click(function(e) {
+            e.preventDefault();
+            let formData = new FormData();
+            formData.append('username', $('#username').val());
+            formData.append('password', $('#password').val());
+
+            let csrfToken = $("meta[name='csrf-token']").attr("content");
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('loginPost') }}",
+                data: formData,
+                contentType: false,
+                processData: false,
+                headers: {
+                    'X-CSRF-TOKEN': window.csrfToken
+                },
+                success: function(response) {
+                    localStorage.setItem('apiToken', response.token);
+                    window.location.href =
+                        '/dashboard';
+                },
+                error: function(error) {
+                    // Tangani error
+                    console.log(error);
+                },
+            });
+        });
+    </script>
 
     <!--   Core JS Files   -->
     <script src="assets/admin/js/core/popper.min.js"></script>
@@ -95,8 +117,7 @@
 
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-        crossorigin="anonymous"></script>
+
 
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script>
