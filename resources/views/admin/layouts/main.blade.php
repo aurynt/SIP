@@ -43,11 +43,21 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
 
     <script src="
-                                https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
-                                "></script>
+                                    https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
+                                    "></script>
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
+    "></script>
     <link href="
     https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css
     " rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
@@ -159,6 +169,102 @@
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script>
         let table = new DataTable('#myTable');
+    </script>
+    <script>
+        var map = L.map('map').setView([-7.541410189934723, 110.44604864790085], 13);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+        @if (isset($data))
+            @switch($data->type)
+                @case('marker')
+                console.log("{{ $data->type }}");
+                L.marker({!! $data->coordinat !!}).addTo(map)
+                @break
+
+                @case('polygon')
+                L.polygon({!! $data->koordinat !!}).addTo(map)
+                @break
+
+                @case('polyline')
+                L.polyline({!! $data->coordinat !!}).addTo(map)
+                @break
+
+                @case('rectangle')
+                L.rectangle({!! $data->coordinat !!}, {
+                    weight: 1,
+                    color: 'red'
+                }).addTo(map)
+                @break
+            @endswitch
+        @endif
+
+        var drawControl = new L.Control.Draw();
+        map.addControl(drawControl);
+        var drawnItems = new L.FeatureGroup();
+        map.addLayer(drawnItems);
+
+        map.on('draw:created', function(e) {
+            var type = e.layerType,
+                layer = e.layer;
+            $('#type').val(type)
+
+            switch (type) {
+                case 'polygon':
+                    drawnItems.clearLayers();
+                    drawnItems.addLayer(layer);
+                    var latlng = e.layer.getLatLngs();
+                    var coordinat = []
+                    for (var i = 0; i < latlng.length; i++) {
+                        for (var j = 0; j < latlng[i].length; j++) {
+                            coordinat.push([latlng[i][j].lat, latlng[i][j]
+                                .lng
+                            ])
+                        }
+                    }
+                    $('#coordinat').val(JSON.stringify(coordinat))
+                    break;
+                case 'circle':
+                    drawnItems.clearLayers();
+                    break;
+                case 'polyline':
+                    drawnItems.clearLayers();
+                    drawnItems.addLayer(layer);
+                    var latlng = e.layer.getLatLngs();
+                    var coordinat = []
+                    for (var i = 0; i < latlng.length; i++) {
+                        coordinat.push([latlng[i].lat, latlng[i]
+                            .lng
+                        ])
+                    }
+                    $('#coordinat').val(JSON.stringify(coordinat))
+                    break;
+                case 'rectangle':
+                    drawnItems.clearLayers();
+                    drawnItems.addLayer(layer);
+                    var latlng = e.layer.getLatLngs();
+                    var coordinat = []
+                    for (var i = 0; i < latlng.length; i++) {
+                        for (var j = 0; j < latlng[i].length; j++) {
+                            coordinat.push([latlng[i][j].lat, latlng[i][j]
+                                .lng
+                            ])
+                        }
+                    }
+                    $('#coordinat').val(JSON.stringify(coordinat))
+                    break;
+                case 'marker':
+                    drawnItems.clearLayers();
+                    drawnItems.addLayer(layer);
+                    var latlng = [e.layer.getLatLng().lat, e.layer.getLatLng().lng];
+                    $('#coordinat').val(JSON.stringify(latlng));
+                    break;
+
+                default:
+                    break;
+            }
+        });
     </script>
 </body>
 
