@@ -126,7 +126,7 @@
                                     icon: "success"
                                 });
 
-                                $('#myTable').DataTable().ajax.reload();
+                                $('#myTable').load("/drainase-dashboard #myTable");
                             },
                             error: (err) => {
                                 Swal.fire({
