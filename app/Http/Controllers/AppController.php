@@ -42,6 +42,8 @@ class AppController extends Controller
         return view('admin.data.tanahDanLahan', [
             'title' => 'Tanah dan Lahan',
             'tanah' => Tanah::all(),
+            'kecamatan' => DB::table('ref_kecamatan')->get(),
+            'kelurahan' => DB::table('ref_kelurahan')->get(),
         ]);
     }
 
@@ -49,15 +51,18 @@ class AppController extends Controller
     {
         return view('admin.data.ruasJalan', [
             'title' => 'Ruas Jalan',
-            'ruas' => Jalan::all()
+            'ruas' => Jalan::all(),
+            'kecamatan' => DB::table('ref_kecamatan')->get(),
+            'kelurahan' => DB::table('ref_kelurahan')->get(),
         ]);
     }
 
-    function peraturanDashboard()
+    function peraturanDashboard(Peraturan $peraturan)
     {
         return view('admin.data.peraturanDashboard', [
             'title' => 'Peraturan',
-            'data' => Peraturan::all(),
+            'data' => $peraturan->select('peraturan.*', 'ref_jenis_peraturan.jenis')
+                ->join('ref_jenis_peraturan', 'peraturan.id_jenis', '=', 'ref_jenis_peraturan.id')->get(),
             'jenisPeraturan' => DB::table('ref_jenis_peraturan')->get()
         ]);
     }
