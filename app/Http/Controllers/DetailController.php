@@ -11,12 +11,11 @@ use Illuminate\Support\Facades\DB;
 
 class DetailController extends Controller
 {
-    function detailTanahLahan(Tanah $tanah, $id)
+    function detailTanahLahan($id)
     {
         return view('admin.detail.detailTanahDanLahan', [
             'title' => 'Detail Tanah dan Lahan',
             'tanah' => Tanah::findOrFail($id)
-
         ]);
     }
     function detailRuasJalan($id)
