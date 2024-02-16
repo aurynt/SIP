@@ -153,7 +153,6 @@
                                     text: "successfuly deleted drainase",
                                     icon: "success"
                                 });
-
                             },
                             error: (err) => {
                                 // displayError(err.responseJSON.errors)

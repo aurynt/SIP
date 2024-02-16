@@ -76,7 +76,6 @@
     <div class="row mt-4">
         <div class="col-lg-12">
             <div class="card h-100 p-4">
-                <form action="" method="POST">
                     <input type="hidden" name="" value="">
                     <input type="hidden" name="jenis" value="back">
                     <div class="table-responsive">
@@ -144,7 +143,7 @@
                                                     data-bs-toggle="tooltip" data-bs-placement="top"
                                                     title="Upload Foto Tanah" data-container="body"
                                                     data-animation="true"><i class="bx bx-image-add"></i></button>
-                                                <a class="btn btn-outline-primary btn-tooltip" href="#"
+                                                <a class="btn btn-outline-primary btn-tooltip" href=""
                                                     target="_blank" data-bs-toggle="tooltip" data-bs-placement="top"
                                                     title="Patok" data-container="body" data-animation="true"><i
                                                         class="bx bx-map"></i></a>
@@ -157,14 +156,10 @@
                                                     data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah"
                                                     data-container="body" data-animation="true"><i
                                                         class="bx bx-pencil"></i></a>
-                                                <form action="{{ route('tanah-lahan.remove', $item->id) }}">
-                                                    @method('delete')
-                                                    @csrf
-                                                    <button class="btn btn-outline-danger btn-remove btn-tooltip"
-                                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"
-                                                        data-container="body" data-animation="true"><i
-                                                            class="bx bx-trash"></i></button>
-                                                </form>
+                                                <button value="{{ $item->id }}" class="btn btn-outline-danger btn-remove btn-tooltip"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"
+                                                    data-container="body" data-animation="true"><i
+                                                        class="bx bx-trash"></i></button>
                                             </div>
                                         </td>
                                     </tr>
@@ -172,8 +167,45 @@
                             </tbody>
                         </table>
                     </div>
-                </form>
             </div>
         </div>
     </div>
+    <script>
+        $(document).on('click', '.btn-remove', (e) => {
+                const appUrl = "{{ env('APP_URL') }}" + ':8000'
+                console.log(e.target.value);
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: `${appUrl}/api/tanah-lahan/${e.target.value}`,
+                            method: "DELETE",
+                            success: (res) => {
+                                Swal.fire({
+                                    title: "Done",
+                                    text: "Data successfuly deleted",
+                                    icon: "success"
+                                });
+
+                            },
+                            error: (err) => {
+                                // displayError(err.responseJSON.errors)
+                                Swal.fire({
+                                    title: "Failed!",
+                                    text: err.responseJSON.message,
+                                    icon: "error"
+                                })
+                            }
+                        })
+                    }
+                });
+            })
+    </script>
 @endsection
