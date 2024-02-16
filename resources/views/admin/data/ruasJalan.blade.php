@@ -76,7 +76,6 @@
 <div class="row mt-4">
     <div class="col-lg-12">
         <div class="card h-100 p-4">
-            <form action="" method="POST">
                 <div class="table-responsive">
                     <table id="myTable" class="table align-items-center mb-0 table-hover">
                         <thead>
@@ -127,7 +126,7 @@
                                     <div class="btn-group">
                                         <a class="btn btn-outline-dark" href="{{ route('detail.jalan', $item->id) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Detail"><i class="bx bx-detail"></i></a>
                                         <a class="btn btn-outline-warning btn-update" href="{{ route('edit.jalan', $item->id) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah"><i class="bx bx-pencil"></i></a>
-                                        <button class="btn btn-outline-danger btn-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus" fdprocessedid="eru1p"><i class="bx bx-trash"></i></button>
+                                        <button class="btn btn-outline-danger btn-remove" data-id="{{ $item->id }}"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus" fdprocessedid="eru1p"><i class="bx bx-trash"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -135,8 +134,49 @@
                         </tbody>
                     </table>
                 </div>
-            </form>
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(() => {
+            const appUrl = "{{ env('APP_URL') }}" + ':8000'
+
+            $(document).on('click', '.btn-remove', function() {
+                let id = $(this).data('id');
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: `${appUrl}/api/jalan/${id}`,
+                            method: "DELETE",
+                            success: (res) => {
+                                Swal.fire({
+                                    title: "Done",
+                                    text: "Data has been deleted",
+                                    icon: "success"
+                                });
+
+                                $('#myTable').load("/ruas-jalan-dashboard #myTable");
+
+                            },
+                            error: (err) => {
+                                Swal.fire({
+                                    title: "Failed!",
+                                    text: err.responseJSON.message,
+                                    icon: "error"
+                                })
+                            }
+                        });
+                    }
+                });
+            })
+        })
+</script>
 @endsection

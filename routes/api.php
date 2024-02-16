@@ -43,7 +43,7 @@ Route::name('jalan.')->group(function () {
     Route::get('jalan', [JalanController::class, 'index'])->name('all');
     Route::post('jalan', [JalanController::class, 'store'])->name('add');
     Route::get('jalan/{id}', [JalanController::class, 'show'])->name('show');
-    Route::put('jalan/{id}', [JalanController::class, 'update'])->name('update');
+    Route::post('jalan/{id}', [JalanController::class, 'update'])->name('update');
     Route::delete('jalan/{id}', [JalanController::class, 'destroy'])->name('remove');
 });
 
@@ -72,7 +72,7 @@ Route::name('tanah-lahan.')->group(function () {
     Route::get('tanah-lahan', [TanahController::class, 'index'])->name('all');
     Route::post('tanah-lahan', [TanahController::class, 'store'])->name('add');
     Route::get('tanah-lahan/{id}', [TanahController::class, 'show'])->name('show');
-    Route::put('tanah-lahan/{id}', [TanahController::class, 'update'])->name('update');
+    Route::post('tanah-lahan/{id}', [TanahController::class, 'update'])->name('update');
     Route::delete('tanah-lahan/{id}', [TanahController::class, 'destroy'])->name('remove');
 });
 
