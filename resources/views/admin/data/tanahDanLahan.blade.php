@@ -153,7 +153,8 @@
                                                     data-bs-toggle="tooltip" data-bs-placement="top" title="Detail"
                                                     data-container="body" data-animation="true"><i
                                                         class="bx bx-detail"></i></a>
-                                                <a class="btn btn-outline-warning btn-update btn-tooltip" href="#"
+                                                <a class="btn btn-outline-warning btn-update btn-tooltip"
+                                                    href="{{ route('edit.tanah-lahan', $item->id) }}"
                                                     data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah"
                                                     data-container="body" data-animation="true"><i
                                                         class="bx bx-pencil"></i></a>
