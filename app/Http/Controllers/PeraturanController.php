@@ -86,9 +86,9 @@ class PeraturanController extends Controller
                 $file_peraturan = $file->store('public/peraturan/');
                 Storage::delete('public/peraturan/'.$getPeraturan->file);
                 $dataToUpdate['file'] = $file_peraturan;
+            } else {
+                $dataToUpdate['file'] = $getPeraturan->file;
             }
-
-            $dataToUpdate['file'] = $getPeraturan->file;
 
             $res = $getPeraturan->update($dataToUpdate);
             return response()->json($res);
