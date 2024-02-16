@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login'])->name('login');
 
-Route::middleware(['auth:sanctum'])->group(function () {
+// Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::get('/auth/logout', [AuthController::class, 'logout']);
 
@@ -83,4 +83,4 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::delete('peraturan/{id}', [PeraturanController::class, 'destroy'])->name('remove');
     });
     Route::get('kelurahan/{id_kecamatan}', [KelurahanController::class, 'show'])->name('kelurahan.show');
-});
+// });
