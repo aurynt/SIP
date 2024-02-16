@@ -106,62 +106,68 @@
                             </thead>
                             <tbody>
                                 @foreach ($tanah as $item)
-                                <tr>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $loop->iteration }}</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $item->kecamatan }}</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $item->kelurahan }}</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $item->pemegang_hak }}</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $item->lahan_terbangun }}</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $item->status }}</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $item->penggunaan }}</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $item->kode }}</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $item->nomor }}</p>
-                                    </td>
-                                    <td class="align-middle">
-                                        <div class="btn-group">
-                                            <button class="btn btn-outline-success btn-up-sertifikat btn-tooltip"
-                                                data-bs-toggle="tooltip" data-bs-placement="top"
-                                                title="Upload Sertifikat" data-container="body" data-animation="true"><i
-                                                    class="bx bxs-file-pdf"></i></button>
-                                            <button class="btn btn-outline-info btn-up-lokasi btn-tooltip"
-                                                data-bs-toggle="tooltip" data-bs-placement="top"
-                                                title="Upload Foto Tanah" data-container="body" data-animation="true"><i
-                                                    class="bx bx-image-add"></i></button>
-                                            <a class="btn btn-outline-primary btn-tooltip" href="#" target="_blank"
-                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Patok"
-                                                data-container="body" data-animation="true"><i class="bx bx-map"></i></a>
-                                            <a class="btn btn-outline-dark btn-tooltip"
-                                                href="{{ route('detail.detail-tanah', $item->id) }}" data-bs-toggle="tooltip"
-                                                data-bs-placement="top" title="Detail" data-container="body"
-                                                data-animation="true"><i class="bx bx-detail"></i></a>
-                                            <a class="btn btn-outline-warning btn-update btn-tooltip" href="#"
-                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah"
-                                                data-container="body" data-animation="true"><i
-                                                    class="bx bx-pencil"></i></a>
-                                            <button class="btn btn-outline-danger btn-remove btn-tooltip"
-                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"
-                                                data-container="body" data-animation="true"><i
-                                                    class="bx bx-trash"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td class="align-middle text-center">
+                                            <p class="text-xs font-weight-bold mb-0">{{ $loop->iteration }}</p>
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <p class="text-xs font-weight-bold mb-0">{{ $item->kecamatan }}</p>
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <p class="text-xs font-weight-bold mb-0">{{ $item->kelurahan }}</p>
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <p class="text-xs font-weight-bold mb-0">{{ $item->pemegang_hak }}</p>
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <p class="text-xs font-weight-bold mb-0">{{ $item->lahan_terbangun }}</p>
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <p class="text-xs font-weight-bold mb-0">{{ $item->status }}</p>
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <p class="text-xs font-weight-bold mb-0">{{ $item->penggunaan }}</p>
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <p class="text-xs font-weight-bold mb-0">{{ $item->kode }}</p>
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <p class="text-xs font-weight-bold mb-0">{{ $item->nomor }}</p>
+                                        </td>
+                                        <td class="align-middle">
+                                            <div class="btn-group">
+                                                <button class="btn btn-outline-success btn-up-sertifikat btn-tooltip"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    title="Upload Sertifikat" data-container="body"
+                                                    data-animation="true"><i class="bx bxs-file-pdf"></i></button>
+                                                <button class="btn btn-outline-info btn-up-lokasi btn-tooltip"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    title="Upload Foto Tanah" data-container="body"
+                                                    data-animation="true"><i class="bx bx-image-add"></i></button>
+                                                <a class="btn btn-outline-primary btn-tooltip" href="#"
+                                                    target="_blank" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    title="Patok" data-container="body" data-animation="true"><i
+                                                        class="bx bx-map"></i></a>
+                                                <a class="btn btn-outline-dark btn-tooltip"
+                                                    href="{{ route('detail.detail-tanah', $item->id) }}"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Detail"
+                                                    data-container="body" data-animation="true"><i
+                                                        class="bx bx-detail"></i></a>
+                                                <a class="btn btn-outline-warning btn-update btn-tooltip" href="#"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah"
+                                                    data-container="body" data-animation="true"><i
+                                                        class="bx bx-pencil"></i></a>
+                                                <form action="{{ route('tanah-lahan.remove', $item->id) }}">
+                                                    @method('delete')
+                                                    @csrf
+                                                    <button class="btn btn-outline-danger btn-remove btn-tooltip"
+                                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"
+                                                        data-container="body" data-animation="true"><i
+                                                            class="bx bx-trash"></i></button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>

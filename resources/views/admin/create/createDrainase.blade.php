@@ -32,8 +32,7 @@
 
                                 <div class="form-group">
                                     <label for="kode_kel">Kelurahan *</label>
-                                    <select id="kode_kel" name="kode_kel" class="form-control">
-                                    </select>
+                                    <select id="kode_kel" name="kode_kel" class="form-control"></select>
                                     <input type="hidden" name="kel" id="kel">
                                 </div>
 

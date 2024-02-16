@@ -126,7 +126,7 @@
                                 <td class="align-middle">
                                     <div class="btn-group">
                                         <a class="btn btn-outline-dark" href="{{ route('detail.jalan', $item->id) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Detail"><i class="bx bx-detail"></i></a>
-                                        <a class="btn btn-outline-warning btn-update" href="{{ route('edit.jalan') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah"><i class="bx bx-pencil"></i></a>
+                                        <a class="btn btn-outline-warning btn-update" href="{{ route('edit.jalan', $item->id) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah"><i class="bx bx-pencil"></i></a>
                                         <button class="btn btn-outline-danger btn-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus" fdprocessedid="eru1p"><i class="bx bx-trash"></i></button>
                                     </div>
                                 </td>
