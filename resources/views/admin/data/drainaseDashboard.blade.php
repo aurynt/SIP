@@ -81,11 +81,12 @@
                                                 href="{{ route('edit.drainase', $item->id) }}" data-bs-toggle="tooltip"
                                                 data-bs-placement="top" title="Ubah" data-container="body"
                                                 data-animation="true"><i class="bx bx-pencil"></i></a>
-                                            <button value="{{ $item->id }}"
+                                            <button data-id="{{ $item->id }}"
                                                 class="btn btn-outline-danger btn-remove btn-tooltip"
                                                 data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"
                                                 data-container="body" data-animation="true"><i
                                                     class="bx bx-trash"></i></button>
+
                                         </div>
                                     </td>
                                 </tr>
@@ -132,8 +133,9 @@
                 })
             }
 
-            $(document).on('click', '.btn-remove', (e) => {
-                console.log(e.target.value);
+            $(document).on('click', '.btn-remove', function() {
+                let id = $(this).data('id');
+                console.log(id);
                 Swal.fire({
                     title: "Are you sure?",
                     text: "You won't be able to revert this!",
@@ -145,7 +147,7 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-                            url: `${appUrl}/api/drainase/${e.target.value}`,
+                            url: `${appUrl}/api/drainase/${id}`,
                             method: "DELETE",
                             success: (res) => {
                                 Swal.fire({
@@ -154,6 +156,7 @@
                                     icon: "success"
                                 });
 
+                                $('#myTable').DataTable().ajax.reload();
                             },
                             error: (err) => {
                                 // displayError(err.responseJSON.errors)
@@ -163,13 +166,7 @@
                                     icon: "error"
                                 })
                             }
-                        }).done(() => {
-                            $.get("{{ route('drainase.all') }}", (res) => {
-                                const el = generateElement(res)
-                                $('#myTable > tbody').empty()
-                                $('#myTable > tbody').append(el);
-                            })
-                        })
+                        });
                     }
                 });
             })
