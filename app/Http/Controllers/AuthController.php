@@ -12,25 +12,26 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        $this->validate($request, [
+        $credentials = $request->validate([
             'username' => 'required',
             'password' => 'required',
         ]);
 
-        $user = User::where('username', $request->username)->first();
-        if (!$user) {
-            return response()->json(['error' => 'Username tidak ditemukan'], 401);
-        } else if (!Hash::check($request->password, $user->password)) {
-            return response()->json(['error' => 'Kata sandi salah',], 401);
+        if (Auth::attempt($credentials)) {
+            $id = Auth::user()->id;
+            $user = User::find($id);
+            $token = $user->createToken('api-token')->plainTextToken;
+            return response()->json(['token' => $token], 200);
+        } else {
+            return response()->json(['error' => 'Unauthorized'], 401);
         }
-
-        return  response()->json(['token' => $user->createToken('access token')->plainTextToken], 200);
     }
 
     public function logout(Request $request)
     {
-        $user = Auth::user();
+        // dd($request->user()->currentAccessToken());
         $request->user()->currentAccessToken()->delete();
+        Auth::logout();
         return response()->json(['message' => 'Berhasil Logout'], 200);
     }
 

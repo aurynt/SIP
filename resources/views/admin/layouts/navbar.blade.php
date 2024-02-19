@@ -19,7 +19,7 @@
                 <li class="nav-item d-flex align-items-center">
                     <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
                         <i class="fa fa-user me-sm-1"></i>
-                        <span class="d-sm-inline d-none">Sign In</span>
+                        <butto id="btn-logout" class="d-sm-inline d-none">Logout</butto>
                     </a>
                 </li>
                 <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -124,3 +124,29 @@
         </div>
     </div>
 </nav>
+
+<script>
+    $('#btn-logout').click(function() {
+        window.csrfToken = "{{ csrf_token() }}";
+        const token = localStorage.getItem('apiToken');
+        console.log(token);
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('logout-web') }}",
+            contentType: false,
+            processData: false,
+            headers: {
+                'X-CSRF-TOKEN': window.csrfToken,
+                'Authorization': `Bearer ${token}`
+            },
+            success: function(response) {
+                localStorage.removeItem('apiToken');
+                window.location.href = '/';
+            },
+            error: function(error) {
+                // Tangani error
+                console.log(error);
+            },
+        });
+    });
+</script>
