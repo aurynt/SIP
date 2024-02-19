@@ -50,7 +50,7 @@
                 <li><a href="statistik" class="sub-menu-item {{ Request::is('*statistik') ? 'active' : '' }}">Statistik</a></li>
                 @auth
                 <li class="list-inline-item mb-0 d-block d-sm-none mb-3">
-                    <a href="{{ route('beranda.all') }}" class="btn btn-outline-light btn-rspnsv-color" style="color: #fff;">Masuk</a>
+                    <a href="{{ route('page.home') }}" class="btn btn-outline-light btn-rspnsv-color" style="color: #fff;">Masuk</a>
                 </li>
                 @else
                 <!--Login button Start-->

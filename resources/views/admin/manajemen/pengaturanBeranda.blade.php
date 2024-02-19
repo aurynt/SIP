@@ -15,7 +15,7 @@
                             </div>
                             <div class="form-group col-12" id="gambar">
                                 <img id="preview_logo" class="rounded mx-auto d-block"
-                                    src="{{ asset('storage/logo/' . $beranda->logo) }}" alt="logo" width="30%">
+                                    src="{{ asset('storage/public/logo/' . $beranda->logo) }}" alt="logo" width="30%">
                             </div>
                             <div class="form-group col-12">
                                 <label for="ucapan">Kalimat Selamat Datang</label>

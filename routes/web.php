@@ -1,5 +1,6 @@
 <?php
 
+use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\CreateController;
 use App\Http\Controllers\DetailController;
@@ -99,3 +100,4 @@ Route::name('edit.')->group(function () {
     Route::get('edit-peraturan/{id}', [EditController::class, 'editPeraturan'])->name('peraturan');
     Route::get('edit-drainase/{id}', [EditController::class, 'editDrainase'])->name('drainase');
 });
+
