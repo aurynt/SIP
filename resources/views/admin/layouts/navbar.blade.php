@@ -128,3 +128,29 @@
         </div>
     </div>
 </nav>
+
+<script>
+    $('#btn-logout').click(function() {
+        window.csrfToken = "{{ csrf_token() }}";
+        const token = localStorage.getItem('apiToken');
+        console.log(token);
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('logout-web') }}",
+            contentType: false,
+            processData: false,
+            headers: {
+                'X-CSRF-TOKEN': window.csrfToken,
+                'Authorization': `Bearer ${token}`
+            },
+            success: function(response) {
+                localStorage.removeItem('apiToken');
+                window.location.href = '/';
+            },
+            error: function(error) {
+                // Tangani error
+                console.log(error);
+            },
+        });
+    });
+</script>
