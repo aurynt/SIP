@@ -1,5 +1,6 @@
 <?php
 
+use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CreateController;
@@ -107,6 +108,3 @@ Route::group(['middleware' => 'auth'], function () {
     });
 });
 
-// Route::name('sign.')->group(function () {
-
-// });

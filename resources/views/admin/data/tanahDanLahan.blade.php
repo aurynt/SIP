@@ -52,8 +52,8 @@
 
                         <div class="form-group col-md-2 text-right">
                             <label>&nbsp;</label>
-                            <button type="submit" class="btn btn-success waves-effect waves-light w-md mt-4"><i
-                                    class="bx bx-cloud-download font-size-16"></i> Export Excel</button>
+                            <a href="/export-tanah-lahan" class="btn btn-success waves-effect waves-light w-md mt-4"><i
+                                    class="bx bx-cloud-download font-size-16"></i> Export Excel</a>
                         </div>
 
                         <div class="form-group col-md-2 text-left">
@@ -76,7 +76,6 @@
     <div class="row mt-4">
         <div class="col-lg-12">
             <div class="card h-100 p-4">
-                <form action="" method="POST">
                     <input type="hidden" name="" value="">
                     <input type="hidden" name="jenis" value="back">
                     <div class="table-responsive">
@@ -137,10 +136,12 @@
                                         <td class="align-middle">
                                             <div class="btn-group">
                                                 <button class="btn btn-outline-success btn-up-sertifikat btn-tooltip"
+                                                    data-bs-toggle="modal" data-bs-target="#modal-sertifikat"
                                                     data-bs-toggle="tooltip" data-bs-placement="top"
                                                     title="Upload Sertifikat" data-container="body"
                                                     data-animation="true"><i class="bx bxs-file-pdf"></i></button>
                                                 <button class="btn btn-outline-info btn-up-lokasi btn-tooltip"
+                                                    data-bs-toggle="modal" data-bs-target="#modal-tanah"
                                                     data-bs-toggle="tooltip" data-bs-placement="top"
                                                     title="Upload Foto Tanah" data-container="body"
                                                     data-animation="true"><i class="bx bx-image-add"></i></button>
@@ -173,6 +174,8 @@
             </div>
         </div>
     </div>
+    @include('admin.modal.uploadSertifikat')
+    @include('admin.modal.uploadFotoTanah')
     <script>
         $(document).ready(() => {
             const appUrl = "{{ env('APP_URL') }}" + ':8000'
