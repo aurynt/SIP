@@ -7,8 +7,8 @@
                     <div class="row mb-2">
                         <div class="col-sm-12">
                             <div class="text-sm-left">
-                                <a href="{{ route('page.jalan') }}"
-                                    class="btn btn-outline-secondary w-md"><i class="mdi mdi-arrow-left ml-1"></i> Kembali</a>
+                                <a href="{{ route('page.jalan') }}" class="btn btn-outline-secondary w-md"><i
+                                        class="mdi mdi-arrow-left ml-1"></i> Kembali</a>
                             </div>
                         </div>
                     </div>
@@ -17,178 +17,174 @@
 
                     <div class="row mb-2">
                         <div class="col-sm-12">
-                            <form id="form-input" method="POST"
-                                action=""
-                                onsubmit="return false;">
+                            <form id="form-input">
+                                <input type="hidden" id="id" value="{{ $data->id }}">
                                 <div class="form-group">
                                     <label for="kode_kec">Kecamatan *</label>
                                     <select id="kode_kec" name="kode_kec" class="form-control" required="">
-                                        <option value="" selected="" disabled="">Pilih Kecamatan</option>
-                                        <option value="337601">Tegal Barat</option>
-                                        <option value="337602"  >Tegal Timur</option>
-                                        <option value="337603">Tegal Selatan</option>
-                                        <option value="337604">Margadana</option>
+                                        <option value="" selected disabled>Pilih Kecamatan</option>
+                                        @foreach ($kecamatan as $item)
+                                            <option value="{{ $item->id_kecamatan }}"
+                                                {{ $data->kode_kec == $item->id_kecamatan ? 'selected' : '' }}>
+                                                {{ $item->nama_kecamatan }}
+                                            </option>
+                                        @endforeach
                                     </select>
-                                    <input type="hidden" name="kecamatan" id="kecamatan" value="Tegal Timur">
+                                    <input type="text" name="kecamatan" id="kecamatan" value="">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="kode_kel">Kelurahan *</label>
                                     <select id="kode_kel" name="kode_kel" class="form-control" required="">
-                                        <option value="3376021001"></option>
-                                        <option value="3376021001">Kejambon</option>
-                                        <option value="3376021002">Slerok</option>
-                                        <option value="3376021003">Panggung</option>
-                                        <option value="3376021004">Mangkukusuman</option>
-                                        <option value="3376021005">Mintaragen</option>
+                                        <option value="{{ $data->kode_kel }}">{{ $data->nama_kelurahan }}</option>
                                     </select>
-                                    <input type="hidden" name="kel" id="kel" value="Kejambon">
+                                    <input type="text" name="kelurahan" id="kelurahan" value="">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="nama_ruas">Nama Ruas Jalan *</label>
                                     <input type="text" id="nama_ruas" name="nama_ruas" class="form-control"
-                                        value="" required="">
+                                        value="{{ $data->nama_ruas }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="panjang">Panjang Jalan (meter) *</label>
                                     <input type="text" id="panjang" name="panjang" class="form-control decimal"
-                                        value="" required="">
+                                        value="{{ $data->panjang }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="lebar">Lebar Perkerasan (meter) *</label>
                                     <input type="text" id="lebar" name="lebar" class="form-control decimal"
-                                        value="" required="">
+                                        value="{{ $data->lebar }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="luas_sertifikat">Luas Sertifikat (meter persegi) *</label>
                                     <input type="text" id="luas_sertifikat" name="luas_sertifikat"
-                                        class="form-control decimal" value="11828" required="">
+                                        class="form-control decimal" value="{{ $data->luas_sertifikat }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="luas_peta">Luas Peta (meter persegi) *</label>
                                     <input type="text" id="luas_peta" name="luas_peta" class="form-control decimal"
-                                        value="" required="">
+                                        value="{{ $data->luas_peta }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="input-status">Status *</label>
                                     <input type="text" id="input-status" name="status" class="form-control"
-                                        value="" required="">
+                                        value="{{ $data->status }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="fungsi">Fungsi *</label>
                                     <input type="text" id="fungsi" name="fungsi" class="form-control"
-                                        value="" required="">
+                                        value="{{ $data->fungsi }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="tipe_hak">Tipe Hak *</label>
                                     <input type="text" id="tipe_hak" name="tipe_hak" class="form-control"
-                                        value="" required="">
+                                        value="{{ $data->tipe_hak }}">
                                 </div>
 
                                 <!-- <div class="form-group">
-                                        <label for="tipe_produk">Tipe Produk *</label>
-                                        <input type="text" id="tipe_produk" name="tipe_produk" class="form-control" value="" required>
-                                    </div>
+                                            <label for="tipe_produk">Tipe Produk *</label>
+                                            <input type="text" id="tipe_produk" name="tipe_produk" class="form-control" value="" required>
+                                        </div>
 
-                                    <div class="form-group">
-                                        <label for="tipe_jalan">Tipe Jalan *</label>
-                                        <input type="text" id="tipe_jalan" name="tipe_jalan" class="form-control" value="" required>
-                                    </div> -->
+                                        <div class="form-group">
+                                            <label for="tipe_jalan">Tipe Jalan *</label>
+                                            <input type="text" id="tipe_jalan" name="tipe_jalan" class="form-control" value="" required>
+                                        </div> -->
 
                                 <div class="form-group">
                                     <label for="hp">HP *</label>
                                     <input type="text" id="hp" name="hp" class="form-control"
-                                        value="" required="">
+                                        value="{{ $data->hp }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="nib">NIB *</label>
                                     <input type="text" id="nib" name="nib" class="form-control"
-                                        value="" required="">
+                                        value="{{ $data->nib }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="kode_patok">Kode Patok *</label>
                                     <input type="text" id="kode_patok" name="kode_patok" class="form-control"
-                                        value="" required="">
+                                        value="{{ $data->kode_patok }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="ruas_awal">Ruas Awal *</label>
                                     <input type="text" id="ruas_awal" name="ruas_awal" class="form-control"
-                                        value="" required="">
+                                        value="{{ $data->ruas_awal }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="ruas_akhir">Ruas Akhir *</label>
                                     <input type="text" id="ruas_akhir" name="ruas_akhir" class="form-control"
-                                        value="" required="">
+                                        value="{{ $data->ruas_akhir }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="kondisi_ringan">Kondisi Ringan (meter)</label>
                                     <input type="text" id="kondisi_ringan" name="kondisi_ringan"
-                                        class="form-control decimal" value="">
+                                        class="form-control decimal" value="{{ $data->kondisi_ringan }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="kondisi_sedang">Kondisi Sedang (meter)</label>
                                     <input type="text" id="kondisi_sedang" name="kondisi_sedang"
-                                        class="form-control decimal" value="">
+                                        class="form-control decimal" value="{{ $data->kondisi_sedang }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="kondisi_rusak">Kondisi Rusak (meter)</label>
                                     <input type="text" id="kondisi_rusak" name="kondisi_rusak"
-                                        class="form-control decimal" value="">
+                                        class="form-control decimal" value="{{ $data->kondisi_rusak }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="lhrt">LHRT</label>
                                     <input type="text" id="lhrt" name="lhrt" class="form-control"
-                                        value="">
+                                        value="{{ $data->lhrt }}">
                                 </div>
 
                                 <!-- <div class="form-group">
-                                        <label for="vcr">VCR</label>
-                                        <input type="text" id="vcr" name="vcr" class="form-control" value="">
-                                    </div>
+                                            <label for="vcr">VCR</label>
+                                            <input type="text" id="vcr" name="vcr" class="form-control" value="">
+                                        </div>
 
-                                    <div class="form-group">
-                                        <label for="mst">MST</label>
-                                        <input type="text" id="mst" name="mst" class="form-control" value="">
-                                    </div> -->
+                                        <div class="form-group">
+                                            <label for="mst">MST</label>
+                                            <input type="text" id="mst" name="mst" class="form-control" value="">
+                                        </div> -->
 
                                 <div class="form-group">
                                     <label for="tanah">Tanah (meter)</label>
                                     <input type="text" id="tanah" name="tanah" class="form-control decimal"
-                                        value="">
+                                        value="{{ $data->tanah }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="macadam">Macadam (meter)</label>
                                     <input type="text" id="macadam" name="macadam" class="form-control decimal"
-                                        value="">
+                                        value="{{ $data->macadam }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="aspal">Aspal (meter)</label>
                                     <input type="text" id="aspal" name="aspal" class="form-control decimal"
-                                        value="">
+                                        value="{{ $data->aspal }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="tahun">Tahun Data *</label>
                                     <input type="number" id="tahun" name="tahun" class="form-control number-only"
-                                        value="" required="">
+                                        value="{{ $data->tahun }}" required="">
                                 </div>
 
                                 <!-- map -->
@@ -465,8 +461,7 @@
                                 </div> --}}
 
                                 <div>
-                                    <a href="{{ route('page.jalan') }}"
-                                        class="btn btn-default w-md">Cancel</a>
+                                    <a href="{{ route('page.jalan') }}" class="btn btn-default w-md">Cancel</a>
                                     <button type="submit" class="btn btn-primary w-md">Simpan</button>
                                 </div>
                             </form>
@@ -476,4 +471,96 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(() => {
+            const appName = "{{ env('APP_URL') }}" + ':8000'
+            $('#kecamatan').attr('value', $('#kode_kec>option:selected').text().trim());
+            console.log($('#kode_kec>option:selected').text());
+            $('#kelurahan').attr('value', $('#kode_kel>option:selected').text().trim());
+
+            $('#kode_kec').on('change', (e) => {
+                $('#kode_kel').empty()
+
+                $.get(`${appName}/api/kelurahan/${e.target.value}`, (res) => {
+                    console.log(res);
+                    res.map((item) => {
+                        $('<option></option>').attr('value', item.id_kelurahan).text(item
+                                .nama_kelurahan)
+                            .appendTo(
+                                '#kode_kel');
+                        $('#kecamatan').attr('value', $('#kode_kec>option:selected').text()
+                            .trim());
+                        console.log($('#kode_kec>option:selected').text());
+                        $('#kelurahan').attr('value', $('#kode_kel>option:selected').text()
+                            .trim());
+
+                    })
+                })
+                $('#kode_kel').on('change', (e) => {
+                    $('#kelurahan').attr('value', $('#kode_kel>option:selected').text());
+                });
+            });
+
+
+            $('#form-input').on('submit', (e) => {
+                e.preventDefault();
+
+                const formData = new FormData();
+                formData.append('kode_kec', $('#kode_kec').val());
+                formData.append('kode_kel', $('#kode_kel').val());
+                formData.append('kecamatan', $('#kecamatan').val());
+                formData.append('kelurahan', $('#kelurahan').val());
+                formData.append('nama_ruas', $('#nama_ruas').val());
+                formData.append('panjang', $('#panjang').val());
+                formData.append('lebar', $('#lebar').val());
+                formData.append('luas_sertifikat', $('#luas_sertifikat').val());
+                formData.append('luas_peta', $('#luas_peta').val());
+                formData.append('status', $('#input_status').val());
+                formData.append('fungsi', $('#fungsi').val());
+                formData.append('tipe_hak', $('#tipe_hak').val());
+                formData.append('hp', $('#hp').val());
+                formData.append('nib', $('#nib').val());
+                formData.append('kode_patok', $('#kode_patok').val());
+                formData.append('ruas_awal', $('#ruas_awal').val());
+                formData.append('ruas_akhir', $('#ruas_akhir').val());
+                formData.append('kondisi_ringan', $('#kondisi_ringan').val());
+                formData.append('kondisi_sedang', $('#kondisi_sedang').val());
+                formData.append('kondisi_rusak', $('#kondisi_rusak').val());
+                formData.append('lhrt', $('#lhrt').val());
+                formData.append('tanah', $('#tanah').val());
+                formData.append('macadam', $('#macadam').val());
+                formData.append('aspal', $('#aspal').val());
+                formData.append('tahun', $('#tahun').val());
+
+                $.ajax({
+                    url: `${appName}/api/jalan/${$('#id').val()}`,
+                    method: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: (res) => {
+                        Swal.fire({
+                            title: "Done",
+                            text: "Data has been updated",
+                            icon: "success"
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href =
+                                    "{{ route('page.jalan') }}";
+                            }
+                        });
+                    },
+                    error: (err) => {
+                        // displayError(err.responseJSON.errors)
+                        Swal.fire({
+                            title: "Failed!",
+                            text: err.responseJSON.message,
+                            icon: "error"
+                        })
+                    }
+                }).done((res) => console.log(res))
+
+            })
+        })
+    </script>
 @endsection

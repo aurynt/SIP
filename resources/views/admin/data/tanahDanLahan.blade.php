@@ -153,18 +153,16 @@
                                                     data-bs-toggle="tooltip" data-bs-placement="top" title="Detail"
                                                     data-container="body" data-animation="true"><i
                                                         class="bx bx-detail"></i></a>
-                                                <a class="btn btn-outline-warning btn-update btn-tooltip" href="#"
+                                                <a class="btn btn-outline-warning btn-update btn-tooltip"
+                                                    href="{{ route('edit.tanah-lahan', $item->id) }}"
                                                     data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah"
                                                     data-container="body" data-animation="true"><i
                                                         class="bx bx-pencil"></i></a>
-                                                <form action="{{ route('tanah-lahan.remove', $item->id) }}">
-                                                    @method('delete')
-                                                    @csrf
-                                                    <button class="btn btn-outline-danger btn-remove btn-tooltip"
-                                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"
-                                                        data-container="body" data-animation="true"><i
-                                                            class="bx bx-trash"></i></button>
-                                                </form>
+                                                <button data-id="{{ $item->id }}"
+                                                    class="btn btn-outline-danger btn-remove btn-tooltip"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"
+                                                    data-container="body" data-animation="true"><i
+                                                        class="bx bx-trash"></i></button>
                                             </div>
                                         </td>
                                     </tr>
@@ -172,8 +170,49 @@
                             </tbody>
                         </table>
                     </div>
-                </form>
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(() => {
+            const appUrl = "{{ env('APP_URL') }}" + ':8000'
+
+            $(document).on('click', '.btn-remove', function() {
+                let id = $(this).data('id');
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: `${appUrl}/api/tanah-lahan/${id}`,
+                            method: "DELETE",
+                            success: (res) => {
+                                Swal.fire({
+                                    title: "Done",
+                                    text: "Data has been deleted",
+                                    icon: "success"
+                                });
+
+                                $('#myTable').load("/tanah-lahan-dashboard #myTable");
+
+                            },
+                            error: (err) => {
+                                Swal.fire({
+                                    title: "Failed!",
+                                    text: err.responseJSON.message,
+                                    icon: "error"
+                                })
+                            }
+                        });
+                    }
+                });
+            })
+        })
+    </script>
 @endsection

@@ -56,6 +56,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::delete('beranda/{id}', [BerandaController::class, 'destroy'])->name('remove');
     });
 
+
     Route::name('disclaimer.')->group(function () {
         Route::get('disclaimer', [DisclaimerController::class, 'index'])->name('all');
         Route::post('disclaimer', [DisclaimerController::class, 'store'])->name('add');
@@ -64,19 +65,19 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 
     Route::name('slider.')->group(function () {
-        Route::get('slider', [SliderController::class, 'index'])->name('all');
-        Route::post('slider', [SliderController::class, 'store'])->name('add');
-        Route::get('slider/{id}', [SliderController::class, 'show'])->name('show');
-        Route::delete('slider/{id}', [SliderController::class, 'destroy'])->name('remove');
-    });
+      Route::get('slider', [SliderController::class, 'index'])->name('all');
+      Route::post('slider', [SliderController::class, 'store'])->name('add');
+      Route::get('slider/{id}', [SliderController::class, 'show'])->name('show');
+      Route::delete('slider/{id}', [SliderController::class, 'destroy'])->name('remove');
+  });
 
-    Route::name('tanah-lahan.')->group(function () {
-        Route::get('tanah-lahan', [TanahController::class, 'index'])->name('all');
-        Route::post('tanah-lahan', [TanahController::class, 'store'])->name('add');
-        Route::get('tanah-lahan/{id}', [TanahController::class, 'show'])->name('show');
-        Route::put('tanah-lahan/{id}', [TanahController::class, 'update'])->name('update');
-        Route::delete('tanah-lahan/{id}', [TanahController::class, 'destroy'])->name('remove');
-    });
+
+Route::name('tanah-lahan.')->group(function () {
+    Route::get('tanah-lahan', [TanahController::class, 'index'])->name('all');
+    Route::post('tanah-lahan', [TanahController::class, 'store'])->name('add');
+    Route::get('tanah-lahan/{id}', [TanahController::class, 'show'])->name('show');
+    Route::post('tanah-lahan/{id}', [TanahController::class, 'update'])->name('update');
+    Route::delete('tanah-lahan/{id}', [TanahController::class, 'destroy'])->name('remove');
 
     Route::name('peraturan.')->group(function () {
         Route::get('peraturan', [PeraturanController::class, 'index'])->name('all');
