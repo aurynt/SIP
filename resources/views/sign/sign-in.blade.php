@@ -46,40 +46,42 @@
 </head>
 
 <body>
-<div class="container mt-9">
-    <div class="row justify-content-center">
-        <div class="col-lg-6">
-            <div class="card">
-                <div class="card-header pb-0 text-left">
-                    <h3 class="font-weight-bolder text-info text-gradient">SIP Kota Tegal</h3>
-                    <p class="mb-0">Masukkan username dan Password</p>
-                </div>
-                <div class="card-body">
-                    <form action="login" method="POST">
-                        @csrf
-                        <label>Username</label>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Username" aria-label="Username" name="username">
-                        </div>
-                        <label>Password</label>
-                        <div class="input-group mb-3">
-                            <input type="password" class="form-control" placeholder="Password" aria-label="Password" name="password">
-                        </div>
-                        <div class="text-center">
-                            <button class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0">Sign in</button>
-                        </div>
-                    </form>
-                </div>
-                {{-- <div class="card-footer text-center pt-0 px-lg-2 px-1">
+    <div class="container mt-9">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header pb-0 text-left">
+                        <h3 class="font-weight-bolder text-info text-gradient">SIP Kota Tegal</h3>
+                        <p class="mb-0">Masukkan username dan Password</p>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ route('login') }}" method="POST">
+                            @csrf
+                            <label>Username</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                                    name="username">
+                            </div>
+                            <label>Password</label>
+                            <div class="input-group mb-3">
+                                <input type="password" class="form-control" placeholder="Password" aria-label="Password"
+                                    name="password">
+                            </div>
+                            <div class="text-center">
+                                <button class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0">Sign in</button>
+                            </div>
+                        </form>
+                    </div>
+                    {{-- <div class="card-footer text-center pt-0 px-lg-2 px-1">
                     <p class="mb-4 text-sm mx-auto">
                         Don't have an account?
                         <a href="" class="text-info text-gradient font-weight-bold">Sign up</a>
                     </p>
                 </div> --}}
+                </div>
             </div>
         </div>
     </div>
-</div>
 
     <!--   Core JS Files   -->
     <script src="assets/admin/js/core/popper.min.js"></script>

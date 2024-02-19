@@ -168,39 +168,67 @@
         let table = new DataTable('#myTable');
     </script>
     <script>
-        var map = L.map('map').setView([-7.541410189934723, 110.44604864790085], 13);
+        var map = L.map('map').setView([-6.8674333, 109.1353434], 17);
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
         }).addTo(map);
 
         @if (isset($data->type))
-            @switch($data->type)
-                @case('marker')
-                console.log("{{ $data->type }}");
-                L.marker({!! $data->coordinat !!}).addTo(map)
-                @break
-
+            @switch(strtolower($data->type))
                 @case('polygon')
-                L.polygon({!! $data->koordinat !!}).addTo(map)
+                // L.polygon({!! $data->koordinat !!}).addTo(map)
+                const geojsonFeature = {
+                    "type": "Feature",
+                    "properties": {
+                        "name": "Coors Field",
+                        "amenity": "Baseball Stadium",
+                        "popupContent": "This is where the Rockies play!"
+                    },
+                    "geometry": {
+                        "type": "Polygon",
+                        "coordinates": {!! $data->koordinat !!},
+                    },
+                };
+
+                L.geoJSON(geojsonFeature).addTo(map);
                 @break
 
-                @case('polyline')
-                L.polyline({!! $data->coordinat !!}).addTo(map)
-                @break
+                @default()
+                const geojsonFeature = {
+                    "type": "Feature",
+                    "properties": {
+                        "name": "Coors Field",
+                        "amenity": "Baseball Stadium",
+                        "popupContent": "This is where the Rockies play!"
+                    },
+                    "geometry": {
+                        "type": "{{ $data->type }}",
+                        "coordinates": {!! $data->koordinat !!},
+                    },
+                };
 
-                @case('rectangle')
-                L.rectangle({!! $data->coordinat !!}, {
-                    weight: 1,
-                    color: 'red'
-                }).addTo(map)
+                L.geoJSON(geojsonFeature).addTo(map);
                 @break
             @endswitch
         @endif
-
-        var drawControl = new L.Control.Draw();
-        map.addControl(drawControl);
         var drawnItems = new L.FeatureGroup();
         map.addLayer(drawnItems);
+
+        var drawControl = new L.Control.Draw({
+            edit: {
+                featureGroup: drawnItems
+            },
+            draw: {
+                polygon: true,
+                multiPolygon: true,
+                polyline: false,
+                rectangle: false,
+                circle: false,
+                circlemarker: false,
+                marker: false
+            }
+        });
+        map.addControl(drawControl);
 
         map.on('draw:created', function(e) {
             var type = e.layerType,
@@ -215,50 +243,15 @@
                     var coordinat = []
                     for (var i = 0; i < latlng.length; i++) {
                         for (var j = 0; j < latlng[i].length; j++) {
-                            coordinat.push([latlng[i][j].lat, latlng[i][j]
-                                .lng
+                            coordinat.push([latlng[i][j].lng, latlng[i][j]
+                                .lat
                             ])
                         }
                     }
                     $('#coordinat').val(JSON.stringify(coordinat))
                     break;
-                case 'circle':
-                    drawnItems.clearLayers();
-                    break;
-                case 'polyline':
-                    drawnItems.clearLayers();
-                    drawnItems.addLayer(layer);
-                    var latlng = e.layer.getLatLngs();
-                    var coordinat = []
-                    for (var i = 0; i < latlng.length; i++) {
-                        coordinat.push([latlng[i].lat, latlng[i]
-                            .lng
-                        ])
-                    }
-                    $('#coordinat').val(JSON.stringify(coordinat))
-                    break;
-                case 'rectangle':
-                    drawnItems.clearLayers();
-                    drawnItems.addLayer(layer);
-                    var latlng = e.layer.getLatLngs();
-                    var coordinat = []
-                    for (var i = 0; i < latlng.length; i++) {
-                        for (var j = 0; j < latlng[i].length; j++) {
-                            coordinat.push([latlng[i][j].lat, latlng[i][j]
-                                .lng
-                            ])
-                        }
-                    }
-                    $('#coordinat').val(JSON.stringify(coordinat))
-                    break;
-                case 'marker':
-                    drawnItems.clearLayers();
-                    drawnItems.addLayer(layer);
-                    var latlng = [e.layer.getLatLng().lat, e.layer.getLatLng().lng];
-                    $('#coordinat').val(JSON.stringify(latlng));
-                    break;
-
                 default:
+                    drawnItems.clearLayers();
                     break;
             }
         });
