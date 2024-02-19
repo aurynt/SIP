@@ -20,7 +20,7 @@
                     <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
                         <i class="fa fa-user me-sm-1"></i>
                         @auth
-                            <span class="d-sm-inline d-none">Sign In</span>
+                            <span class="d-sm-inline d-none">Sign Out</span>
                         @else
                             <span class="d-sm-inline d-none">Sign In</span>
                         @endauth
@@ -128,3 +128,29 @@
         </div>
     </div>
 </nav>
+
+<script>
+    $('#btn-logout').click(function() {
+        window.csrfToken = "{{ csrf_token() }}";
+        const token = localStorage.getItem('apiToken');
+        console.log(token);
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('logout-web') }}",
+            contentType: false,
+            processData: false,
+            headers: {
+                'X-CSRF-TOKEN': window.csrfToken,
+                'Authorization': `Bearer ${token}`
+            },
+            success: function(response) {
+                localStorage.removeItem('apiToken');
+                window.location.href = '/';
+            },
+            error: function(error) {
+                // Tangani error
+                console.log(error);
+            },
+        });
+    });
+</script>
