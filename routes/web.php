@@ -68,10 +68,13 @@ Route::group(['middleware' => 'guest'], function () {
         ]);
     })->name('login-web');
 
-    Route::post('/auth/login',[AuthController::class,'login'])->name('loginPost');
+    Route::post('/auth/login', [AuthController::class, 'login'])->name('loginPost');
 });
 
 Route::group(['middleware' => 'auth'], function () {
+
+    Route::post('/auth/logout', [AuthController::class, 'logout'])->name('logout-web');
+
     Route::name('page.')->group(function () {
         Route::get('/dashboard', [AppController::class, 'dashboard'])->name('home');
         Route::get('/pengaturan-beranda', [AppController::class, 'pengaturanBeranda'])->name('setBeranda');

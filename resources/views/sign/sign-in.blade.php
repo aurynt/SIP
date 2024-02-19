@@ -74,7 +74,7 @@
         window.csrfToken = "{{ csrf_token() }}";
     </script>
     <script>
-        $('button').click(function(e) {
+        $('#btn-login').click(function(e) {
             e.preventDefault();
             let formData = new FormData();
             formData.append('username', $('#username').val());
@@ -98,6 +98,7 @@
                 error: function(error) {
                     // Tangani error
                     console.log(error);
+                    
                 },
             });
         });
