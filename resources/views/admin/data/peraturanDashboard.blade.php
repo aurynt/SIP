@@ -48,48 +48,6 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @php
-                                $no = 1;
-                            @endphp
-                            @foreach ($data as $item)
-                                <tr>
-                                    <td>{{ $no }}.</td>
-                                    <td>{{ $item->jenis }} Nomor {{ $item->nomor }} Tahun {{ $item->tahun }} Tentang
-                                        {{ $item->tentang }}
-                                        <hr><span class="badge bg-success text-white">Dilihat: {{ $item->dilihat ?? 0 }}
-                                            kali</span> <span class="badge bg-primary text-white">Diunduh:
-                                            {{ $item->didownload ?? 0 }} kali</span>
-                                    </td>
-                                    <td>
-                                        <a target="_blank" href="#"
-                                            class="lihat btn bg-gradient-success btn-sm col-12 mb-1">Lihat File</a><br>
-                                        <a target="_blank" href="#"
-                                            class="download btn bg-gradient-primary btn-sm col-12">Download File</a>
-                                    </td>
-                                    <td>
-                                        <div class="btn-group btn-sm">
-                                            <a class="btn btn-outline-dark btn-tooltip"
-                                                href="{{ route('detail.peraturan', $item->id) }}" data-bs-toggle="tooltip"
-                                                data-bs-placement="top" title="Detail" data-container="body"
-                                                data-animation="true"><i class="bx bx-detail"></i></a>
-                                            <a class="btn btn-outline-warning btn-tooltip"
-                                                href="{{ route('edit.peraturan', $item->id) }}" data-bs-toggle="tooltip"
-                                                data-bs-placement="top" title="Ubah" data-container="body"
-                                                data-animation="true"><i class="bx bx-pencil"></i></a>
-                                            <button data-id="{{ $item->id }}"
-                                                class="btn btn-outline-danger btn-remove btn-tooltip"
-                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"
-                                                data-container="body" data-animation="true"><i
-                                                    class="bx bx-trash"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                @php
-                                    $no++;
-                                @endphp
-                            @endforeach
-                        </tbody>
                     </table>
                 </div>
             </div>
@@ -134,6 +92,99 @@
                     }
                 });
             })
+        })
+    </script>
+
+    <script>
+        new DataTable('#myTable', {
+            ajax: {
+                url: "{{ route('peraturan.all') }}",
+                dataSrc: (res) => {
+                    const data = []
+                    res.map((item, i) => {
+                        const newdata = {
+                            no: i + 1,
+                            ...item
+                        }
+                        data.push(newdata)
+                    })
+                    return data
+                }
+            },
+            columns: [{
+                    data: 'no',
+                }, {
+                    render: (data, type, row) => {
+                        return `<span>${row.jenis} Nomor ${row.nomor} Tahun ${row.tahun} Tentang ${row.tentang.trim()}<span/>
+                                        <hr><span class="badge bg-success text-white">Dilihat: ${ row.dilihat ?? 0 }
+                                            kali</span> <span class="badge bg-primary text-white">Diunduh:
+                                            ${ row.didownload ?? 0 } kali</span>`
+                    },
+                },
+                {
+                    render: (data, type, row) => {
+                        return `<a target="_blank" href="#"
+                                            class="lihat btn bg-gradient-success btn-sm col-12 mb-1">Lihat File</a><br>
+                                        <a target="_blank" href="#"
+                                            class="download btn bg-gradient-primary btn-sm col-12">Download File</a>`
+                    }
+                },
+                {
+                    render: (data, type, row) => {
+                        const option = $('<div></div>', {
+                            class: 'btn-group',
+                            html: [
+                                $('<a/>', {
+                                    href: `/detail-peraturan/${row.id}`,
+                                    class: 'btn btn-outline-dark btn-tooltip',
+                                    "data-bs-toggle": "tooltip",
+                                    "data-bs-placement": "top",
+                                    title: "Detail",
+                                    "data-container": "body",
+                                    "data-animation": "true",
+                                    html: [
+                                        $('<i/>', {
+                                            class: 'bx bx-detail'
+                                        })
+                                    ]
+                                }),
+                                $('<a/>', {
+                                    href: `/edit-peraturan/${row.id}`,
+                                    class: 'btn btn-outline-warning btn-tooltip',
+                                    "data-bs-toggle": "tooltip",
+                                    "data-bs-placement": "top",
+                                    title: "Ubah",
+                                    "data-container": "body",
+                                    "data-animation": "true",
+                                    html: [
+                                        $('<i/>', {
+                                            class: 'bx bx-detail'
+                                        })
+                                    ]
+                                }),
+                                $('<button></button>', {
+                                    class: 'btn btn-outline-danger btn-remove btn-tooltip',
+                                    type: 'button',
+                                    "data-id": row.id,
+                                    "data-bs-toggle": "tooltip",
+                                    "data-bs-placement": "top",
+                                    title: "Hapus",
+                                    "data-container": "body",
+                                    "data-animation": "true",
+                                    html: [
+                                        $('<i/>', {
+                                            class: 'bx bx-trash'
+                                        })
+                                    ]
+                                })
+                            ]
+                        })
+                        return option.prop('outerHTML')
+                    },
+                },
+            ]
+
+
         })
     </script>
 @endsection

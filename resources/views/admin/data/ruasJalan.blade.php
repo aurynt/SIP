@@ -74,53 +74,6 @@
                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach ($ruas as $item)
-                                <tr>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $loop->iteration }}</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $item->nama_ruas }}</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $item->kecamatan }}</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $item->kel }}</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $item->luas_sertifikat }}</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $item->status }}</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $item->fungsi }}</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $item->tipe_hak }}</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $item->ruas_awal }}</p>
-                                    </td>
-                                    <td class="align-middle">
-                                        <div class="btn-group">
-                                            <a class="btn btn-outline-dark" href="{{ route('detail.jalan', $item->id) }}"
-                                                data-toggle="tooltip" data-placement="top" title=""
-                                                data-original-title="Detail"><i class="bx bx-detail"></i></a>
-                                            <a class="btn btn-outline-warning btn-update"
-                                                href="{{ route('edit.jalan', $item->id) }}" data-toggle="tooltip"
-                                                data-placement="top" title="" data-original-title="Ubah"><i
-                                                    class="bx bx-pencil"></i></a>
-                                            <button class="btn btn-outline-danger btn-remove" data-toggle="tooltip"
-                                                data-placement="top" title="" data-original-title="Hapus"
-                                                fdprocessedid="eru1p"><i class="bx bx-trash"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
                     </table>
                 </div>
             </div>
@@ -166,6 +119,107 @@
                     }
                 });
             })
+        })
+    </script>
+
+    <script>
+        new DataTable('#myTable', {
+            ajax: {
+                url: "{{ route('jalan.all') }}",
+                dataSrc: (res) => {
+                    const data = []
+                    res.map((item, i) => {
+                        const newdata = {
+                            no: i + 1,
+                            ...item
+                        }
+                        data.push(newdata)
+                    })
+                    return data
+                }
+            },
+            columns: [{
+                    data: 'no',
+                }, {
+                    data: 'nama_ruas',
+                },
+                {
+                    data: 'nama_kecamatan',
+                },
+                {
+                    data: 'nama_kelurahan',
+                },
+                {
+                    data: 'luas_sertifikat',
+                },
+                {
+                    data: 'status',
+                },
+                {
+                    data: 'fungsi',
+                },
+                {
+                    data: 'tipe_hak',
+                },
+                {
+                    data: 'ruas_awal',
+                },
+                {
+                    render: (data, type, row) => {
+                        const option = $('<div></div>', {
+                            class: 'btn-group',
+                            html: [
+                                $('<a/>', {
+                                    href: `/detail-drainase/${row.id}`,
+                                    class: 'btn btn-outline-dark btn-tooltip',
+                                    "data-bs-toggle": "tooltip",
+                                    "data-bs-placement": "top",
+                                    title: "Detail",
+                                    "data-container": "body",
+                                    "data-animation": "true",
+                                    html: [
+                                        $('<i/>', {
+                                            class: 'bx bx-detail'
+                                        })
+                                    ]
+                                }),
+                                $('<a/>', {
+                                    href: `/edit-drainase/${row.id}`,
+                                    class: 'btn btn-outline-warning btn-tooltip',
+                                    "data-bs-toggle": "tooltip",
+                                    "data-bs-placement": "top",
+                                    title: "Ubah",
+                                    "data-container": "body",
+                                    "data-animation": "true",
+                                    html: [
+                                        $('<i/>', {
+                                            class: 'bx bx-detail'
+                                        })
+                                    ]
+                                }),
+                                $('<button></button>', {
+                                    class: 'btn btn-outline-danger btn-remove btn-tooltip',
+                                    type: 'button',
+                                    "data-id": row.id,
+                                    "data-bs-toggle": "tooltip",
+                                    "data-bs-placement": "top",
+                                    title: "Hapus",
+                                    "data-container": "body",
+                                    "data-animation": "true",
+                                    html: [
+                                        $('<i/>', {
+                                            class: 'bx bx-trash'
+                                        })
+                                    ]
+                                })
+                            ]
+                        })
+                        return option.prop('outerHTML')
+                    }
+                },
+            ]
+
+
         })
     </script>
 @endsection

@@ -52,6 +52,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
 
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
+    <style>
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
@@ -160,15 +167,12 @@
 
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 
-    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-    <script>
-        let table = new DataTable('#myTable');
-    </script>
     <script>
         var map = L.map('map').setView([-6.8674333, 109.1353434], 17);
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-        }).addTo(map);
+        L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        });
 
         @if (isset($data->type))
             @switch(strtolower($data->type))
@@ -176,35 +180,39 @@
                 // L.polygon({!! $data->koordinat !!}).addTo(map)
                 const geojsonFeature = {
                     "type": "Feature",
-                    "properties": {
-                        "name": "Coors Field",
-                        "amenity": "Baseball Stadium",
-                        "popupContent": "This is where the Rockies play!"
-                    },
                     "geometry": {
-                        "type": "Polygon",
-                        "coordinates": {!! $data->koordinat !!},
+                        "type": "MultiPolygon",
+                        "coordinates": [{!! $data->koordinat !!}],
                     },
                 };
 
-                L.geoJSON(geojsonFeature).addTo(map);
+                L.geoJSON(geojsonFeature, {
+                    style: (feature) => ({
+                        fillColor: 'teal', // Warna isi
+                        fillOpacity: 0.5, // Opasitas isi
+                        color: 'blue', // Warna garis tepi
+                        weight: 2
+                    })
+                }).addTo(map);
                 @break
 
                 @default()
                 const geojsonFeature = {
                     "type": "Feature",
-                    "properties": {
-                        "name": "Coors Field",
-                        "amenity": "Baseball Stadium",
-                        "popupContent": "This is where the Rockies play!"
-                    },
                     "geometry": {
                         "type": "{{ $data->type }}",
                         "coordinates": {!! $data->koordinat !!},
                     },
                 };
 
-                L.geoJSON(geojsonFeature).addTo(map);
+                L.geoJSON(geojsonFeature, {
+                    style: (feature) => ({
+                        fillColor: 'teal', // Warna isi
+                        fillOpacity: 0.5, // Opasitas isi
+                        color: 'blue', // Warna garis tepi
+                        weight: 2
+                    })
+                }).addTo(map);
                 @break
             @endswitch
         @endif

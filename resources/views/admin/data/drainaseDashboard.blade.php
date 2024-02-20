@@ -59,7 +59,7 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody>
+                        {{-- <tbody>
                             @php
                                 $no = 1;
                             @endphp
@@ -94,12 +94,105 @@
                                     $no++;
                                 @endphp
                             @endforeach
-                        </tbody>
+                        </tbody> --}}
                     </table>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        new DataTable('#myTable', {
+            ajax: {
+                url: "{{ route('drainase.all') }}",
+                dataSrc: (res) => {
+                    const data = []
+                    res.map((item, i) => {
+                        const newdata = {
+                            no: i + 1,
+                            ...item
+                        }
+                        data.push(newdata)
+                    })
+                    return data
+                }
+            },
+            columns: [{
+                    data: 'no',
+                }, {
+                    data: 'nama_ruas',
+                },
+                {
+                    data: 'nama_kecamatan',
+                },
+                {
+                    data: 'nama_kelurahan',
+                },
+                {
+                    render: (data, type, row) => {
+                        return `${row.tipe_hak} ${row.hp}`
+                    },
+                },
+                {
+                    data: 'luas_sertifikat',
+                },
+                {
+                    render: (data, type, row) => {
+                        const option = $('<div></div>', {
+                            class: 'btn-group',
+                            html: [
+                                $('<a/>', {
+                                    href: `/detail-drainase/${row.id}`,
+                                    class: 'btn btn-outline-dark btn-tooltip',
+                                    "data-bs-toggle": "tooltip",
+                                    "data-bs-placement": "top",
+                                    title: "Detail",
+                                    "data-container": "body",
+                                    "data-animation": "true",
+                                    html: [
+                                        $('<i/>', {
+                                            class: 'bx bx-detail'
+                                        })
+                                    ]
+                                }),
+                                $('<a/>', {
+                                    href: `/edit-drainase/${row.id}`,
+                                    class: 'btn btn-outline-warning btn-tooltip',
+                                    "data-bs-toggle": "tooltip",
+                                    "data-bs-placement": "top",
+                                    title: "Ubah",
+                                    "data-container": "body",
+                                    "data-animation": "true",
+                                    html: [
+                                        $('<i/>', {
+                                            class: 'bx bx-detail'
+                                        })
+                                    ]
+                                }),
+                                $('<button></button>', {
+                                    class: 'btn btn-outline-danger btn-remove btn-tooltip',
+                                    type: 'button',
+                                    "data-id": row.id,
+                                    "data-bs-toggle": "tooltip",
+                                    "data-bs-placement": "top",
+                                    title: "Hapus",
+                                    "data-container": "body",
+                                    "data-animation": "true",
+                                    html: [
+                                        $('<i/>', {
+                                            class: 'bx bx-trash'
+                                        })
+                                    ]
+                                })
+                            ]
+                        })
+                        return option.prop('outerHTML')
+                    }
+                },
+            ]
+        })
+    </script>
+
     <script>
         $(document).ready(() => {
             const appUrl = "{{ env('APP_URL') }}" + ':8000'

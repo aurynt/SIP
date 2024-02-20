@@ -12,6 +12,10 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <style>
+        * {
+            margin: 0;
+        }
+
         ::-webkit-scrollbar {
             display: none;
         }
@@ -31,35 +35,34 @@
     <div id="map"></div>
     <script>
         const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
+            maxZoom: 23,
             attribution: '© OpenStreetMap'
         });
 
         const satelite = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-            maxZoom: 19,
+            maxZoom: 23,
             subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
         });
 
         const googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-            maxZoom: 20,
+            maxZoom: 23,
             subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
         });
 
         const googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
-            maxZoom: 20,
+            maxZoom: 23,
             subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
         });
 
         const googleTerrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
-            maxZoom: 20,
+            maxZoom: 23,
             subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
         });
 
         var map = L.map('map', {
             center: [-6.8674333, 109.1353434],
             zoom: 14,
-            layers: [googleHybrid],
-            maxZoom: 23
+            layers: [googleHybrid]
         })
 
         var baseMaps = {

@@ -76,101 +76,100 @@
     <div class="row mt-4">
         <div class="col-lg-12">
             <div class="card h-100 p-4">
-                    <input type="hidden" name="" value="">
-                    <input type="hidden" name="jenis" value="back">
-                    <div class="table-responsive">
-                        <table id="myTable" class="table align-items-center mb-0 table-hover">
-                            <thead>
+                <input type="hidden" name="" value="">
+                <input type="hidden" name="jenis" value="back">
+                <div class="table-responsive">
+                    <table id="myTable" class="table align-items-center mb-0 table-hover">
+                        <thead>
+                            <tr>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder">No.</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder ps-2">Kecamatan
+                                </th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
+                                    Kelurahan</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
+                                    Pemegang Hak</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Lahan
+                                    Terbangun</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Status
+                                </th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
+                                    Penggunaan Lahan</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Kode
+                                </th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Nomor
+                                </th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Aksi
+                                </th>
+                            </tr>
+                        </thead>
+                        {{-- <tbody>
+                            @foreach ($tanah as $item)
                                 <tr>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder">No.</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder ps-2">Kecamatan
-                                    </th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
-                                        Kelurahan</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
-                                        Pemegang Hak</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Lahan
-                                        Terbangun</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Status
-                                    </th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
-                                        Penggunaan Lahan</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Kode
-                                    </th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Nomor
-                                    </th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Aksi
-                                    </th>
+                                    <td class="align-middle text-center">
+                                        <p class="text-xs font-weight-bold mb-0">{{ $loop->iteration }}</p>
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        <p class="text-xs font-weight-bold mb-0">{{ $item->kecamatan }}</p>
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        <p class="text-xs font-weight-bold mb-0">{{ $item->kelurahan }}</p>
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        <p class="text-xs font-weight-bold mb-0">{{ $item->pemegang_hak }}</p>
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        <p class="text-xs font-weight-bold mb-0">{{ $item->lahan_terbangun }}</p>
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        <p class="text-xs font-weight-bold mb-0">{{ $item->status }}</p>
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        <p class="text-xs font-weight-bold mb-0">{{ $item->penggunaan }}</p>
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        <p class="text-xs font-weight-bold mb-0">{{ $item->kode }}</p>
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        <p class="text-xs font-weight-bold mb-0">{{ $item->nomor }}</p>
+                                    </td>
+                                    <td class="align-middle">
+                                        <div class="btn-group">
+                                            <button class="btn btn-outline-success btn-up-sertifikat btn-tooltip"
+                                                data-bs-toggle="modal" data-bs-target="#modal-sertifikat"
+                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                title="Upload Sertifikat" data-container="body" data-animation="true"><i
+                                                    class="bx bxs-file-pdf"></i></button>
+                                            <button class="btn btn-outline-info btn-up-lokasi btn-tooltip"
+                                                data-bs-toggle="modal" data-bs-target="#modal-tanah"
+                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                title="Upload Foto Tanah" data-container="body" data-animation="true"><i
+                                                    class="bx bx-image-add"></i></button>
+                                            <a class="btn btn-outline-primary btn-tooltip" href="#" target="_blank"
+                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Patok"
+                                                data-container="body" data-animation="true"><i class="bx bx-map"></i></a>
+                                            <a class="btn btn-outline-dark btn-tooltip"
+                                                href="{{ route('detail.detail-tanah', $item->id) }}"
+                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Detail"
+                                                data-container="body" data-animation="true"><i
+                                                    class="bx bx-detail"></i></a>
+                                            <a class="btn btn-outline-warning btn-update btn-tooltip"
+                                                href="{{ route('edit.tanah-lahan', $item->id) }}"
+                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah"
+                                                data-container="body" data-animation="true"><i
+                                                    class="bx bx-pencil"></i></a>
+                                            <button data-id="{{ $item->id }}"
+                                                class="btn btn-outline-danger btn-remove btn-tooltip"
+                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"
+                                                data-container="body" data-animation="true"><i
+                                                    class="bx bx-trash"></i></button>
+                                        </div>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($tanah as $item)
-                                    <tr>
-                                        <td class="align-middle text-center">
-                                            <p class="text-xs font-weight-bold mb-0">{{ $loop->iteration }}</p>
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            <p class="text-xs font-weight-bold mb-0">{{ $item->kecamatan }}</p>
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            <p class="text-xs font-weight-bold mb-0">{{ $item->kelurahan }}</p>
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            <p class="text-xs font-weight-bold mb-0">{{ $item->pemegang_hak }}</p>
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            <p class="text-xs font-weight-bold mb-0">{{ $item->lahan_terbangun }}</p>
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            <p class="text-xs font-weight-bold mb-0">{{ $item->status }}</p>
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            <p class="text-xs font-weight-bold mb-0">{{ $item->penggunaan }}</p>
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            <p class="text-xs font-weight-bold mb-0">{{ $item->kode }}</p>
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            <p class="text-xs font-weight-bold mb-0">{{ $item->nomor }}</p>
-                                        </td>
-                                        <td class="align-middle">
-                                            <div class="btn-group">
-                                                <button class="btn btn-outline-success btn-up-sertifikat btn-tooltip"
-                                                    data-bs-toggle="modal" data-bs-target="#modal-sertifikat"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    title="Upload Sertifikat" data-container="body"
-                                                    data-animation="true"><i class="bx bxs-file-pdf"></i></button>
-                                                <button class="btn btn-outline-info btn-up-lokasi btn-tooltip"
-                                                    data-bs-toggle="modal" data-bs-target="#modal-tanah"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    title="Upload Foto Tanah" data-container="body"
-                                                    data-animation="true"><i class="bx bx-image-add"></i></button>
-                                                <a class="btn btn-outline-primary btn-tooltip" href="#"
-                                                    target="_blank" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    title="Patok" data-container="body" data-animation="true"><i
-                                                        class="bx bx-map"></i></a>
-                                                <a class="btn btn-outline-dark btn-tooltip"
-                                                    href="{{ route('detail.detail-tanah', $item->id) }}"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Detail"
-                                                    data-container="body" data-animation="true"><i
-                                                        class="bx bx-detail"></i></a>
-                                                <a class="btn btn-outline-warning btn-update btn-tooltip"
-                                                    href="{{ route('edit.tanah-lahan', $item->id) }}"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah"
-                                                    data-container="body" data-animation="true"><i
-                                                        class="bx bx-pencil"></i></a>
-                                                <button data-id="{{ $item->id }}"
-                                                    class="btn btn-outline-danger btn-remove btn-tooltip"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"
-                                                    data-container="body" data-animation="true"><i
-                                                        class="bx bx-trash"></i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                            @endforeach
+                        </tbody> --}}
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -216,6 +215,92 @@
                     }
                 });
             })
+        })
+    </script>
+
+    <script>
+        new DataTable('#myTable', {
+            ajax: {
+                url: "{{ route('tanah-lahan.all') }}",
+                dataSrc: (res) => {
+                    const data = []
+                    res.map((item, i) => {
+                        const newdata = {
+                            no: i + 1,
+                            ...item
+                        }
+                        data.push(newdata)
+                    })
+                    return data
+                }
+            },
+            columns: [{
+                    data: 'no',
+                }, {
+                    data: 'kecamatan'
+                },
+                {
+                    data: 'kelurahan'
+                },
+                {
+                    data: 'pemegang_hak'
+                },
+                {
+                    data: 'lahan_terbangun'
+                },
+                {
+                    data: 'status'
+                },
+                {
+                    data: 'penggunaan'
+                },
+                {
+                    data: 'kode'
+                },
+                {
+                    data: 'nomor'
+                },
+                {
+                    render: (data, type, row) => {
+                        return `
+                        <td class="align-middle">
+                            <div class="btn-group">
+                                <button class="btn btn-outline-success btn-up-sertifikat btn-tooltip"
+                                    data-bs-toggle="modal" data-bs-target="#modal-sertifikat"
+                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                    title="Upload Sertifikat" data-container="body" data-animation="true"><i
+                                        class="bx bxs-file-pdf"></i></button>
+                                <button class="btn btn-outline-info btn-up-lokasi btn-tooltip"
+                                    data-bs-toggle="modal" data-bs-target="#modal-tanah"
+                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                    title="Upload Foto Tanah" data-container="body" data-animation="true"><i
+                                        class="bx bx-image-add"></i></button>
+                                <a class="btn btn-outline-primary btn-tooltip" href="#" target="_blank"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Patok"
+                                    data-container="body" data-animation="true"><i class="bx bx-map"></i></a>
+                                <a class="btn btn-outline-dark btn-tooltip"
+                                    href="/detail-tanah-lahan/${row.id}"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Detail"
+                                    data-container="body" data-animation="true"><i
+                                        class="bx bx-detail"></i></a>
+                                <a class="btn btn-outline-warning btn-update btn-tooltip"
+                                    href="/detail-tanah-lahan/${row.id}"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah"
+                                    data-container="body" data-animation="true"><i
+                                        class="bx bx-pencil"></i></a>
+                                <button data-id="${row.id}"
+                                    class="btn btn-outline-danger btn-remove btn-tooltip"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"
+                                    data-container="body" data-animation="true"><i
+                                        class="bx bx-trash"></i></button>
+                            </div>
+                        </td>
+                        `
+                    },
+                },
+            ]
+
+
         })
     </script>
 @endsection

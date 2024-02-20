@@ -113,8 +113,8 @@
                         <div id="table-data_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
                             <div class="row dt-row">
                                 <div class="col-sm-12">
-                                    <table id="myTable" class="table-striped table-bordered dataTable no-footer"
-                                        style="width: 100%;" aria-describedby="table-data_info">
+                                    <table id="myTable" class="table table-hover no-footer" style="width: 100%;"
+                                        aria-describedby="table-data_info">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
@@ -128,50 +128,6 @@
                                                 <th>Option</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1.</td>
-                                                <td>Jalan K.S. Tubun</td>
-                                                <td>Tegal Timur</td>
-                                                <td>Kejambon</td>
-                                                <td>11828</td>
-                                                <td>Jalan Kota</td>
-                                                <td>Jalan Arteri Sekunder</td>
-                                                <td>Hak Pakai</td>
-                                                <td>
-                                                    <div class="btn-group"><button
-                                                            class="btn btn-primary btn-sm btn-detail" type="button"
-                                                            data-id="REVxMjhGNlBLckJ4SHFQUFRUQjB2S3ViVlhyVVpobjFTUStib3FqQlY1MD0="
-                                                            data-toggle="tooltip" data-placement="top"
-                                                            title="Detail">Detail</button><button
-                                                            class="btn btn-warning btn-sm btn-cetak" type="button"
-                                                            data-id="REVxMjhGNlBLckJ4SHFQUFRUQjB2S3ViVlhyVVpobjFTUStib3FqQlY1MD0="
-                                                            data-toggle="tooltip" data-placement="top"
-                                                            title="Cetak">Cetak</button></div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>7.</td>
-                                                <td>Jalan S.I. Lorem</td>
-                                                <td>Tegal Barat Daya</td>
-                                                <td>Kejambon</td>
-                                                <td>11828</td>
-                                                <td>Jalan Kota Lorem</td>
-                                                <td>Jalan Arteri Premier</td>
-                                                <td>Hak Asasi</td>
-                                                <td>
-                                                    <div class="btn-group"><button
-                                                            class="btn btn-primary btn-sm btn-detail" type="button"
-                                                            data-id="REVxMjhGNlBLckJ4SHFQUFRUQjB2S3ViVlhyVVpobjFTUStib3FqQlY1MD0="
-                                                            data-toggle="tooltip" data-placement="top"
-                                                            title="Detail">Detail</button><button
-                                                            class="btn btn-warning btn-sm btn-cetak" type="button"
-                                                            data-id="REVxMjhGNlBLckJ4SHFQUFRUQjB2S3ViVlhyVVpobjFTUStib3FqQlY1MD0="
-                                                            data-toggle="tooltip" data-placement="top"
-                                                            title="Cetak">Cetak</button></div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -184,4 +140,74 @@
     </section>
 
     @include('layouts.footer')
+    <script>
+        new DataTable('#myTable', {
+            ajax: {
+                url: "{{ route('jalan.all') }}",
+                dataSrc: (res) => {
+                    const data = []
+                    res.map((item, i) => {
+                        const newdata = {
+                            no: i + 1,
+                            ...item
+                        }
+                        data.push(newdata)
+                    })
+                    return data
+                }
+            },
+            columns: [{
+                    data: 'no',
+                }, {
+                    data: 'nama_ruas',
+                },
+                {
+                    data: 'nama_kecamatan',
+                },
+                {
+                    data: 'nama_kelurahan',
+                },
+                {
+                    data: 'luas_sertifikat',
+                },
+                {
+                    data: 'status',
+                },
+                {
+                    data: 'fungsi',
+                },
+                {
+                    data: 'tipe_hak',
+                },
+                {
+                    render: (data, type, row) => {
+                        const option = $('<div></div>', {
+                            class: 'btn-group',
+                            html: [
+                                $('<button></button>', {
+                                    class: 'btn btn-primary btn-sm btn-detail',
+                                    type: 'button',
+                                    "data-id": row.id,
+                                    "data-toggle": "tooltip",
+                                    "data-placement": "top",
+                                    title: "Detail",
+                                }).text('Detail'),
+                                $('<button></button>', {
+                                    class: 'btn btn-warning btn-sm btn-cetak',
+                                    type: 'button',
+                                    "data-d": row.id,
+                                    "data-toggle": "tooltip",
+                                    "data-placement": "top",
+                                    title: "Cetak",
+                                }).text('Cetak')
+                            ]
+                        })
+                        return option.prop('outerHTML')
+                    }
+                },
+            ]
+
+
+        })
+    </script>
 @endsection
