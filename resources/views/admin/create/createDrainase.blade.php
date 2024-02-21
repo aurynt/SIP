@@ -87,7 +87,6 @@
                 $('#kode_kel').empty()
 
                 $.get(`${appName}/api/kelurahan/${e.target.value}`, (res) => {
-                    console.log(res);
                     res.map((item) => (
                         $('<option></option>').attr('value', item.id_kelurahan).text(item
                             .nama_kelurahan)
@@ -132,7 +131,7 @@
                             icon: "error"
                         })
                     }
-                }).done((res) => console.log(res))
+                })
 
             })
         })

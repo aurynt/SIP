@@ -175,46 +175,22 @@
         }).addTo(map);
 
         @if (isset($data->type))
-            @switch(strtolower($data->type))
-                @case('polygon')
-                // L.polygon({!! $data->koordinat !!}).addTo(map)
-                const geojsonFeature = {
-                    "type": "Feature",
-                    "geometry": {
-                        "type": "MultiPolygon",
-                        "coordinates": [{!! $data->koordinat !!}],
-                    },
-                };
+            const geojsonFeature = {
+                "type": "Feature",
+                "geometry": {
+                    "type": "{{ $data->type }}",
+                    "coordinates": {!! $data->koordinat !!},
+                },
+            };
 
-                L.geoJSON(geojsonFeature, {
-                    style: (feature) => ({
-                        fillColor: 'teal', // Warna isi
-                        fillOpacity: 0.5, // Opasitas isi
-                        color: 'blue', // Warna garis tepi
-                        weight: 2
-                    })
-                }).addTo(map);
-                @break
-
-                @default()
-                const geojsonFeature = {
-                    "type": "Feature",
-                    "geometry": {
-                        "type": "{{ $data->type }}",
-                        "coordinates": {!! $data->koordinat !!},
-                    },
-                };
-
-                L.geoJSON(geojsonFeature, {
-                    style: (feature) => ({
-                        fillColor: 'teal', // Warna isi
-                        fillOpacity: 0.5, // Opasitas isi
-                        color: 'blue', // Warna garis tepi
-                        weight: 2
-                    })
-                }).addTo(map);
-                @break
-            @endswitch
+            L.geoJSON(geojsonFeature, {
+                style: (feature) => ({
+                    fillColor: 'teal', // Warna isi
+                    fillOpacity: 0.5, // Opasitas isi
+                    color: 'blue', // Warna garis tepi
+                    weight: 2
+                })
+            }).addTo(map);
         @endif
         var drawnItems = new L.FeatureGroup();
         map.addLayer(drawnItems);
@@ -238,21 +214,14 @@
         map.on('draw:created', function(e) {
             var type = e.layerType,
                 layer = e.layer;
-            $('#type').val(type)
 
             switch (type) {
                 case 'polygon':
                     drawnItems.clearLayers();
                     drawnItems.addLayer(layer);
-                    var latlng = e.layer.getLatLngs();
-                    var coordinat = []
-                    for (var i = 0; i < latlng.length; i++) {
-                        for (var j = 0; j < latlng[i].length; j++) {
-                            coordinat.push([latlng[i][j].lng, latlng[i][j]
-                                .lat
-                            ])
-                        }
-                    }
+                    const coordinat = e.layer.toGeoJSON().geometry.coordinates;
+                    const type = e.layer.toGeoJSON().geometry.type;
+                    $('#type').val(type)
                     $('#coordinat').val(JSON.stringify(coordinat))
                     break;
                 default:

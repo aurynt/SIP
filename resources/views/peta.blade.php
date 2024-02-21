@@ -77,7 +77,8 @@
 
         $.get("{{ route('jalan.all') }}", (res) => {
             const layerGroup = []
-            const datas = res.filter((data) => data.type == 'MultiPolygon')
+            const datas = res.filter((data) => data.type === 'MultiPolygon' || data.type === 'Polygon' && data
+                .koordinat !== null)
             datas.map((item) => {
                 var geojsonFeature = {
                     "type": "Feature",
@@ -100,10 +101,12 @@
         })
         $.get("{{ route('drainase.all') }}", (res) => {
             const layerGroup = []
-            const datas = res.filter((data) => data.type == 'MultiPolygon')
+            const datas = res.filter((data) => data.type === 'MultiPolygon' || data.type === 'Polygon' && data
+                .koordinat !== null)
             datas.map((item) => {
                 var geojsonFeature = {
                     "type": "Feature",
+                    "properties": {},
                     "geometry": {
                         "type": item.type,
                         "coordinates": JSON.parse(item.koordinat)
@@ -123,7 +126,8 @@
         })
         $.get("{{ route('tanah-lahan.all') }}", (res) => {
             const layerGroup = []
-            const datas = res.filter((data) => data.type == 'MultiPolygon' && data.koordinat !== null)
+            const datas = res.filter((data) => data.type === 'MultiPolygon' || data.type === 'Polygon' && data
+                .koordinat !== null)
             datas.map((item) => {
                 var geojsonFeature = {
                     "type": "Feature",
