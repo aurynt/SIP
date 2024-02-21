@@ -172,7 +172,7 @@
         L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
             maxZoom: 20,
             subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-        });
+        }).addTo(map);
 
         @if (isset($data->type))
             @switch(strtolower($data->type))

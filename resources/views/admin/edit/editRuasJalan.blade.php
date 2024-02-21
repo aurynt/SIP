@@ -90,14 +90,14 @@
                                 </div>
 
                                 <!-- <div class="form-group">
-                                                <label for="tipe_produk">Tipe Produk *</label>
-                                                <input type="text" id="tipe_produk" name="tipe_produk" class="form-control" value="" required>
-                                            </div>
+                                                    <label for="tipe_produk">Tipe Produk *</label>
+                                                    <input type="text" id="tipe_produk" name="tipe_produk" class="form-control" value="" required>
+                                                </div>
 
-                                            <div class="form-group">
-                                                <label for="tipe_jalan">Tipe Jalan *</label>
-                                                <input type="text" id="tipe_jalan" name="tipe_jalan" class="form-control" value="" required>
-                                            </div> -->
+                                                <div class="form-group">
+                                                    <label for="tipe_jalan">Tipe Jalan *</label>
+                                                    <input type="text" id="tipe_jalan" name="tipe_jalan" class="form-control" value="" required>
+                                                </div> -->
 
                                 <div class="form-group">
                                     <label for="hp">HP *</label>
@@ -154,14 +154,14 @@
                                 </div>
 
                                 <!-- <div class="form-group">
-                                                <label for="vcr">VCR</label>
-                                                <input type="text" id="vcr" name="vcr" class="form-control" value="">
-                                            </div>
+                                                    <label for="vcr">VCR</label>
+                                                    <input type="text" id="vcr" name="vcr" class="form-control" value="">
+                                                </div>
 
-                                            <div class="form-group">
-                                                <label for="mst">MST</label>
-                                                <input type="text" id="mst" name="mst" class="form-control" value="">
-                                            </div> -->
+                                                <div class="form-group">
+                                                    <label for="mst">MST</label>
+                                                    <input type="text" id="mst" name="mst" class="form-control" value="">
+                                                </div> -->
 
                                 <div class="form-group">
                                     <label for="tanah">Tanah (meter)</label>
@@ -189,7 +189,7 @@
 
                                 <div class="flex flex-col mb-3">
                                     <label for="map" class="capitalize">location</label>
-                                    <div id="map" style="height: 300px"></div>
+                                    <div id="map" style="height: 450px"></div>
                                     <p id="mapError" class="text-red-500 text-xs"></p>
                                 </div>
 
