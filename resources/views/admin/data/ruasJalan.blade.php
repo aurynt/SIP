@@ -105,7 +105,7 @@
                                     icon: "success"
                                 });
 
-                                $('#myTable').load("/ruas-jalan-dashboard #myTable");
+                                $('#myTable').DataTable().ajax.reload();
 
                             },
                             error: (err) => {

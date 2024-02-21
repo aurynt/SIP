@@ -79,7 +79,7 @@
                                     icon: "success"
                                 });
 
-                                $('#myTable').load("/peraturan-dashboard #myTable");
+                                $('#myTable').DataTable().ajax.reload();
                             },
                             error: (err) => {
                                 Swal.fire({
