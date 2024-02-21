@@ -40,27 +40,35 @@
                 <li class="has-submenu parent-menu-item">
                     <a class="pe-3" href="javascript:void(0)">Data</a><span class="menu-arrow"></span>
                     <ul class="submenu">
-                        <li><a href="tanah-lahan" class="sub-menu-item {{ Request::is('tanah-lahan') ? 'active' : '' }}">Tanah & Lahan</a></li>
-                        <li><a href="ruas-jalan" class="sub-menu-item {{ Request::is('ruas-jalan') ? 'active' : '' }}">Ruas Jalan</a></li>
-                        <li><a href="drainase" class="sub-menu-item {{ Request::is('drainase') ? 'active' : '' }}">Drainase</a></li>
+                        <li><a href="tanah-lahan"
+                                class="sub-menu-item {{ Request::is('tanah-lahan') ? 'active' : '' }}">Tanah & Lahan</a>
+                        </li>
+                        <li><a href="ruas-jalan"
+                                class="sub-menu-item {{ Request::is('ruas-jalan') ? 'active' : '' }}">Ruas Jalan</a>
+                        </li>
+                        <li><a href="drainase"
+                                class="sub-menu-item {{ Request::is('drainase') ? 'active' : '' }}">Drainase</a></li>
                     </ul>
                 </li>
-                <li><a href="peraturan" class="sub-menu-item {{ Request::is('*peraturan') ? 'active' : '' }}">Peraturan</a></li>
-                <li><a href="peta" class="sub-menu-item {{ Request::is('peta') ? 'active' : '' }}">Peta Spasial</a></li>
-                <li><a href="statistik" class="sub-menu-item {{ Request::is('*statistik') ? 'active' : '' }}">Statistik</a></li>
-                
+                <li><a href="peraturan"
+                        class="sub-menu-item {{ Request::is('*peraturan') ? 'active' : '' }}">Peraturan</a></li>
+                <li><a href="peta" class="sub-menu-item {{ Request::is('peta') ? 'active' : '' }}">Peta Spasial</a>
+                </li>
+                <li><a href="statistik"
+                        class="sub-menu-item {{ Request::is('*statistik') ? 'active' : '' }}">Statistik</a></li>
+
                 <!--Login button Start-->
-                @guest
                 <ul class="buy-button list-inline mb-0">
-                    <li class="list-inline-item mb-0">
-                        <a href="/sign-in" class="btn btn-outline-light ms-3">Login</a>
-                    </li>
-                @else
-                    <li class="list-inline-item mb-0">
-                        <a href="{{ route('page.home') }}" class="btn btn-outline-light ms-3">Masuk</a>
-                    </li>
+                    @guest
+                        <li class="list-inline-item mb-0">
+                            <a href="/sign-in" class="btn btn-outline-light ms-3">Login</a>
+                        </li>
+                    @else
+                        <li class="list-inline-item mb-0">
+                            <a href="{{ route('page.home') }}" class="btn btn-outline-light ms-3">Masuk</a>
+                        </li>
+                    @endguest
                 </ul>
-                @endguest
                 <!--Login button End-->
             </ul><!--end navigation menu-->
         </div>
