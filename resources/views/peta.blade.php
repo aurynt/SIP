@@ -126,8 +126,20 @@
         })
         $.get("{{ route('tanah-lahan.all') }}", (res) => {
             const layerGroup = []
+            const batasLayerGroup = []
             const datas = res.filter((data) => data.type === 'MultiPolygon' || data.type === 'Polygon' && data
                 .koordinat !== null)
+            datas.map((item) => {
+                var geojsonFeature = {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": item.type_batas,
+                        "coordinates": JSON.parse(item.koordinat_batas)
+                    }
+                };
+                const layer = L.geoJSON(geojsonFeature)
+                return batasLayerGroup.push(layer)
+            })
             datas.map((item) => {
                 var geojsonFeature = {
                     "type": "Feature",
@@ -147,6 +159,7 @@
                 return layerGroup.push(layer)
             })
             layerControl.addOverlay(L.layerGroup(layerGroup), "Tanah");
+            layerControl.addOverlay(L.layerGroup(batasLayerGroup), "Batas Tanah");
         })
     </script>
 

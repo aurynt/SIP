@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BatasController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\DisclaimerController;
 use App\Http\Controllers\DrainaseController;
@@ -78,6 +79,10 @@ Route::name('tanah-lahan.')->group(function () {
     Route::get('tanah-lahan/{id}', [TanahController::class, 'show'])->name('show');
     Route::post('tanah-lahan/{id}', [TanahController::class, 'update'])->name('update');
     Route::delete('tanah-lahan/{id}', [TanahController::class, 'destroy'])->name('remove');
+});
+
+Route::name('batas-tanah.')->group(function () {
+    Route::get('batas-tanah-lahan', [BatasController::class, 'index'])->name('all');
 });
 
 Route::name('peraturan.')->group(function () {
