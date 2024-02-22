@@ -50,6 +50,22 @@
                                 </div>
                             </div>
                         </form>
+                        <div class="row gap-2" id="slider">
+                            @foreach ($slider as $item)
+                                <div class="col-12 row position-relative">
+                                    <div class="">
+                                        <span class="position-absolute m-2">
+                                            <button data-id="{{ $item->id }}" style="height: 59px;width:59px;"
+                                                class="btn rounded-circle btn-light btn-remove btn-tooltip text-center"
+                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"
+                                                data-container="body" data-animation="true"><i
+                                                    class="fa fa-trash py-2"></i></button>
+                                        </span>
+                                    </div>
+                                    <img src="{{ asset('storage/slider/' . $item->gambar_slider) }}" alt="">
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
@@ -57,6 +73,9 @@
     </div>
     <script>
         $(document).ready(() => {
+            const appUrl = "{{ env('APP_URL') }}" + ':8000'
+            window.csrfToken = "{{ csrf_token() }}";
+            const token = localStorage.getItem('apiToken');
 
             $('#form-slider').on('submit', (e) => {
                 const formData = new FormData();
@@ -66,6 +85,10 @@
                     url: "{{ route('slider.add') }}",
                     method: 'POST',
                     data: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': window.csrfToken,
+                        'Authorization': `Bearer ${token}`
+                    },
                     contentType: false,
                     processData: false,
                     success: (res) => {
@@ -74,6 +97,8 @@
                             text: "successfuly added slider",
                             icon: "success"
                         });
+
+                        $('#slider').load(location.href + '#slider');
 
                     },
                     error: (err) => {
@@ -100,6 +125,10 @@
                     url: "{{ route('beranda.update') }}",
                     method: 'POST',
                     data: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': window.csrfToken,
+                        'Authorization': `Bearer ${token}`
+                    },
                     contentType: false,
                     processData: false,
                     success: (res) => {
@@ -121,6 +150,46 @@
                 }).done((res) => console.log(res))
 
                 e.preventDefault();
+            })
+
+            $(document).on('click', '.btn-remove', function() {
+                let id = $(this).data('id');
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: `${appUrl}/api/slider/${id}`,
+                            method: "DELETE",
+                            headers: {
+                                'X-CSRF-TOKEN': window.csrfToken,
+                                'Authorization': `Bearer ${token}`
+                            },
+                            success: (res) => {
+                                Swal.fire({
+                                    title: "Woke",
+                                    text: "successfuly deleted drainase",
+                                    icon: "success"
+                                });
+
+                                $('#slider').load(location.href + ' #slider');
+                            },
+                            error: (err) => {
+                                Swal.fire({
+                                    title: "Failed!",
+                                    text: err.responseJSON.message,
+                                    icon: "error"
+                                })
+                            }
+                        });
+                    }
+                });
             })
         })
     </script>

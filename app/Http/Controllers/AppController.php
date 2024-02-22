@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Beranda;
 use App\Models\Disclaimer;
 use App\Models\Jalan;
+use App\Models\Slider;
 use App\Models\Tanah;
 use Illuminate\Support\Facades\DB;
 
@@ -22,6 +23,7 @@ class AppController extends Controller
         return view('admin.manajemen.pengaturanBeranda', [
             'title' => 'Pengaturan Beranda',
             'beranda' => Beranda::first(),
+            'slider' => Slider::all(),
         ]);
     }
 
