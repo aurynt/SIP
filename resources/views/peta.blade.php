@@ -34,6 +34,9 @@
 <body>
     <div id="map"></div>
     <script>
+        window.csrfToken = "{{ csrf_token() }}";
+        const token = localStorage.getItem('apiToken');
+
         const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 23,
             attribution: '© OpenStreetMap'
@@ -75,92 +78,131 @@
 
         var layerControl = L.control.layers(baseMaps).addTo(map);
 
-        $.get("{{ route('jalan.all') }}", (res) => {
-            const layerGroup = []
-            const datas = res.filter((data) => data.type === 'MultiPolygon' || data.type === 'Polygon' && data
-                .koordinat !== null)
-            datas.map((item) => {
-                var geojsonFeature = {
-                    "type": "Feature",
-                    "geometry": {
-                        "type": item.type,
-                        "coordinates": JSON.parse(item.koordinat)
-                    }
-                };
-                const layer = L.geoJSON(geojsonFeature, {
-                    style: (feature) => ({
-                        fillColor: 'pink', // Warna isi
-                        fillOpacity: 0.5, // Opasitas isi
-                        color: 'purple', // Warna garis tepi
-                        weight: 2
+        $.ajax({
+            url: "{{ route('jalan.all') }}",
+            method: 'GET',
+            headers: {
+                'X-CSRF-TOKEN': window.csrfToken,
+                'Authorization': `Bearer ${token}`
+            },
+            dataType: 'json',
+            success: function(res) {
+                const layerGroup = []
+                const datas = res.filter((data) => data.type === 'MultiPolygon' || data.type === 'Polygon' &&
+                    data
+                    .koordinat !== null)
+                datas.map((item) => {
+                    var geojsonFeature = {
+                        "type": "Feature",
+                        "geometry": {
+                            "type": item.type,
+                            "coordinates": JSON.parse(item.koordinat)
+                        }
+                    };
+                    const layer = L.geoJSON(geojsonFeature, {
+                        style: (feature) => ({
+                            fillColor: 'pink', // Warna isi
+                            fillOpacity: 0.5, // Opasitas isi
+                            color: 'purple', // Warna garis tepi
+                            weight: 2
+                        })
                     })
+                    return layerGroup.push(layer)
                 })
-                return layerGroup.push(layer)
-            })
-            layerControl.addOverlay(L.layerGroup(layerGroup), "Jalan");
-        })
-        $.get("{{ route('drainase.all') }}", (res) => {
-            const layerGroup = []
-            const datas = res.filter((data) => data.type === 'MultiPolygon' || data.type === 'Polygon' && data
-                .koordinat !== null)
-            datas.map((item) => {
-                var geojsonFeature = {
-                    "type": "Feature",
-                    "properties": {},
-                    "geometry": {
-                        "type": item.type,
-                        "coordinates": JSON.parse(item.koordinat)
-                    }
-                };
-                const layer = L.geoJSON(geojsonFeature, {
-                    style: (feature) => ({
-                        fillColor: 'gray', // Warna isi
-                        fillOpacity: 0.5, // Opasitas isi
-                        color: 'black', // Warna garis tepi
-                        weight: 2
+                layerControl.addOverlay(L.layerGroup(layerGroup), "Jalan");
+            },
+            error: function(xhr, status, error) {
+                console.log("Error: " + error);
+            }
+        });
+        $.ajax({
+            url: "{{ route('drainase.all') }}",
+            method: 'GET',
+            headers: {
+                'X-CSRF-TOKEN': window.csrfToken,
+                'Authorization': `Bearer ${token}`
+            },
+            dataType: 'json',
+            success: function(res) {
+                const layerGroup = []
+                const datas = res.filter((data) => data.type === 'MultiPolygon' || data.type === 'Polygon' &&
+                    data
+                    .koordinat !== null)
+                datas.map((item) => {
+                    var geojsonFeature = {
+                        "type": "Feature",
+                        "properties": {},
+                        "geometry": {
+                            "type": item.type,
+                            "coordinates": JSON.parse(item.koordinat)
+                        }
+                    };
+                    const layer = L.geoJSON(geojsonFeature, {
+                        style: (feature) => ({
+                            fillColor: 'gray', // Warna isi
+                            fillOpacity: 0.5, // Opasitas isi
+                            color: 'black', // Warna garis tepi
+                            weight: 2
+                        })
                     })
+                    return layerGroup.push(layer)
                 })
-                return layerGroup.push(layer)
-            })
-            layerControl.addOverlay(L.layerGroup(layerGroup), "Drainase");
-        })
-        $.get("{{ route('tanah-lahan.all') }}", (res) => {
-            const layerGroup = []
-            const batasLayerGroup = []
-            const datas = res.filter((data) => data.type === 'MultiPolygon' || data.type === 'Polygon' && data
-                .koordinat !== null)
-            datas.map((item) => {
-                var geojsonFeature = {
-                    "type": "Feature",
-                    "geometry": {
-                        "type": item.type_batas,
-                        "coordinates": JSON.parse(item.koordinat_batas)
-                    }
-                };
-                const layer = L.geoJSON(geojsonFeature)
-                return batasLayerGroup.push(layer)
-            })
-            datas.map((item) => {
-                var geojsonFeature = {
-                    "type": "Feature",
-                    "geometry": {
-                        "type": item.type,
-                        "coordinates": JSON.parse(item.koordinat)
-                    }
-                };
-                const layer = L.geoJSON(geojsonFeature, {
-                    style: (feature) => ({
-                        fillColor: 'green', // Warna isi
-                        fillOpacity: 0.5, // Opasitas isi
-                        color: 'red', // Warna garis tepi
-                        weight: 2
+                layerControl.addOverlay(L.layerGroup(layerGroup), "Drainase");
+            },
+            error: function(xhr, status, error) {
+                console.log("Error: " + error);
+            }
+        });
+        $.ajax({
+            url: "{{ route('tanah-lahan.all') }}",
+            method: 'GET',
+            headers: {
+                'X-CSRF-TOKEN': window.csrfToken,
+                'Authorization': `Bearer ${token}`
+            },
+            dataType: 'json',
+            success: function(res) {
+                const layerGroup = []
+                const batasLayerGroup = []
+                const datas = res.filter((data) => data.type === 'MultiPolygon' || data.type === 'Polygon' &&
+                    data
+                    .koordinat !== null)
+                datas.map((item) => {
+                    var geojsonFeature = {
+                        "type": "Feature",
+                        "geometry": {
+                            "type": item.type_batas,
+                            "coordinates": JSON.parse(item.koordinat_batas)
+                        }
+                    };
+                    const layer = L.geoJSON(geojsonFeature)
+                    return batasLayerGroup.push(layer)
+                })
+                datas.map((item) => {
+                    var geojsonFeature = {
+                        "type": "Feature",
+                        "geometry": {
+                            "type": item.type,
+                            "coordinates": JSON.parse(item.koordinat)
+                        }
+                    };
+                    const layer = L.geoJSON(geojsonFeature, {
+                        style: (feature) => ({
+                            fillColor: 'green', // Warna isi
+                            fillOpacity: 0.5, // Opasitas isi
+                            color: 'red', // Warna garis tepi
+                            weight: 2
+                        })
                     })
+                    return layerGroup.push(layer)
                 })
-                return layerGroup.push(layer)
-            })
-            layerControl.addOverlay(L.layerGroup(layerGroup), "Tanah");
-            layerControl.addOverlay(L.layerGroup(batasLayerGroup), "Batas Tanah");
-        })
+                layerControl.addOverlay(L.layerGroup(layerGroup), "Tanah");
+                layerControl.addOverlay(L.layerGroup(batasLayerGroup), "Batas Tanah");
+            },
+            error: function(xhr, status, error) {
+                console.log("Error: " + error);
+            }
+        });
     </script>
 
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>

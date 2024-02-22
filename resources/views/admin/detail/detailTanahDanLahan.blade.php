@@ -7,8 +7,8 @@
                     <div class="row mb-2">
                         <div class="col-sm-12">
                             <div class="text-sm-left">
-                                <a href="{{ route('page.tanah-lahan') }}"
-                                    class="btn btn-outline-secondary w-md"><i class="mdi mdi-arrow-left ml-1"></i> Kembali</a>
+                                <a href="{{ route('page.tanah-lahan') }}" class="btn btn-outline-secondary w-md"><i
+                                        class="mdi mdi-arrow-left ml-1"></i> Kembali</a>
                             </div>
                         </div>
                     </div>
@@ -104,8 +104,7 @@
                             <button class="btn btn-danger mt-3" disabled="">Tidak Ada Sertifikat</button>
                         </div>
                         <div class="col-6 border d-flex justify-content-center align-items-center mb-4 border-dark leaflet-container leaflet-touch leaflet-retina leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
-                            id="draw-map" tabindex="0">
-
+                            id="map" tabindex="0">
                         </div>
                     </div>
 
@@ -121,17 +120,4 @@
             </div>
         </div>
     </div>
-    <script>
-    </script>
-    <script>
-        const tanahCoordinate = {{ json_encode($tanah->koordinat) }};
-
-        const map = L.map('draw-map').setView([tanahCoordinate.lat, tanahCoordinate.lng], 15);
-
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        L.marker([tanahCoordinate.lat, tanahCoordinate.lng]).addTo(map);
-      </script>
 @endsection
