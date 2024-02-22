@@ -22,82 +22,82 @@
                                     <tr>
                                         <td class="form-label fs-6" width="30%">Kecamatan</td>
                                         <td width="2%">:</td>
-                                        <td>{{ $tanah->kecamatan }}</td>
+                                        <td>{{ $data->kecamatan }}</td>
                                     </tr>
                                     <tr>
                                         <td class="form-label fs-6">Kelurahan</td>
                                         <td>:</td>
-                                        <td>{{ $tanah->kelurahan }}</td>
+                                        <td>{{ $data->kelurahan }}</td>
                                     </tr>
                                     <tr>
                                         <td class="form-label fs-6">Nomor</td>
                                         <td>:</td>
-                                        <td>{{ $tanah->nomor }}</td>
+                                        <td>{{ $data->nomor }}</td>
                                     </tr>
                                     <tr>
                                         <td class="form-label fs-6">Nomor Register</td>
                                         <td>:</td>
-                                        <td>{{ $tanah->noreg }}</td>
+                                        <td>{{ $data->noreg }}</td>
                                     </tr>
                                     <tr>
                                         <td class="form-label fs-6">Status</td>
                                         <td>:</td>
-                                        <td>{{ $tanah->status }}</td>
+                                        <td>{{ $data->status }}</td>
                                     </tr>
                                     <tr>
                                         <td class="form-label fs-6">Kode</td>
                                         <td>:</td>
-                                        <td>{{ $tanah->kode }}</td>
+                                        <td>{{ $data->kode }}</td>
                                     </tr>
                                     <tr>
                                         <td class="form-label fs-6">Kondisi Papan Nama Pemkot</td>
                                         <td>:</td>
-                                        <td>{{ $tanah->papan_nama }}</td>
+                                        <td>{{ $data->papan_nama }}</td>
                                     </tr>
                                     <tr>
                                         <td class="form-label fs-6">Penggunaan Lahan</td>
                                         <td>:</td>
-                                        <td>{{ $tanah->penggunaan }}</td>
+                                        <td>{{ $data->penggunaan }}</td>
                                     </tr>
                                     <tr>
                                         <td class="form-label fs-6">Rencana Pola Ruang</td>
                                         <td>:</td>
-                                        <td>{{ $tanah->rencana_pola }}</td>
+                                        <td>{{ $data->rencana_pola }}</td>
                                     </tr>
                                     <tr>
                                         <td class="form-label fs-6">Alamat</td>
                                         <td>:</td>
-                                        <td>{{ $tanah->alamat }}</td>
+                                        <td>{{ $data->alamat }}</td>
                                     </tr>
                                     <tr>
                                         <td class="form-label fs-6">Luas Sertifikat (m²)</td>
                                         <td>:</td>
-                                        <td>{{ $tanah->luas }}</td>
+                                        <td>{{ $data->luas }}</td>
                                     </tr>
                                     <tr>
                                         <td class="form-label fs-6">Pemegang Hak</td>
                                         <td>:</td>
-                                        <td>{{ $tanah->pemegang_hak }}</td>
+                                        <td>{{ $data->pemegang_hak }}</td>
                                     </tr>
                                     <tr>
                                         <td class="form-label fs-6">Pengguna Barang</td>
                                         <td>:</td>
-                                        <td>{{ $tanah->pengguna_barang }}</td>
+                                        <td>{{ $data->pengguna_barang }}</td>
                                     </tr>
                                     <tr>
                                         <td class="form-label fs-6">Lahan Terbangun</td>
                                         <td>:</td>
-                                        <td>{{ $tanah->lahan_terbangun }}</td>
+                                        <td>{{ $data->lahan_terbangun }}</td>
                                     </tr>
                                     <tr>
                                         <td class="form-label fs-6">Penanda Batas Tanah</td>
                                         <td>:</td>
-                                        <td>{{ $tanah->patok }}</td>
+                                        <td>{{ $data->patok }}</td>
                                     </tr>
                                     <tr>
                                         <td class="form-label fs-6">Zona Nilai Tanah</td>
                                         <td>:</td>
-                                        <td>{{ $tanah->zona_nilai }}</td>
+                                        <td>{{ $data->zona_nilai }}</td>
                                     </tr>
                                 </tbody>
                             </table>
