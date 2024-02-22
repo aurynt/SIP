@@ -66,9 +66,16 @@
     </div>
 
     <script>
+        window.csrfToken = "{{ csrf_token() }}";
+        const token = localStorage.getItem('apiToken');
         new DataTable('#myTable', {
             ajax: {
                 url: "{{ route('drainase.all') }}",
+                method: 'GET',
+                headers: {
+                    'X-CSRF-TOKEN': window.csrfToken,
+                    'Authorization': `Bearer ${token}`
+                },
                 dataSrc: (res) => {
                     const data = []
                     res.map((item, i) => {
