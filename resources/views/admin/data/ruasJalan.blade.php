@@ -177,7 +177,7 @@
                             class: 'btn-group',
                             html: [
                                 $('<a/>', {
-                                    href: `/detail-drainase/${row.id}`,
+                                    href: `/detail-ruas-jalan/${row.id}`,
                                     class: 'btn btn-outline-dark btn-tooltip',
                                     "data-bs-toggle": "tooltip",
                                     "data-bs-placement": "top",
@@ -191,7 +191,7 @@
                                     ]
                                 }),
                                 $('<a/>', {
-                                    href: `/edit-drainase/${row.id}`,
+                                    href: `/edit-ruas-jalan/${row.id}`,
                                     class: 'btn btn-outline-warning btn-tooltip',
                                     "data-bs-toggle": "tooltip",
                                     "data-bs-placement": "top",
