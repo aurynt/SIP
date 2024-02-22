@@ -17,14 +17,10 @@
             </div>
             <ul class="navbar-nav  justify-content-end">
                 <li class="nav-item d-flex align-items-center">
-                    <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
+                    <div class="nav-link text-body font-weight-bold px-0">
                         <i class="fa fa-user me-sm-1"></i>
-                        @auth
-                            <span class="d-sm-inline d-none">Sign Out</span>
-                        @else
-                            <span class="d-sm-inline d-none">Sign In</span>
-                        @endauth
-                    </a>
+                            <button class="d-sm-inline d-none btn btn-danger" id="btn-logout">Sign Out</button>
+                    </div>
                 </li>
                 <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                     <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">

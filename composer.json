@@ -13,8 +13,8 @@
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
-        "maatwebsite/excel": "*",
-        "phpoffice/phpspreadsheet": "*",
+        "maatwebsite/excel": "3.1.*",
+        "phpoffice/phpspreadsheet": "1.*",
         "ramsey/uuid": "^4.7"
     },
     "require-dev": {

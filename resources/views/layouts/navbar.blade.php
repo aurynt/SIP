@@ -48,10 +48,10 @@
                 <li><a href="peraturan" class="sub-menu-item {{ Request::is('*peraturan') ? 'active' : '' }}">Peraturan</a></li>
                 <li><a href="peta" class="sub-menu-item {{ Request::is('peta') ? 'active' : '' }}">Peta Spasial</a></li>
                 <li><a href="statistik" class="sub-menu-item {{ Request::is('*statistik') ? 'active' : '' }}">Statistik</a></li>
-                
+
                 <!--Login button Start-->
-                @guest
                 <ul class="buy-button list-inline mb-0">
+                @guest
                     <li class="list-inline-item mb-0">
                         <a href="/sign-in" class="btn btn-outline-light ms-3">Login</a>
                     </li>
@@ -59,8 +59,8 @@
                     <li class="list-inline-item mb-0">
                         <a href="{{ route('page.home') }}" class="btn btn-outline-light ms-3">Masuk</a>
                     </li>
-                </ul>
                 @endguest
+                </ul>
                 <!--Login button End-->
             </ul><!--end navigation menu-->
         </div>
