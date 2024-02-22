@@ -107,4 +107,3 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('edit-drainase/{id}', [EditController::class, 'editDrainase'])->name('drainase');
     });
 });
-

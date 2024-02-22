@@ -10,10 +10,12 @@ class TanahController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Tanah $tanah)
     {
         try {
-            $res = Tanah::all();
+            $res = $tanah->select('tanah.*', 'tanah_has_batas.type as type_batas', 'tanah_has_batas.coordinates as koordinat_batas')
+                ->join('tanah_has_batas', 'tanah_has_batas.id_tanah', '=', 'tanah.id')
+                ->get();;
             return response()->json($res);
         } catch (\Throwable $th) {
             throw $th;

@@ -69,6 +69,10 @@
             </div>
         </div>
     </div>
+    </div>
+    </div>
+    </div>
+    </div>
 
     <script>
         window.csrfToken = "{{ csrf_token() }}";
@@ -98,7 +102,7 @@
                 error: function(error) {
                     // Tangani error
                     console.log(error);
-                    
+
                 },
             });
         });

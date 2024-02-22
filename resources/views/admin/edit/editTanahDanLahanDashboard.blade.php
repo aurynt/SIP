@@ -141,169 +141,11 @@
                                         value="{{ $data->zona_nilai }}" required="">
                                 </div>
 
-                                <!-- map -->
-                                {{-- <div class="form-group">
-                                    <label for="">Silakan menggambar pada peta untuk mendapatkan koordinat</label>
-                                    <div style="width: 100%; height: 500px; position: relative;" id="draw-map"
-                                        class="leaflet-container leaflet-touch leaflet-retina leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
-                                        tabindex="0">
-                                        <div class="leaflet-pane leaflet-map-pane"
-                                            style="transform: translate3d(-212px, 0px, 0px);">
-                                            <div class="leaflet-pane leaflet-tile-pane">
-                                                <div class="leaflet-layer " style="z-index: 1; opacity: 1;">
-                                                    <div class="leaflet-tile-container leaflet-zoom-animated"
-                                                        style="z-index: 19; transform: translate3d(0px, 0px, 0px) scale(1);">
-                                                        <img alt=""
-                                                            src="https://c.tile.openstreetmap.org/19/421114/272143.png"
-                                                            class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(281px, 24px, 0px); opacity: 1;"><img
-                                                            alt=""
-                                                            src="https://b.tile.openstreetmap.org/19/421114/272142.png"
-                                                            class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(281px, -232px, 0px); opacity: 1;"><img
-                                                            alt=""
-                                                            src="https://b.tile.openstreetmap.org/19/421113/272143.png"
-                                                            class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(25px, 24px, 0px); opacity: 1;"><img
-                                                            alt=""
-                                                            src="https://a.tile.openstreetmap.org/19/421115/272143.png"
-                                                            class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(537px, 24px, 0px); opacity: 1;"><img
-                                                            alt=""
-                                                            src="https://a.tile.openstreetmap.org/19/421114/272144.png"
-                                                            class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(281px, 280px, 0px); opacity: 1;"><img
-                                                            alt=""
-                                                            src="https://a.tile.openstreetmap.org/19/421113/272142.png"
-                                                            class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(25px, -232px, 0px); opacity: 1;"><img
-                                                            alt=""
-                                                            src="https://c.tile.openstreetmap.org/19/421115/272142.png"
-                                                            class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(537px, -232px, 0px); opacity: 1;"><img
-                                                            alt=""
-                                                            src="https://c.tile.openstreetmap.org/19/421113/272144.png"
-                                                            class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(25px, 280px, 0px); opacity: 1;"><img
-                                                            alt=""
-                                                            src="https://b.tile.openstreetmap.org/19/421115/272144.png"
-                                                            class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(537px, 280px, 0px); opacity: 1;"><img
-                                                            alt=""
-                                                            src="https://a.tile.openstreetmap.org/19/421112/272143.png"
-                                                            class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(-231px, 24px, 0px); opacity: 1;"><img
-                                                            alt=""
-                                                            src="https://b.tile.openstreetmap.org/19/421116/272143.png"
-                                                            class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(793px, 24px, 0px); opacity: 1;"><img
-                                                            alt=""
-                                                            src="https://c.tile.openstreetmap.org/19/421112/272142.png"
-                                                            class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(-231px, -232px, 0px); opacity: 1;"><img
-                                                            alt=""
-                                                            src="https://a.tile.openstreetmap.org/19/421116/272142.png"
-                                                            class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(793px, -232px, 0px); opacity: 1;"><img
-                                                            alt=""
-                                                            src="https://b.tile.openstreetmap.org/19/421112/272144.png"
-                                                            class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(-231px, 280px, 0px); opacity: 1;"><img
-                                                            alt=""
-                                                            src="https://c.tile.openstreetmap.org/19/421116/272144.png"
-                                                            class="leaflet-tile leaflet-tile-loaded"
-                                                            style="width: 256px; height: 256px; transform: translate3d(793px, 280px, 0px); opacity: 1;">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="leaflet-pane leaflet-overlay-pane"><svg pointer-events="none"
-                                                    class="leaflet-zoom-animated" width="595" height="600"
-                                                    viewBox="162 -50 595 600"
-                                                    style="transform: translate3d(162px, -50px, 0px);">
-                                                    <g>
-                                                        <path class="leaflet-interactive" stroke="#3388ff"
-                                                            stroke-opacity="1" stroke-width="3" stroke-linecap="round"
-                                                            stroke-linejoin="round" fill="#3388ff" fill-opacity="0.2"
-                                                            fill-rule="evenodd"
-                                                            d="M647 101L507 408L273 397L314 229L496 249L556 92z"></path>
-                                                    </g>
-                                                </svg></div>
-                                            <div class="leaflet-pane leaflet-shadow-pane"></div>
-                                            <div class="leaflet-pane leaflet-marker-pane"></div>
-                                            <div class="leaflet-pane leaflet-tooltip-pane"></div>
-                                            <div class="leaflet-pane leaflet-popup-pane"></div>
-                                            <div class="leaflet-proxy leaflet-zoom-animated"
-                                                style="transform: translate3d(1.07805e+08px, 6.96688e+07px, 0px) scale(262144);">
-                                            </div>
-                                        </div>
-                                        <div class="leaflet-control-container">
-                                            <div class="leaflet-top leaflet-left">
-                                                <div class="leaflet-control-zoom leaflet-bar leaflet-control"><a
-                                                        class="leaflet-control-zoom-in leaflet-disabled" href="#"
-                                                        title="Zoom in" role="button" aria-label="Zoom in"
-                                                        aria-disabled="true"><span aria-hidden="true">+</span></a><a
-                                                        class="leaflet-control-zoom-out" href="#" title="Zoom out"
-                                                        role="button" aria-label="Zoom out" aria-disabled="false"><span
-                                                            aria-hidden="true">−</span></a></div>
-                                                <div class="leaflet-draw leaflet-control">
-                                                    <div class="leaflet-draw-section">
-                                                        <div
-                                                            class="leaflet-draw-toolbar leaflet-bar leaflet-draw-toolbar-top">
-                                                            <a class="leaflet-draw-draw-polyline" href="#"
-                                                                title="Draw a polyline"><span class="sr-only">Draw a
-                                                                    polyline</span></a><a class="leaflet-draw-draw-polygon"
-                                                                href="#" title="Draw a polygon"><span
-                                                                    class="sr-only">Draw a polygon</span></a><a
-                                                                class="leaflet-draw-draw-rectangle" href="#"
-                                                                title="Draw a rectangle"><span class="sr-only">Draw a
-                                                                    rectangle</span></a><a class="leaflet-draw-draw-circle"
-                                                                href="#" title="Draw a circle"><span
-                                                                    class="sr-only">Draw a circle</span></a><a
-                                                                class="leaflet-draw-draw-marker" href="#"
-                                                                title="Draw a marker"><span class="sr-only">Draw a
-                                                                    marker</span></a><a
-                                                                class="leaflet-draw-draw-circlemarker" href="#"
-                                                                title="Draw a circlemarker"><span class="sr-only">Draw a
-                                                                    circlemarker</span></a></div>
-                                                        <ul class="leaflet-draw-actions"></ul>
-                                                    </div>
-                                                </div>
-                                                <div class="leaflet-draw leaflet-control">
-                                                    <div class="leaflet-draw-section">
-                                                        <div
-                                                            class="leaflet-draw-toolbar leaflet-bar leaflet-draw-toolbar-top">
-                                                            <a class="leaflet-draw-draw-polygon" href="#"
-                                                                title="Draw a polygon"><span class="sr-only">Draw a
-                                                                    polygon</span></a></div>
-                                                        <ul class="leaflet-draw-actions"></ul>
-                                                    </div>
-                                                    <div class="leaflet-draw-section">
-                                                        <div class="leaflet-draw-toolbar leaflet-bar"><a
-                                                                class="leaflet-draw-edit-remove leaflet-disabled"
-                                                                href="#" title="No layers to delete"><span
-                                                                    class="sr-only">Delete layers</span></a></div>
-                                                        <ul class="leaflet-draw-actions"></ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="leaflet-top leaflet-right"></div>
-                                            <div class="leaflet-bottom leaflet-left"></div>
-                                            <div class="leaflet-bottom leaflet-right">
-                                                <div class="leaflet-control-attribution leaflet-control"><a
-                                                        href="https://leafletjs.com"
-                                                        title="A JavaScript library for interactive maps"><svg
-                                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                            width="12" height="8" viewBox="0 0 12 8"
-                                                            class="leaflet-attribution-flag">
-                                                            <path fill="#4C7BE1" d="M0 0h12v4H0z"></path>
-                                                            <path fill="#FFD500" d="M0 4h12v3H0z"></path>
-                                                            <path fill="#E0BC00" d="M0 7h12v1H0z"></path>
-                                                        </svg> Leaflet</a> <span aria-hidden="true">|</span> ©
-                                                    OpenStreetMap contributors</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> --}}
+                                <div class="flex flex-col mb-3">
+                                    <label for="map" class="capitalize">location</label>
+                                    <div id="map" style="height: 450px"></div>
+                                    <p id="mapError" class="text-red-500 text-xs"></p>
+                                </div>
 
                                 <div>
                                     <a href="{{ route('page.tanah-lahan') }}" class="btn btn-default w-md">Cancel</a>
@@ -330,14 +172,16 @@
                     console.log(res);
                     res.map((item) => {
                         $('<option></option>').attr('value', item.id_kelurahan).text(item
-                        .nama_kelurahan)
-                        .appendTo(
-                            '#kode_kel');
-                            $('#kecamatan').attr('value', $('#kode_kec>option:selected').text().trim());
-                            console.log($('#kode_kec>option:selected').text());
-                            $('#kelurahan').attr('value', $('#kode_kel>option:selected').text().trim());
+                                .nama_kelurahan)
+                            .appendTo(
+                                '#kode_kel');
+                        $('#kecamatan').attr('value', $('#kode_kec>option:selected').text()
+                            .trim());
+                        console.log($('#kode_kec>option:selected').text());
+                        $('#kelurahan').attr('value', $('#kode_kel>option:selected').text()
+                            .trim());
 
-                        })
+                    })
                 })
                 $('#kode_kel').on('change', (e) => {
                     $('#kelurahan').attr('value', $('#kode_kel>option:selected').text());

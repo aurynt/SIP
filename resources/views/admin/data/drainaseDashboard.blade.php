@@ -59,47 +59,104 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @php
-                                $no = 1;
-                            @endphp
-                            @foreach ($data as $item)
-                                <tr>
-                                    <td>{{ $no }}.</td>
-                                    <td>{{ $item->nama_ruas }}</td>
-                                    <td>{{ $item->nama_kecamatan }}</td>
-                                    <td>{{ $item->nama_kelurahan }}</td>
-                                    <td>{{ $item->tipe_hak }} {{ $item->hp }}</td>
-                                    <td>{{ $item->luas_sertifikat }}</td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a class="btn btn-outline-dark btn-tooltip"
-                                                href="{{ route('detail.drainase', $item->id) }}" data-bs-toggle="tooltip"
-                                                data-bs-placement="top" title="Detail" data-container="body"
-                                                data-animation="true"><i class="bx bx-detail"></i></a>
-                                            <a class="btn btn-outline-warning btn-tooltip"
-                                                href="{{ route('edit.drainase', $item->id) }}" data-bs-toggle="tooltip"
-                                                data-bs-placement="top" title="Ubah" data-container="body"
-                                                data-animation="true"><i class="bx bx-pencil"></i></a>
-                                            <button data-id="{{ $item->id }}"
-                                                class="btn btn-outline-danger btn-remove btn-tooltip"
-                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"
-                                                data-container="body" data-animation="true"><i
-                                                    class="bx bx-trash"></i></button>
-
-                                        </div>
-                                    </td>
-                                </tr>
-                                @php
-                                    $no++;
-                                @endphp
-                            @endforeach
-                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        new DataTable('#myTable', {
+            ajax: {
+                url: "{{ route('drainase.all') }}",
+                dataSrc: (res) => {
+                    const data = []
+                    res.map((item, i) => {
+                        const newdata = {
+                            no: i + 1,
+                            ...item
+                        }
+                        data.push(newdata)
+                    })
+                    return data
+                }
+            },
+            columns: [{
+                    data: 'no',
+                }, {
+                    data: 'nama_ruas',
+                },
+                {
+                    data: 'nama_kecamatan',
+                },
+                {
+                    data: 'nama_kelurahan',
+                },
+                {
+                    render: (data, type, row) => {
+                        return `${row.tipe_hak} ${row.hp}`
+                    },
+                },
+                {
+                    data: 'luas_sertifikat',
+                },
+                {
+                    render: (data, type, row) => {
+                        const option = $('<div></div>', {
+                            class: 'btn-group',
+                            html: [
+                                $('<a/>', {
+                                    href: `/detail-drainase/${row.id}`,
+                                    class: 'btn btn-outline-dark btn-tooltip',
+                                    "data-bs-toggle": "tooltip",
+                                    "data-bs-placement": "top",
+                                    title: "Detail",
+                                    "data-container": "body",
+                                    "data-animation": "true",
+                                    html: [
+                                        $('<i/>', {
+                                            class: 'bx bx-detail'
+                                        })
+                                    ]
+                                }),
+                                $('<a/>', {
+                                    href: `/edit-drainase/${row.id}`,
+                                    class: 'btn btn-outline-warning btn-tooltip',
+                                    "data-bs-toggle": "tooltip",
+                                    "data-bs-placement": "top",
+                                    title: "Ubah",
+                                    "data-container": "body",
+                                    "data-animation": "true",
+                                    html: [
+                                        $('<i/>', {
+                                            class: 'bx bx-detail'
+                                        })
+                                    ]
+                                }),
+                                $('<button></button>', {
+                                    class: 'btn btn-outline-danger btn-remove btn-tooltip',
+                                    type: 'button',
+                                    "data-id": row.id,
+                                    "data-bs-toggle": "tooltip",
+                                    "data-bs-placement": "top",
+                                    title: "Hapus",
+                                    "data-container": "body",
+                                    "data-animation": "true",
+                                    html: [
+                                        $('<i/>', {
+                                            class: 'bx bx-trash'
+                                        })
+                                    ]
+                                })
+                            ]
+                        })
+                        return option.prop('outerHTML')
+                    }
+                },
+            ]
+        })
+    </script>
+
     <script>
         $(document).ready(() => {
             const appUrl = "{{ env('APP_URL') }}" + ':8000'
@@ -126,7 +183,7 @@
                                     icon: "success"
                                 });
 
-                                $('#myTable').load("/drainase-dashboard #myTable");
+                                $('#myTable').DataTable().ajax.reload();
                             },
                             error: (err) => {
                                 Swal.fire({

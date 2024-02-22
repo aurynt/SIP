@@ -10,10 +10,13 @@ class JalanController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Jalan $jalan)
     {
         try {
-            $res = Jalan::all();
+            $res = $jalan->select('jalan.*', 'ref_kecamatan.nama_kecamatan', 'ref_kelurahan.nama_kelurahan')
+                ->join('ref_kecamatan', 'jalan.kode_kec', '=', 'ref_kecamatan.id_kecamatan')
+                ->join('ref_kelurahan', 'jalan.kode_kel', '=', 'ref_kelurahan.id_kelurahan')
+                ->get();
             return response()->json($res);
         } catch (\Throwable $th) {
             return response()->json([

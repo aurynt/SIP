@@ -65,7 +65,7 @@
 
                                 <div class="flex flex-col mb-3">
                                     <label for="map" class="capitalize">location</label>
-                                    <div id="map" style="height: 300px"></div>
+                                    <div id="map" style="height: 450px"></div>
                                     <p id="mapError" class="text-red-500 text-xs"></p>
                                 </div>
 
@@ -87,7 +87,6 @@
                 $('#kode_kel').empty()
 
                 $.get(`${appName}/api/kelurahan/${e.target.value}`, (res) => {
-                    console.log(res);
                     res.map((item) => (
                         $('<option></option>').attr('value', item.id_kelurahan).text(item
                             .nama_kelurahan)
@@ -132,7 +131,7 @@
                             icon: "error"
                         })
                     }
-                }).done((res) => console.log(res))
+                })
 
             })
         })

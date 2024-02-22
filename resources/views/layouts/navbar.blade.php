@@ -48,20 +48,20 @@
                 <li><a href="peraturan" class="sub-menu-item {{ Request::is('*peraturan') ? 'active' : '' }}">Peraturan</a></li>
                 <li><a href="peta" class="sub-menu-item {{ Request::is('peta') ? 'active' : '' }}">Peta Spasial</a></li>
                 <li><a href="statistik" class="sub-menu-item {{ Request::is('*statistik') ? 'active' : '' }}">Statistik</a></li>
-                @auth
-                <li class="list-inline-item mb-0 d-block d-sm-none mb-3">
-                    <a href="{{ route('page.home') }}" class="btn btn-outline-light btn-rspnsv-color" style="color: #fff;">Masuk</a>
-                </li>
-                @else
+                
                 <!--Login button Start-->
+                @guest
                 <ul class="buy-button list-inline mb-0">
                     <li class="list-inline-item mb-0">
-                        <a href="{{ route('page.home') }}" class="btn btn-outline-light ms-3">Login</a>
-                        <a href="sign_in" class="btn btn-outline-light ms-3">cek sign</a>
+                        <a href="/sign-in" class="btn btn-outline-light ms-3">Login</a>
+                    </li>
+                @else
+                    <li class="list-inline-item mb-0">
+                        <a href="{{ route('page.home') }}" class="btn btn-outline-light ms-3">Masuk</a>
                     </li>
                 </ul>
+                @endguest
                 <!--Login button End-->
-                @endauth
             </ul><!--end navigation menu-->
         </div>
 
