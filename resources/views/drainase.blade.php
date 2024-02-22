@@ -79,50 +79,27 @@
                 <div class="card-body">
                     <div class="table-responsive rounded shadow p-4">
                         <div id="table-data_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
-                            <table id="myTable" class="table-striped table-bordered" style="width:100%">
+                            <table id="myTable" class="table align-items-center mb-0 table-hover">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">No</th>
-                                        <th>Nama Ruas Jalan</th>
-                                        <th>Kecamatan</th>
-                                        <th>Kelurahan</th>
-                                        <th>Nomor Sertifikat</th>
-                                        <th>Luas Sertifikat (m<sup>2</sup>)</th>
-                                        <th>Option</th>
+                                        <th>No.</th>
+                                        <th>Nama Ruas
+                                            Jalan</th>
+                                        <th>
+                                            Kecamatan</th>
+                                        <th>
+                                            Kelurahan</th>
+                                        <th>
+                                            Nomor
+                                            Sertifikat</th>
+                                        <th>
+                                            Luas
+                                            Sertifikat (m<sup>2</sup>)</th>
+                                        <th>
+                                            Aksi
+                                        </th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr class="odd">
-                                        <td>1.</td>
-                                        <td>Saluran Jalan Gurame</td>
-                                        <td>Tegal Barat</td>
-                                        <td>Tegalsari</td>
-                                        <td>HP 00270</td>
-                                        <td>109</td>
-                                        <td>
-                                            <div class="btn-group"><button
-                                                    class="btn btn-primary btn-sm btn-detail" type="button"
-                                                    data-id="TllxVm80b2VTWHM0azkybDJBbG9JZWFUVElSNzJSeWVZUi9OWCtFLzdzdz0="
-                                                    data-toggle="tooltip" data-placement="top"
-                                                    title="Detail">Detail</button></div>
-                                        </td>
-                                    </tr>
-                                    <tr class="odd">
-                                        <td>4.</td>
-                                        <td>Saluran Jalan Koi</td>
-                                        <td>Jagal Utara</td>
-                                        <td>Tegalsari</td>
-                                        <td>HP 00270</td>
-                                        <td>109</td>
-                                        <td>
-                                            <div class="btn-group"><button
-                                                    class="btn btn-primary btn-sm btn-detail" type="button"
-                                                    data-id="TllxVm80b2VTWHM0azkybDJBbG9JZWFUVElSNzJSeWVZUi9OWCtFLzdzdz0="
-                                                    data-toggle="tooltip" data-placement="top"
-                                                    title="Detail">Detail</button></div>
-                                        </td>
-                                    </tr>
-                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -131,4 +108,69 @@
             <!-- data table ends -->
         </div><!--end container-->
     </section>
+    <script>
+        window.csrfToken = "{{ csrf_token() }}";
+        const token = localStorage.getItem('apiToken');
+        new DataTable('#myTable', {
+            ajax: {
+                url: "{{ route('drainase.all') }}",
+                method: 'GET',
+                headers: {
+                    'X-CSRF-TOKEN': window.csrfToken,
+                    'Authorization': `Bearer ${token}`
+                },
+                dataSrc: (res) => {
+                    const data = []
+                    res.map((item, i) => {
+                        const newdata = {
+                            no: i + 1,
+                            ...item
+                        }
+                        data.push(newdata)
+                    })
+                    return data
+                }
+            },
+            columns: [{
+                    data: 'no',
+                }, {
+                    data: 'nama_ruas',
+                },
+                {
+                    data: 'nama_kecamatan',
+                },
+                {
+                    data: 'nama_kelurahan',
+                },
+                {
+                    render: (data, type, row) => {
+                        return `${row.tipe_hak} ${row.hp}`
+                    }
+                },
+                {
+                    data: 'luas_sertifikat',
+                },
+                {
+                    render: (data, type, row) => {
+                        const option = $('<div></div>', {
+                            class: 'btn-group',
+                            html: [
+                                $('<button></button>', {
+                                    class: 'btn btn-primary btn-sm btn-detail',
+                                    type: 'button',
+                                    "data-id": row.id,
+                                    "data-toggle": "tooltip",
+                                    "data-placement": "top",
+                                    title: "Detail",
+                                }).text('Detail'),
+                            ]
+                        })
+                        return option.prop('outerHTML')
+                    }
+                },
+            ]
+
+
+        })
+    </script>
 @endsection

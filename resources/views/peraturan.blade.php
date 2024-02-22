@@ -16,7 +16,7 @@
             <div class="position-breadcrumb">
                 <nav aria-label="breadcrumb" class="d-inline-block">
                     <ul class="breadcrumb rounded shadow mb-0 px-4 py-2">
-                        <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
+                        <li class="breadcrumb-item"><a href="/">Beranda</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Peraturan</li>
                     </ul>
                 </nav>
@@ -58,9 +58,16 @@
     <!-- data filter ends -->
     @include('layouts.footer')
     <script>
+        window.csrfToken = "{{ csrf_token() }}";
+        const token = localStorage.getItem('apiToken');
         new DataTable('#myTable', {
             ajax: {
                 url: "{{ route('peraturan.all') }}",
+                method: 'GET',
+                headers: {
+                    'X-CSRF-TOKEN': window.csrfToken,
+                    'Authorization': `Bearer ${token}`
+                },
                 dataSrc: (res) => {
                     const data = []
                     res.map((item, i) => {
