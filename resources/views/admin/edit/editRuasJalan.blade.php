@@ -90,14 +90,14 @@
                                 </div>
 
                                 <!-- <div class="form-group">
-                                                    <label for="tipe_produk">Tipe Produk *</label>
-                                                    <input type="text" id="tipe_produk" name="tipe_produk" class="form-control" value="" required>
-                                                </div>
+                                                            <label for="tipe_produk">Tipe Produk *</label>
+                                                            <input type="text" id="tipe_produk" name="tipe_produk" class="form-control" value="" required>
+                                                        </div>
 
-                                                <div class="form-group">
-                                                    <label for="tipe_jalan">Tipe Jalan *</label>
-                                                    <input type="text" id="tipe_jalan" name="tipe_jalan" class="form-control" value="" required>
-                                                </div> -->
+                                                        <div class="form-group">
+                                                            <label for="tipe_jalan">Tipe Jalan *</label>
+                                                            <input type="text" id="tipe_jalan" name="tipe_jalan" class="form-control" value="" required>
+                                                        </div> -->
 
                                 <div class="form-group">
                                     <label for="hp">HP *</label>
@@ -154,14 +154,14 @@
                                 </div>
 
                                 <!-- <div class="form-group">
-                                                    <label for="vcr">VCR</label>
-                                                    <input type="text" id="vcr" name="vcr" class="form-control" value="">
-                                                </div>
+                                                            <label for="vcr">VCR</label>
+                                                            <input type="text" id="vcr" name="vcr" class="form-control" value="">
+                                                        </div>
 
-                                                <div class="form-group">
-                                                    <label for="mst">MST</label>
-                                                    <input type="text" id="mst" name="mst" class="form-control" value="">
-                                                </div> -->
+                                                        <div class="form-group">
+                                                            <label for="mst">MST</label>
+                                                            <input type="text" id="mst" name="mst" class="form-control" value="">
+                                                        </div> -->
 
                                 <div class="form-group">
                                     <label for="tanah">Tanah (meter)</label>
@@ -206,6 +206,8 @@
     </div>
     <script>
         $(document).ready(() => {
+            window.csrfToken = "{{ csrf_token() }}";
+            const token = localStorage.getItem('apiToken');
             const appName = "{{ env('APP_URL') }}" + ':8000'
             $('#kecamatan').attr('value', $('#kode_kec>option:selected').text().trim());
             console.log($('#kode_kec>option:selected').text());
@@ -269,6 +271,10 @@
                     url: `${appName}/api/jalan/${$('#id').val()}`,
                     method: 'POST',
                     data: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': window.csrfToken,
+                        'Authorization': `Bearer ${token}`
+                    },
                     contentType: false,
                     processData: false,
                     success: (res) => {

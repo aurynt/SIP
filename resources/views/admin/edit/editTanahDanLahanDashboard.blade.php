@@ -161,6 +161,9 @@
     <script>
         $(document).ready(() => {
             const appName = "{{ env('APP_URL') }}" + ':8000'
+            window.csrfToken = "{{ csrf_token() }}";
+            const token = localStorage.getItem('apiToken');
+
             $('#kecamatan').attr('value', $('#kode_kec>option:selected').text().trim());
             console.log($('#kode_kec>option:selected').text());
             $('#kelurahan').attr('value', $('#kode_kel>option:selected').text().trim());
@@ -216,6 +219,10 @@
                     url: `${appName}/api/tanah-lahan/${$('#id').val()}`,
                     method: 'POST',
                     data: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': window.csrfToken,
+                        'Authorization': `Bearer ${token}`
+                    },
                     contentType: false,
                     processData: false,
                     success: (res) => {

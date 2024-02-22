@@ -36,9 +36,9 @@
                                     <input type="number" id="tahun" name="tahun" class="form-control" value="">
                                 </div>
                                 <!-- <div class="form-group">
-                                                                <label for="instansi">Instansi<span class="text-danger">*</span></label>
-                                                                <input type="text" id="instansi" name="instansi" class="form-control" value="" required>
-                                                               </div> -->
+                                                                        <label for="instansi">Instansi<span class="text-danger">*</span></label>
+                                                                        <input type="text" id="instansi" name="instansi" class="form-control" value="" required>
+                                                                       </div> -->
                                 <div class="form-group">
                                     <label for="tentang">Tentang<span class="text-danger">*</span></label>
                                     <input type="text" id="tentang" name="tentang" class="form-control" value=""
@@ -63,6 +63,8 @@
     </div>
     <script>
         $(document).ready(() => {
+            window.csrfToken = "{{ csrf_token() }}";
+            const token = localStorage.getItem('apiToken');
             $('#form-input').on('submit', (e) => {
                 const formData = new FormData();
                 formData.append('logo', $('#jenis').val());
@@ -75,6 +77,10 @@
                     url: "{{ route('peraturan.add') }}",
                     method: 'POST',
                     data: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': window.csrfToken,
+                        'Authorization': `Bearer ${token}`
+                    },
                     contentType: false,
                     processData: false,
                     success: (res) => {

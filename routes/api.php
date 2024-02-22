@@ -108,5 +108,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('peraturan/{id}', [PeraturanController::class, 'update'])->name('update');
         Route::delete('peraturan/{id}', [PeraturanController::class, 'destroy'])->name('remove');
     });
-    Route::get('kelurahan/{id_kecamatan}', [KelurahanController::class, 'show'])->name('kelurahan.show');
 });
+Route::get('kelurahan/{id_kecamatan}', [KelurahanController::class, 'show'])->name('kelurahan.show');

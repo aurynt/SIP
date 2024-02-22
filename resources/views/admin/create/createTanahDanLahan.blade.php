@@ -147,6 +147,8 @@
     </div>
     <script>
         $(document).ready(() => {
+            window.csrfToken = "{{ csrf_token() }}";
+            const token = localStorage.getItem('apiToken');
             const appName = "{{ env('APP_URL') }}" + ':8000'
             $('#kode_kec').on('change', (e) => {
                 $('#kode_kel').empty()
@@ -199,6 +201,10 @@
                 url: "{{ route('tanah-lahan.add') }}",
                 method: 'POST',
                 data: formData,
+                headers: {
+                    'X-CSRF-TOKEN': window.csrfToken,
+                    'Authorization': `Bearer ${token}`
+                },
                 contentType: false,
                 processData: false,
                 success: (res) => {

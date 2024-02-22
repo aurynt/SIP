@@ -87,14 +87,14 @@
                                 </div>
 
                                 <!-- <div class="form-group">
-                                                            <label for="tipe_produk">Tipe Produk *</label>
-                                                            <input type="text" id="tipe_produk" name="tipe_produk" class="form-control" value="" required>
-                                                        </div>
+                                                                    <label for="tipe_produk">Tipe Produk *</label>
+                                                                    <input type="text" id="tipe_produk" name="tipe_produk" class="form-control" value="" required>
+                                                                </div>
 
-                                                        <div class="form-group">
-                                                            <label for="tipe_jalan">Tipe Jalan *</label>
-                                                            <input type="text" id="tipe_jalan" name="tipe_jalan" class="form-control" value="" required>
-                                                        </div> -->
+                                                                <div class="form-group">
+                                                                    <label for="tipe_jalan">Tipe Jalan *</label>
+                                                                    <input type="text" id="tipe_jalan" name="tipe_jalan" class="form-control" value="" required>
+                                                                </div> -->
 
                                 <div class="form-group">
                                     <label for="hp">HP *</label>
@@ -151,14 +151,14 @@
                                 </div>
 
                                 <!-- <div class="form-group">
-                                                            <label for="vcr">VCR</label>
-                                                            <input type="text" id="vcr" name="vcr" class="form-control" value="">
-                                                        </div>
+                                                                    <label for="vcr">VCR</label>
+                                                                    <input type="text" id="vcr" name="vcr" class="form-control" value="">
+                                                                </div>
 
-                                                        <div class="form-group">
-                                                            <label for="mst">MST</label>
-                                                            <input type="text" id="mst" name="mst" class="form-control" value="">
-                                                        </div> -->
+                                                                <div class="form-group">
+                                                                    <label for="mst">MST</label>
+                                                                    <input type="text" id="mst" name="mst" class="form-control" value="">
+                                                                </div> -->
 
                                 <div class="form-group">
                                     <label for="tanah">Tanah (meter)</label>
@@ -204,12 +204,13 @@
 
     <script>
         $(document).ready(() => {
+            window.csrfToken = "{{ csrf_token() }}";
+            const token = localStorage.getItem('apiToken');
             const appName = "{{ env('APP_URL') }}" + ':8000'
             $('#kode_kec').on('change', (e) => {
                 $('#kode_kel').empty()
 
                 $.get(`${appName}/api/kelurahan/${e.target.value}`, (res) => {
-                    console.log(res);
                     res.map((item) => {
                         $('<option></option>').attr('value', item.id_kelurahan).text(item
                                 .nama_kelurahan)
@@ -263,6 +264,10 @@
                 url: "{{ route('jalan.add') }}",
                 method: 'POST',
                 data: formData,
+                headers: {
+                    'X-CSRF-TOKEN': window.csrfToken,
+                    'Authorization': `Bearer ${token}`
+                },
                 contentType: false,
                 processData: false,
                 success: (res) => {
