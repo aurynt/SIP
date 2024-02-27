@@ -17,14 +17,17 @@
             </div>
             <ul class="navbar-nav  justify-content-end">
                 <li class="nav-item d-flex align-items-center">
-                    <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
-                        <i class="fa fa-user me-sm-1"></i>
-                        @auth
+                    @auth
+                        <div class="cursor-pointer nav-link text-body font-weight-bold px-0" id="btn-logout">
+                            <i class="fa fa-user me-sm-1"></i>
                             <span class="d-sm-inline d-none">Sign Out</span>
-                        @else
+                        </div>
+                    @else
+                        <div class="cursor-pointer nav-link text-body font-weight-bold px-0">
+                            <i class="fa fa-user me-sm-1"></i>
                             <span class="d-sm-inline d-none">Sign In</span>
-                        @endauth
-                    </a>
+                        </div>
+                    @endauth
                 </li>
                 <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                     <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
@@ -133,7 +136,6 @@
     $('#btn-logout').click(function() {
         window.csrfToken = "{{ csrf_token() }}";
         const token = localStorage.getItem('apiToken');
-        console.log(token);
         $.ajax({
             type: 'POST',
             url: "{{ route('logout-web') }}",
@@ -148,7 +150,6 @@
                 window.location.href = '/';
             },
             error: function(error) {
-                // Tangani error
                 console.log(error);
             },
         });

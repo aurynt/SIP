@@ -32,7 +32,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/cek', function () {
         return Auth::user();
     });
-    Route::get('/auth/logout', [AuthController::class, 'logout']);
+    Route::post('/auth/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::name('drainase.')->group(function () {
         Route::get('drainase', [DrainaseController::class, 'index'])->name('all');
