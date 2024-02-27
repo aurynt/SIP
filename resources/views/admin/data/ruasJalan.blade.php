@@ -10,17 +10,14 @@
                             <select class="form-control" name="kecamatan" id="filter-kec" style="width: 100%;">
                                 <option value="">-- Semua Kecamatan --</option>
                                 @foreach ($kecamatan as $item)
-                                    <option value="{{ $item->id_kecamatan }}">{{ $item->nama_kecamatan }}</option>
+                                    <option value="{{ $item->id_kecamatan }}">{{ $item->nama_kecamatan }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group col-md-3 col-12">
                             <label for="filter-kel">Filter Kelurahan</label>
                             <select class="form-control" name="kelurahan" id="filter-kel" style="width: 100%;">
-                                <option value="">-- Semua Kelurahan --</option>
-                                @foreach ($kelurahan as $item)
-                                    <option value="{{ $item->id_kelurahan }}">{{ $item->nama_kelurahan }}</option>
-                                @endforeach
                             </select>
                         </div>
 
@@ -82,6 +79,21 @@
     <script>
         $(document).ready(() => {
             const appUrl = "{{ env('APP_URL') }}" + ':8000'
+            $('#filter-kec').on('change', (e) => {
+                $('#filter-kel').empty()
+                $('<option></option>').attr('value', '').text('-- pilih kelurahan --')
+                    .appendTo(
+                        '#filter-kel')
+
+                $.get(`${appUrl}/api/kelurahan/${e.target.value}`, (res) => {
+                    res.map((item) => (
+                        $('<option></option>').attr('value', item.id_kelurahan).text(item
+                            .nama_kelurahan)
+                        .appendTo(
+                            '#filter-kel')
+                    ))
+                })
+            })
 
             $(document).on('click', '.btn-remove', function() {
                 let id = $(this).data('id');
@@ -140,15 +152,27 @@
                     'Authorization': `Bearer ${token}`
                 },
                 dataSrc: (res) => {
-                    const data = []
-                    res.map((item, i) => {
+                    const datas = []
+                    const selectedValues = {
+                        kode_kec: $('#filter-kec').val(),
+                        kode_kel: $('#filter-kel').val(),
+                        // add more properties for other <select> elements as needed
+                    };
+                    const data = res.filter((item) => {
+                        for (const [key, value] of Object.entries(selectedValues)) {
+                            if (value && item[key] !== value) {
+                                return false;
+                            }
+                        }
+                        return true;
+                    }).map((item, i) => {
                         const newdata = {
                             no: i + 1,
                             ...item
                         }
-                        data.push(newdata)
-                    })
-                    return data
+                        datas.push(newdata)
+                    });
+                    return datas
                 }
             },
             columns: [{
@@ -231,8 +255,12 @@
                     }
                 },
             ]
-
-
         })
+        const selectElements = ['#filter-kec', '#filter-kel', ];
+        selectElements.forEach((id) => {
+            $(id).on('change', () => {
+                $('#myTable').DataTable().ajax.reload();
+            });
+        });
     </script>
 @endsection

@@ -85,14 +85,13 @@
     <script>
         $(document).ready(() => {
             const appUrl = "{{ env('APP_URL') }}" + ':8000'
-            const appName = "{{ env('APP_URL') }}" + ':8000'
             $('#filter-kec').on('change', (e) => {
                 $('#filter-kel').empty()
                 $('<option></option>').attr('value', '').text('-- pilih kelurahan --')
                     .appendTo(
                         '#filter-kel')
 
-                $.get(`${appName}/api/kelurahan/${e.target.value}`, (res) => {
+                $.get(`${appUrl}/api/kelurahan/${e.target.value}`, (res) => {
                     res.map((item) => (
                         $('<option></option>').attr('value', item.id_kelurahan).text(item
                             .nama_kelurahan)
@@ -162,7 +161,6 @@
                     const selectedValues = {
                         kode_kec: $('#filter-kec').val(),
                         kode_kel: $('#filter-kel').val(),
-                        // add more properties for other <select> elements as needed
                     };
                     const data = res.filter((item) => {
                         for (const [key, value] of Object.entries(selectedValues)) {

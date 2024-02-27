@@ -234,7 +234,7 @@
                         status: $('#status1').val(),
                         lahan_terbangun: $('#lahan-terbangun').val(),
                         kode: $('#kode').val(),
-                        // add more properties for other <select> elements as needed
+                        luas: $('#min').val() <= this.luas >= ('#max').val()
                     };
                     const data = res.filter((item) => {
                         for (const [key, value] of Object.entries(selectedValues)) {
