@@ -62,6 +62,7 @@
         const token = localStorage.getItem('apiToken');
         new DataTable('#myTable', {
             ajax: {
+                serverSide: true,
                 url: "{{ route('peraturan.all') }}",
                 method: 'GET',
                 headers: {

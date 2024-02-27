@@ -61,7 +61,6 @@
                                         <div class="mb-3">
                                             <label class="form-label">Kelurahan :</label>
                                             <select class="form-control form-select" name="kelurahan" id="filter-kel">
-                                                <option value="">--Semua Kelurahan--</option>
                                             </select>
                                         </div>
                                     </div>
@@ -111,8 +110,25 @@
     <script>
         window.csrfToken = "{{ csrf_token() }}";
         const token = localStorage.getItem('apiToken');
+        const appName = "{{ env('APP_URL') }}" + ':8000'
+        $('#filter-kec').on('change', (e) => {
+            $('#filter-kel').empty()
+            $('<option></option>').attr('value', '').text('-- semua kelurahan --')
+                .appendTo(
+                    '#filter-kel')
+
+            $.get(`${appName}/api/kelurahan/${e.target.value}`, (res) => {
+                res.map((item) => (
+                    $('<option></option>').attr('value', item.id_kelurahan).text(item
+                        .nama_kelurahan)
+                    .appendTo(
+                        '#filter-kel')
+                ))
+            })
+        })
         new DataTable('#myTable', {
             ajax: {
+                serverSide: true,
                 url: "{{ route('drainase.all') }}",
                 method: 'GET',
                 headers: {
@@ -120,15 +136,26 @@
                     'Authorization': `Bearer ${token}`
                 },
                 dataSrc: (res) => {
-                    const data = []
-                    res.map((item, i) => {
+                    const datas = []
+                    const selectedValues = {
+                        kode_kec: $('#filter-kec').val(),
+                        kode_kel: $('#filter-kel').val(),
+                    };
+                    const data = res.filter((item) => {
+                        for (const [key, value] of Object.entries(selectedValues)) {
+                            if (value && item[key] !== value) {
+                                return false;
+                            }
+                        }
+                        return true;
+                    }).map((item, i) => {
                         const newdata = {
                             no: i + 1,
                             ...item
                         }
-                        data.push(newdata)
-                    })
-                    return data
+                        datas.push(newdata)
+                    });
+                    return datas
                 }
             },
             columns: [{
@@ -169,8 +196,12 @@
                     }
                 },
             ]
-
-
         })
+        const selectElements = ['#filter-kec', '#filter-kel', ];
+        selectElements.forEach((id) => {
+            $(id).on('change', () => {
+                $('#myTable').DataTable().ajax.reload();
+            });
+        });
     </script>
 @endsection

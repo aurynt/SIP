@@ -160,6 +160,7 @@
         })
         new DataTable('#myTable', {
             ajax: {
+                serverSide: true,
                 url: "{{ route('jalan.all') }}",
                 method: 'GET',
                 headers: {

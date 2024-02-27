@@ -176,6 +176,7 @@
         window.csrfToken = "{{ csrf_token() }}";
         const token = localStorage.getItem('apiToken');
         $.ajax({
+            serverSide: true,
             url: "{{ route('tanah-lahan.luas-tanah-kecamatan') }}",
             method: 'GET',
             headers: {
@@ -566,7 +567,6 @@
                 'Authorization': `Bearer ${token}`
             },
             success: function(data) {
-                console.log(data);
                 chartBerdasarkanKeberadaanPapanNamaPemkot(data);
             },
             error: function(error) {
@@ -629,7 +629,6 @@
                 'Authorization': `Bearer ${token}`
             },
             success: function(data) {
-                console.log(data);
                 chartBerdasarkanKeberadaanPatokBatasTanah(data);
             },
             error: function(error) {

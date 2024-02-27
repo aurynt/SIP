@@ -219,6 +219,7 @@
 
         new DataTable('#myTable', {
             ajax: {
+                serverSide: true,
                 url: "{{ route('tanah-lahan.all') }}",
                 method: 'GET',
                 headers: {

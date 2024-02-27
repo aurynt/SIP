@@ -79,6 +79,7 @@
         var layerControl = L.control.layers(baseMaps).addTo(map);
 
         $.ajax({
+            serverSide: true,
             url: "{{ route('jalan.all') }}",
             method: 'GET',
             headers: {
@@ -116,6 +117,7 @@
             }
         });
         $.ajax({
+            serverSide: true,
             url: "{{ route('drainase.all') }}",
             method: 'GET',
             headers: {
@@ -154,6 +156,7 @@
             }
         });
         $.ajax({
+            serverSide: true,
             url: "{{ route('tanah-lahan.all') }}",
             method: 'GET',
             headers: {
