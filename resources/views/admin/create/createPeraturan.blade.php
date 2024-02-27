@@ -36,9 +36,9 @@
                                     <input type="number" id="tahun" name="tahun" class="form-control" value="">
                                 </div>
                                 <!-- <div class="form-group">
-                                                                        <label for="instansi">Instansi<span class="text-danger">*</span></label>
-                                                                        <input type="text" id="instansi" name="instansi" class="form-control" value="" required>
-                                                                       </div> -->
+                                                                                    <label for="instansi">Instansi<span class="text-danger">*</span></label>
+                                                                                    <input type="text" id="instansi" name="instansi" class="form-control" value="" required>
+                                                                                   </div> -->
                                 <div class="form-group">
                                     <label for="tentang">Tentang<span class="text-danger">*</span></label>
                                     <input type="text" id="tentang" name="tentang" class="form-control" value=""
@@ -67,11 +67,11 @@
             const token = localStorage.getItem('apiToken');
             $('#form-input').on('submit', (e) => {
                 const formData = new FormData();
-                formData.append('logo', $('#jenis').val());
-                formData.append('judul_beranda', $('#nomor').val());
-                formData.append('deskripsi', $('#tahun').val());
-                formData.append('ucapan', $('#tentang').val());
-                formData.append('ucapan', $('#file')[0].files[0]);
+                formData.append('id_jenis', $('#jenis').val());
+                formData.append('nomor', $('#nomor').val());
+                formData.append('tahun', $('#tahun').val());
+                formData.append('tentang', $('#tentang').val());
+                formData.append('file', $('#file')[0].files[0]);
 
                 $.ajax({
                     url: "{{ route('peraturan.add') }}",
@@ -99,7 +99,7 @@
                             icon: "error"
                         })
                     }
-                }).done((res) => console.log(res))
+                })
 
                 e.preventDefault();
             })

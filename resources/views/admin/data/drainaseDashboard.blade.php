@@ -167,6 +167,8 @@
     <script>
         $(document).ready(() => {
             const appUrl = "{{ env('APP_URL') }}" + ':8000'
+            window.csrfToken = "{{ csrf_token() }}";
+            const token = localStorage.getItem('apiToken');
 
             $(document).on('click', '.btn-remove', function() {
                 let id = $(this).data('id');
@@ -183,6 +185,10 @@
                         $.ajax({
                             url: `${appUrl}/api/drainase/${id}`,
                             method: "DELETE",
+                            headers: {
+                                'X-CSRF-TOKEN': window.csrfToken,
+                                'Authorization': `Bearer ${token}`
+                            },
                             success: (res) => {
                                 Swal.fire({
                                     title: "Woke",

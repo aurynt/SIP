@@ -85,6 +85,8 @@
 
             $(document).on('click', '.btn-remove', function() {
                 let id = $(this).data('id');
+                window.csrfToken = "{{ csrf_token() }}";
+                const token = localStorage.getItem('apiToken');
                 Swal.fire({
                     title: "Are you sure?",
                     text: "You won't be able to revert this!",
@@ -98,6 +100,10 @@
                         $.ajax({
                             url: `${appUrl}/api/jalan/${id}`,
                             method: "DELETE",
+                            headers: {
+                                'X-CSRF-TOKEN': window.csrfToken,
+                                'Authorization': `Bearer ${token}`
+                            },
                             success: (res) => {
                                 Swal.fire({
                                     title: "Done",
