@@ -123,12 +123,6 @@
                                 'Authorization': `Bearer ${token}`
                             },
                             success: (res) => {
-                                Swal.fire({
-                                    title: "Done",
-                                    text: "Data has been deleted",
-                                    icon: "success"
-                                });
-
                                 $('#myTable').DataTable().ajax.reload();
                             },
                             error: (err) => {
@@ -210,7 +204,7 @@
                         return `
                         <td class="align-middle">
                             <div class="btn-group">
-                                <button class="btn btn-outline-success btn-up-sertifikat btn-tooltip"
+                                <button data-id="${row.id}" class="btn btn-outline-success btn-up-sertifikat btn-tooltip"
                                     data-bs-toggle="modal" data-bs-target="#modal-sertifikat"
                                     data-bs-toggle="tooltip" data-bs-placement="top"
                                     title="Upload Sertifikat" data-container="body" data-animation="true"><i

@@ -79,6 +79,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('tanah-lahan/{id}', [TanahController::class, 'show'])->name('show');
         Route::post('tanah-lahan/{id}', [TanahController::class, 'update'])->name('update');
         Route::delete('tanah-lahan/{id}', [TanahController::class, 'destroy'])->name('remove');
+
+        Route::post('tanah-lahan/{id}/upload-file-sertifikat', [TanahController::class, 'uploadFileSertifikat'])->name('upload-file-sertifikat');
     });
 
     Route::name('tanah-lahan.')->group(function () {
