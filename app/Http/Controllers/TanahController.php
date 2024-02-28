@@ -269,6 +269,21 @@ class TanahController extends Controller
         }
     }
 
+    public function uploadFileSertifikat(Request $request, $id)
+    {
+        try {
+            $file = $request->file_sertifikat;
+            $file->store('public/sertifikat/' . $file->hashName());
+            $tanah = Tanah::findOrFail($id);
+            $res = $tanah->update([
+                'file_sertifikat' => $file->hashName()
+            ]);
+            return response()->json($res);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
     /**
      * Remove the specified resource from storage.
      */
