@@ -59,6 +59,9 @@
 
             $(document).on('click', '.btn-remove', function() {
                 let id = $(this).data('id');
+                window.csrfToken = "{{ csrf_token() }}";
+                const token = localStorage.getItem('apiToken');
+
                 Swal.fire({
                     title: "Are you sure?",
                     text: "You won't be able to revert this!",
@@ -72,10 +75,14 @@
                         $.ajax({
                             url: `${appUrl}/api/peraturan/${id}`,
                             method: "DELETE",
+                            headers: {
+                                'X-CSRF-TOKEN': window.csrfToken,
+                                'Authorization': `Bearer ${token}`
+                            },
                             success: (res) => {
                                 Swal.fire({
                                     title: "Woke",
-                                    text: "successfuly deleted drainase",
+                                    text: "successfuly deleted peraturan",
                                     icon: "success"
                                 });
 
@@ -100,6 +107,7 @@
         const token = localStorage.getItem('apiToken');
         new DataTable('#myTable', {
             ajax: {
+                serverSide: true,
                 url: "{{ route('peraturan.all') }}",
                 method: 'GET',
                 headers: {
@@ -107,20 +115,33 @@
                     'Authorization': `Bearer ${token}`
                 },
                 dataSrc: (res) => {
-                    const data = []
-                    res.map((item, i) => {
+                    const datas = []
+                    const selectedValues = {
+                        id_jenis: parseInt($('#filter-jenis').val()),
+                        nomor: $('#filter-nomor').val(),
+                        tahun: $('#filter-tahun').val(),
+                    };
+                    const data = res.filter((item) => {
+                        for (const [key, value] of Object.entries(selectedValues)) {
+                            if (value && item[key] !== value) {
+                                return false;
+                            }
+                        }
+                        return true;
+                    }).map((item, i) => {
                         const newdata = {
                             no: i + 1,
                             ...item
                         }
-                        data.push(newdata)
-                    })
-                    return data
+                        datas.push(newdata)
+                    });
+                    return datas
                 }
             },
             columns: [{
                     data: 'no',
                 }, {
+                    data: 'id_jenis',
                     render: (data, type, row) => {
                         return `<span>${row.jenis} Nomor ${row.nomor} Tahun ${row.tahun} Tentang ${row.tentang.trim()}<span/>
                                         <hr><span class="badge bg-success text-white">Dilihat: ${ row.dilihat ?? 0 }
@@ -190,8 +211,12 @@
                     },
                 },
             ]
-
-
         })
+        const selectElements = ['#filter-jenis', '#filter-nomor', '#filter-tahun'];
+        selectElements.forEach((id) => {
+            $(id).on('change', () => {
+                $('#myTable').DataTable().ajax.reload();
+            });
+        });
     </script>
 @endsection

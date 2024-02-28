@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CreateController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\EditController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,13 +28,17 @@ Route::get('/', function () {
 
 Route::get('/tanah-lahan', function () {
     return view('tanah-lahan', [
-        'title' => 'Tanah dan Lahan |'
+        'title' => 'Tanah dan Lahan |',
+        'kecamatan' => DB::table('ref_kecamatan')->get(),
+        'kelurahan' => DB::table('ref_kelurahan')->get(),
     ]);
 });
 
 Route::get('/ruas-jalan', function () {
     return view('ruas-jalan', [
-        'title' => 'Ruas Jalan |'
+        'title' => 'Ruas Jalan |',
+        'kecamatan' => DB::table('ref_kecamatan')->get(),
+        'kelurahan' => DB::table('ref_kelurahan')->get(),
     ]);
 });
 
@@ -51,7 +56,9 @@ Route::get('/statistik', function () {
 
 Route::get('/drainase', function () {
     return view('drainase', [
-        'title' => 'Drainase |'
+        'title' => 'Drainase |',
+        'kecamatan' => DB::table('ref_kecamatan')->get(),
+        'kelurahan' => DB::table('ref_kelurahan')->get(),
     ]);
 });
 

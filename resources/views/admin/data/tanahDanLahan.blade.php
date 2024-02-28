@@ -10,43 +10,15 @@
                             <select class="form-control dropdown-toggle" name="kecamatan" id="filter-kec"
                                 style="width: 100%;">
                                 <option value="">-- Semua Kecamatan --</option>
-                                <option value="337601">Tegal Barat</option>
-                                <option value="337602">Tegal Timur</option>
-                                <option value="337603">Tegal Selatan</option>
-                                <option value="337604">Margadana</option>
+                                @foreach ($kecamatan as $item)
+                                    <option value="{{ $item->id_kecamatan }}">{{ $item->nama_kecamatan }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group col-md-3 col-12 dropdown">
                             <label for="filter-kel">Filter Kelurahan</label>
                             <select class="form-control" name="kelurahan" id="filter-kel" style="width: 100%;">
-                                <option value="">-- Semua Kelurahan --</option>
-                                <option value="3376011001">Pesurungan Kidul</option>
-                                <option value="3376011002">Debong Lor</option>
-                                <option value="3376011003">Kemandungan</option>
-                                <option value="3376011004">Pekauman</option>
-                                <option value="3376011005">Kraton</option>
-                                <option value="3376011006">Tegalsari</option>
-                                <option value="3376011007">Muarareja</option>
-                                <option value="3376021001">Kejambon</option>
-                                <option value="3376021002">Slerok</option>
-                                <option value="3376021003">Panggung</option>
-                                <option value="3376021004">Mangkukusuman</option>
-                                <option value="3376021005">Mintaragen</option>
-                                <option value="3376031001">Kalinyamat Wetan</option>
-                                <option value="3376031002">Bandung</option>
-                                <option value="3376031003">Debong Kidul</option>
-                                <option value="3376031004">Tunon</option>
-                                <option value="3376031005">Keturen</option>
-                                <option value="3376031006">Debong Kulon</option>
-                                <option value="3376031007">Debong Tengah</option>
-                                <option value="3376031008">Randugunting</option>
-                                <option value="3376041001">Kaligangsa</option>
-                                <option value="3376041002">Krandon</option>
-                                <option value="3376041003">Cabawan</option>
-                                <option value="3376041004">Kalinyamat Kulon</option>
-                                <option value="3376041005">Margadana</option>
-                                <option value="3376041006">Sumurpanggang</option>
-                                <option value="3376041007">Pesurungan Lor</option>
                             </select>
                         </div>
 
@@ -85,21 +57,21 @@
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder">No.</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder ps-2">Kecamatan
                                 </th>
-                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder">
                                     Kelurahan</th>
-                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder">
                                     Pemegang Hak</th>
-                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Lahan
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Lahan
                                     Terbangun</th>
-                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Status
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Status
                                 </th>
-                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder">
                                     Penggunaan Lahan</th>
-                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Kode
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Kode
                                 </th>
-                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Nomor
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Nomor
                                 </th>
-                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Aksi
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder">Aksi
                                 </th>
                             </tr>
                         </thead>
@@ -113,9 +85,26 @@
     <script>
         $(document).ready(() => {
             const appUrl = "{{ env('APP_URL') }}" + ':8000'
+            $('#filter-kec').on('change', (e) => {
+                $('#filter-kel').empty()
+                $('<option></option>').attr('value', '').text('-- pilih kelurahan --')
+                    .appendTo(
+                        '#filter-kel')
+
+                $.get(`${appUrl}/api/kelurahan/${e.target.value}`, (res) => {
+                    res.map((item) => (
+                        $('<option></option>').attr('value', item.id_kelurahan).text(item
+                            .nama_kelurahan)
+                        .appendTo(
+                            '#filter-kel')
+                    ))
+                })
+            })
 
             $(document).on('click', '.btn-remove', function() {
                 let id = $(this).data('id');
+                window.csrfToken = "{{ csrf_token() }}";
+                const token = localStorage.getItem('apiToken');
                 Swal.fire({
                     title: "Are you sure?",
                     text: "You won't be able to revert this!",
@@ -127,8 +116,12 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-                            url: `${appUrl}/api/tanah-lahan/${id}/upload-file-sertifikat`,
-                            method: "POST",
+                            url: `${appUrl}/api/tanah-lahan/${id}`,
+                            method: "DELETE",
+                            headers: {
+                                'X-CSRF-TOKEN': window.csrfToken,
+                                'Authorization': `Bearer ${token}`
+                            },
                             success: (res) => {
                                 $('#myTable').DataTable().ajax.reload();
                             },
@@ -158,15 +151,26 @@
                     'Authorization': `Bearer ${token}`
                 },
                 dataSrc: (res) => {
-                    const data = []
-                    res.map((item, i) => {
+                    const datas = []
+                    const selectedValues = {
+                        kode_kec: $('#filter-kec').val(),
+                        kode_kel: $('#filter-kel').val(),
+                    };
+                    const data = res.filter((item) => {
+                        for (const [key, value] of Object.entries(selectedValues)) {
+                            if (value && item[key] !== value) {
+                                return false;
+                            }
+                        }
+                        return true;
+                    }).map((item, i) => {
                         const newdata = {
                             no: i + 1,
                             ...item
                         }
-                        data.push(newdata)
-                    })
-                    return data
+                        datas.push(newdata)
+                    });
+                    return datas
                 }
             },
             columns: [{
@@ -234,8 +238,12 @@
                     },
                 },
             ]
-
-
         })
+        const selectElements = ['#filter-kec', '#filter-kel', ];
+        selectElements.forEach((id) => {
+            $(id).on('change', () => {
+                $('#myTable').DataTable().ajax.reload();
+            });
+        });
     </script>
 @endsection
