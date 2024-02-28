@@ -17,17 +17,10 @@
             </div>
             <ul class="navbar-nav  justify-content-end">
                 <li class="nav-item d-flex align-items-center">
-                    @auth
-                        <div class="cursor-pointer nav-link text-body font-weight-bold px-0" id="btn-logout">
-                            <i class="fa fa-user me-sm-1"></i>
-                            <span class="d-sm-inline d-none">Sign Out</span>
-                        </div>
-                    @else
-                        <div class="cursor-pointer nav-link text-body font-weight-bold px-0">
-                            <i class="fa fa-user me-sm-1"></i>
-                            <span class="d-sm-inline d-none">Sign In</span>
-                        </div>
-                    @endauth
+                    <div class="nav-link text-body font-weight-bold px-0">
+                        <i class="fa fa-user me-sm-1"></i>
+                            <button class="d-sm-inline d-none btn btn-danger" id="btn-logout">Sign Out</button>
+                    </div>
                 </li>
                 <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                     <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">

@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CreateController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\EditController;
+use App\Http\Controllers\ExcelController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -113,4 +114,14 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('edit-peraturan/{id}', [EditController::class, 'editPeraturan'])->name('peraturan');
         Route::get('edit-drainase/{id}', [EditController::class, 'editDrainase'])->name('drainase');
     });
+  Route::name('file.')->group(function(){
+    Route::get('export-tanah-lahan',[ExcelController::class, 'TanahExport'])->name('tanah-lahan');
+    Route::get('export-ruas-jalan',[ExcelController::class, 'JalanExport'])->name('jalan');
+    Route::get('export-template-excel',[ExcelController::class, 'TanahExportOnlyHeading'])->name('template-excel');
+    Route::get('export-template-excel-jalan',[ExcelController::class, 'JalanExportOnlyHeading'])->name('template-excel-jalan');
+    Route::post('import-tanah-lahan',[ExcelController::class, 'TanahImport'])->name('tanah-lahan-import');
+    Route::post('import-ruas-jalan',[ExcelController::class, 'JalanImport'])->name('ruas-jalan-import');
 });
+});
+
+

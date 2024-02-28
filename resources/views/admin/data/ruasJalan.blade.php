@@ -3,7 +3,6 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card h-100 p-4">
-                <form action="" method="POST">
                     <div class="row">
                         <div class="form-group col-md-3 col-12">
                             <label for="filter-kec">Filter Kecamatan</label>
@@ -23,13 +22,13 @@
 
                         <div class="form-group col-md-2 col-12 text-right">
                             <label>&nbsp;</label>
-                            <button type="submit" class="btn btn-success waves-effect waves-light w-md mt-4"><i
-                                    class="bx bx-cloud-download font-size-16"></i> Export Excel</button>
+                            <a href="{{ route('file.jalan') }}" class="btn btn-success waves-effect waves-light w-md mt-4"><i
+                                class="bx bx-cloud-download font-size-16"></i> Export Excel</a>
                         </div>
 
                         <div class="form-group col-md-2 col-12 text-left">
                             <label>&nbsp;</label>
-                            <button type="button" class="btn btn-warning waves-effect waves-light w-md mt-4"
+                            <button class="btn btn-warning waves-effect waves-light w-md mt-4" data-bs-toggle="modal" data-bs-target="#modal-import-jalan"
                                 id="btn-import"><i class="bx bx-cloud-upload font-size-16"></i> Import Excel</button>
                         </div>
 
@@ -40,7 +39,6 @@
                                     class="bx bx-edit font-size-16"></i> Tambah</a>
                         </div>
                     </div>
-                </form>
             </div>
         </div>
     </div>
@@ -76,6 +74,7 @@
             </div>
         </div>
     </div>
+    @include('admin.modal.importExcelJalan')
     <script>
         $(document).ready(() => {
             const appUrl = "{{ env('APP_URL') }}" + ':8000'
