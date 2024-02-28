@@ -129,7 +129,6 @@
     $('#btn-logout').click(function() {
         window.csrfToken = "{{ csrf_token() }}";
         const token = localStorage.getItem('apiToken');
-        console.log(token);
         $.ajax({
             type: 'POST',
             url: "{{ route('logout-web') }}",
@@ -144,7 +143,6 @@
                 window.location.href = '/';
             },
             error: function(error) {
-                // Tangani error
                 console.log(error);
             },
         });

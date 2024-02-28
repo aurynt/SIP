@@ -61,7 +61,6 @@
                                         <div class="mb-3">
                                             <label class="form-label">Kelurahan :</label>
                                             <select class="form-control form-select" name="kelurahan" id="filter-kel">
-                                                <option value="">--Semua Kelurahan--</option>
                                             </select>
                                         </div>
                                     </div>
@@ -79,50 +78,27 @@
                 <div class="card-body">
                     <div class="table-responsive rounded shadow p-4">
                         <div id="table-data_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
-                            <table id="myTable" class="table-striped table-bordered" style="width:100%">
+                            <table id="myTable" class="table align-items-center mb-0 table-hover">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">No</th>
-                                        <th>Nama Ruas Jalan</th>
-                                        <th>Kecamatan</th>
-                                        <th>Kelurahan</th>
-                                        <th>Nomor Sertifikat</th>
-                                        <th>Luas Sertifikat (m<sup>2</sup>)</th>
-                                        <th>Option</th>
+                                        <th>No.</th>
+                                        <th>Nama Ruas
+                                            Jalan</th>
+                                        <th>
+                                            Kecamatan</th>
+                                        <th>
+                                            Kelurahan</th>
+                                        <th>
+                                            Nomor
+                                            Sertifikat</th>
+                                        <th>
+                                            Luas
+                                            Sertifikat (m<sup>2</sup>)</th>
+                                        <th>
+                                            Aksi
+                                        </th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr class="odd">
-                                        <td>1.</td>
-                                        <td>Saluran Jalan Gurame</td>
-                                        <td>Tegal Barat</td>
-                                        <td>Tegalsari</td>
-                                        <td>HP 00270</td>
-                                        <td>109</td>
-                                        <td>
-                                            <div class="btn-group"><button
-                                                    class="btn btn-primary btn-sm btn-detail" type="button"
-                                                    data-id="TllxVm80b2VTWHM0azkybDJBbG9JZWFUVElSNzJSeWVZUi9OWCtFLzdzdz0="
-                                                    data-toggle="tooltip" data-placement="top"
-                                                    title="Detail">Detail</button></div>
-                                        </td>
-                                    </tr>
-                                    <tr class="odd">
-                                        <td>4.</td>
-                                        <td>Saluran Jalan Koi</td>
-                                        <td>Jagal Utara</td>
-                                        <td>Tegalsari</td>
-                                        <td>HP 00270</td>
-                                        <td>109</td>
-                                        <td>
-                                            <div class="btn-group"><button
-                                                    class="btn btn-primary btn-sm btn-detail" type="button"
-                                                    data-id="TllxVm80b2VTWHM0azkybDJBbG9JZWFUVElSNzJSeWVZUi9OWCtFLzdzdz0="
-                                                    data-toggle="tooltip" data-placement="top"
-                                                    title="Detail">Detail</button></div>
-                                        </td>
-                                    </tr>
-                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -131,4 +107,101 @@
             <!-- data table ends -->
         </div><!--end container-->
     </section>
+    <script>
+        window.csrfToken = "{{ csrf_token() }}";
+        const token = localStorage.getItem('apiToken');
+        const appName = "{{ env('APP_URL') }}" + ':8000'
+        $('#filter-kec').on('change', (e) => {
+            $('#filter-kel').empty()
+            $('<option></option>').attr('value', '').text('-- semua kelurahan --')
+                .appendTo(
+                    '#filter-kel')
+
+            $.get(`${appName}/api/kelurahan/${e.target.value}`, (res) => {
+                res.map((item) => (
+                    $('<option></option>').attr('value', item.id_kelurahan).text(item
+                        .nama_kelurahan)
+                    .appendTo(
+                        '#filter-kel')
+                ))
+            })
+        })
+        new DataTable('#myTable', {
+            ajax: {
+                serverSide: true,
+                url: "{{ route('drainase.all') }}",
+                method: 'GET',
+                headers: {
+                    'X-CSRF-TOKEN': window.csrfToken,
+                    'Authorization': `Bearer ${token}`
+                },
+                dataSrc: (res) => {
+                    const datas = []
+                    const selectedValues = {
+                        kode_kec: $('#filter-kec').val(),
+                        kode_kel: $('#filter-kel').val(),
+                    };
+                    const data = res.filter((item) => {
+                        for (const [key, value] of Object.entries(selectedValues)) {
+                            if (value && item[key] !== value) {
+                                return false;
+                            }
+                        }
+                        return true;
+                    }).map((item, i) => {
+                        const newdata = {
+                            no: i + 1,
+                            ...item
+                        }
+                        datas.push(newdata)
+                    });
+                    return datas
+                }
+            },
+            columns: [{
+                    data: 'no',
+                }, {
+                    data: 'nama_ruas',
+                },
+                {
+                    data: 'nama_kecamatan',
+                },
+                {
+                    data: 'nama_kelurahan',
+                },
+                {
+                    render: (data, type, row) => {
+                        return `${row.tipe_hak} ${row.hp}`
+                    }
+                },
+                {
+                    data: 'luas_sertifikat',
+                },
+                {
+                    render: (data, type, row) => {
+                        const option = $('<div></div>', {
+                            class: 'btn-group',
+                            html: [
+                                $('<button></button>', {
+                                    class: 'btn btn-primary btn-sm btn-detail',
+                                    type: 'button',
+                                    "data-id": row.id,
+                                    "data-toggle": "tooltip",
+                                    "data-placement": "top",
+                                    title: "Detail",
+                                }).text('Detail'),
+                            ]
+                        })
+                        return option.prop('outerHTML')
+                    }
+                },
+            ]
+        })
+        const selectElements = ['#filter-kec', '#filter-kel', ];
+        selectElements.forEach((id) => {
+            $(id).on('change', () => {
+                $('#myTable').DataTable().ajax.reload();
+            });
+        });
+    </script>
 @endsection

@@ -16,7 +16,7 @@
             <div class="position-breadcrumb">
                 <nav aria-label="breadcrumb" class="d-inline-block">
                     <ul class="breadcrumb rounded shadow mb-0 px-4 py-2">
-                        <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
+                        <li class="breadcrumb-item"><a href="/">Beranda</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Data Ruas Jalan</li>
                     </ul>
                 </nav>
@@ -48,10 +48,10 @@
                                             <label class="form-label">Kecamatan :</label>
                                             <select class="form-control form-select" name="kecamatan" id="filter-kec">
                                                 <option value="">--Semua Kecamatan--</option>
-                                                <option value="337601">Tegal Barat</option>
-                                                <option value="337602">Tegal Timur</option>
-                                                <option value="337603">Tegal Selatan</option>
-                                                <option value="337604">Margadana</option>
+                                                @foreach ($kecamatan as $item)
+                                                    <option value="{{ $item->id_kecamatan }}">{{ $item->nama_kecamatan }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div><!--end col-->
@@ -59,7 +59,6 @@
                                         <div class="mb-3">
                                             <label class="form-label">Kelurahan :</label>
                                             <select class="form-control form-select" name="kelurahan" id="filter-kel">
-                                                <option value="">--Semua Kelurahan--</option>
                                             </select>
                                         </div>
                                     </div><!--end col-->
@@ -77,13 +76,13 @@
                                             <label class="form-label" for="filter-fungsi">Fungsi :</label>
                                             <select class="form-control form-select" name="fungsi" id="filter-fungsi">
                                                 <option value="">-- Semua --</option>
+                                                <option value="-">-</option>
                                                 <option value="Jalan Lokal Sekunder">Jalan Lokal Sekunder</option>
                                                 <option value="Jalan Arteri Sekunder">Jalan Arteri Sekunder</option>
                                                 <option value="Jalan Kolektor Sekunder">Jalan Kolektor Sekunder</option>
                                                 <option value="Jalan Lingkungan Sekunder">Jalan Lingkungan Sekunder</option>
                                                 <option value="Jalan Liingkungan Sekunder">Jalan Liingkungan Sekunder
                                                 </option>
-                                                <option value="-">-</option>
                                                 <option value="Jalan Lokal">Jalan Lokal</option>
                                             </select>
                                         </div>
@@ -113,8 +112,8 @@
                         <div id="table-data_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
                             <div class="row dt-row">
                                 <div class="col-sm-12">
-                                    <table id="myTable" class="table-striped table-bordered dataTable no-footer"
-                                        style="width: 100%;" aria-describedby="table-data_info">
+                                    <table id="myTable" class="table table-hover no-footer" style="width: 100%;"
+                                        aria-describedby="table-data_info">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
@@ -128,50 +127,6 @@
                                                 <th>Option</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1.</td>
-                                                <td>Jalan K.S. Tubun</td>
-                                                <td>Tegal Timur</td>
-                                                <td>Kejambon</td>
-                                                <td>11828</td>
-                                                <td>Jalan Kota</td>
-                                                <td>Jalan Arteri Sekunder</td>
-                                                <td>Hak Pakai</td>
-                                                <td>
-                                                    <div class="btn-group"><button
-                                                            class="btn btn-primary btn-sm btn-detail" type="button"
-                                                            data-id="REVxMjhGNlBLckJ4SHFQUFRUQjB2S3ViVlhyVVpobjFTUStib3FqQlY1MD0="
-                                                            data-toggle="tooltip" data-placement="top"
-                                                            title="Detail">Detail</button><button
-                                                            class="btn btn-warning btn-sm btn-cetak" type="button"
-                                                            data-id="REVxMjhGNlBLckJ4SHFQUFRUQjB2S3ViVlhyVVpobjFTUStib3FqQlY1MD0="
-                                                            data-toggle="tooltip" data-placement="top"
-                                                            title="Cetak">Cetak</button></div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>7.</td>
-                                                <td>Jalan S.I. Lorem</td>
-                                                <td>Tegal Barat Daya</td>
-                                                <td>Kejambon</td>
-                                                <td>11828</td>
-                                                <td>Jalan Kota Lorem</td>
-                                                <td>Jalan Arteri Premier</td>
-                                                <td>Hak Asasi</td>
-                                                <td>
-                                                    <div class="btn-group"><button
-                                                            class="btn btn-primary btn-sm btn-detail" type="button"
-                                                            data-id="REVxMjhGNlBLckJ4SHFQUFRUQjB2S3ViVlhyVVpobjFTUStib3FqQlY1MD0="
-                                                            data-toggle="tooltip" data-placement="top"
-                                                            title="Detail">Detail</button><button
-                                                            class="btn btn-warning btn-sm btn-cetak" type="button"
-                                                            data-id="REVxMjhGNlBLckJ4SHFQUFRUQjB2S3ViVlhyVVpobjFTUStib3FqQlY1MD0="
-                                                            data-toggle="tooltip" data-placement="top"
-                                                            title="Cetak">Cetak</button></div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -184,4 +139,116 @@
     </section>
 
     @include('layouts.footer')
+    <script>
+        window.csrfToken = "{{ csrf_token() }}";
+        const token = localStorage.getItem('apiToken');
+        const appUrl = "{{ env('APP_URL') }}" + ':8000'
+        $('#filter-kec').on('change', (e) => {
+            $('#filter-kel').empty()
+            $('<option></option>').attr('value', '').text('-- pilih kelurahan --')
+                .appendTo(
+                    '#filter-kel')
+
+            $.get(`${appUrl}/api/kelurahan/${e.target.value}`, (res) => {
+                res.map((item) => (
+                    $('<option></option>').attr('value', item.id_kelurahan).text(item
+                        .nama_kelurahan)
+                    .appendTo(
+                        '#filter-kel')
+                ))
+            })
+        })
+        new DataTable('#myTable', {
+            ajax: {
+                serverSide: true,
+                url: "{{ route('jalan.all') }}",
+                method: 'GET',
+                headers: {
+                    'X-CSRF-TOKEN': window.csrfToken,
+                    'Authorization': `Bearer ${token}`
+                },
+                dataSrc: (res) => {
+                    const datas = []
+                    const selectedValues = {
+                        kode_kec: $('#filter-kec').val(),
+                        kode_kel: $('#filter-kel').val(),
+                        status: $('#filter-stat').val(),
+                        fungsi: $('#filter-fungsi').val(),
+                        tipe_hak: $('#filter-tipe-hak').val(),
+                    };
+                    const data = res.filter((item) => {
+                        for (const [key, value] of Object.entries(selectedValues)) {
+                            if (value && item[key] !== value) {
+                                return false;
+                            }
+                        }
+                        return true;
+                    }).map((item, i) => {
+                        const newdata = {
+                            no: i + 1,
+                            ...item
+                        }
+                        datas.push(newdata)
+                    });
+                    return datas
+                }
+            },
+            columns: [{
+                    data: 'no',
+                }, {
+                    data: 'nama_ruas',
+                },
+                {
+                    data: 'nama_kecamatan',
+                },
+                {
+                    data: 'nama_kelurahan',
+                },
+                {
+                    data: 'luas_sertifikat',
+                },
+                {
+                    data: 'status',
+                },
+                {
+                    data: 'fungsi',
+                },
+                {
+                    data: 'tipe_hak',
+                },
+                {
+                    render: (data, type, row) => {
+                        const option = $('<div></div>', {
+                            class: 'btn-group',
+                            html: [
+                                $('<button></button>', {
+                                    class: 'btn btn-primary btn-sm btn-detail',
+                                    type: 'button',
+                                    "data-id": row.id,
+                                    "data-toggle": "tooltip",
+                                    "data-placement": "top",
+                                    title: "Detail",
+                                }).text('Detail'),
+                                $('<button></button>', {
+                                    class: 'btn btn-warning btn-sm btn-cetak',
+                                    type: 'button',
+                                    "data-d": row.id,
+                                    "data-toggle": "tooltip",
+                                    "data-placement": "top",
+                                    title: "Cetak",
+                                }).text('Cetak')
+                            ]
+                        })
+                        return option.prop('outerHTML')
+                    }
+                },
+            ]
+        })
+        const selectElements = ['#filter-kec', '#filter-kel', '#filter-stat', '#filter-fungsi', '#filter-tipe-hak'];
+        selectElements.forEach((id) => {
+            $(id).on('change', () => {
+                $('#myTable').DataTable().ajax.reload();
+            });
+        });
+    </script>
 @endsection

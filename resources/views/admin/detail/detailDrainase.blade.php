@@ -49,7 +49,7 @@
                             <button class="btn btn-danger mt-3" disabled="">Tidak Ada Sertifikat</button>
                         </div>
                         <div class="col-6 border d-flex justify-content-center align-items-center mb-4 border-dark leaflet-container leaflet-touch leaflet-retina leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
-                            id="draw-map" tabindex="0">
+                            id="map" tabindex="0">
 
                         </div>
                     </div>

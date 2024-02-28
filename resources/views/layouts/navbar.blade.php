@@ -40,9 +40,14 @@
                 <li class="has-submenu parent-menu-item">
                     <a class="pe-3" href="javascript:void(0)">Data</a><span class="menu-arrow"></span>
                     <ul class="submenu">
-                        <li><a href="tanah-lahan" class="sub-menu-item {{ Request::is('tanah-lahan') ? 'active' : '' }}">Tanah & Lahan</a></li>
-                        <li><a href="ruas-jalan" class="sub-menu-item {{ Request::is('ruas-jalan') ? 'active' : '' }}">Ruas Jalan</a></li>
-                        <li><a href="drainase" class="sub-menu-item {{ Request::is('drainase') ? 'active' : '' }}">Drainase</a></li>
+                        <li><a href="tanah-lahan"
+                                class="sub-menu-item {{ Request::is('tanah-lahan') ? 'active' : '' }}">Tanah & Lahan</a>
+                        </li>
+                        <li><a href="ruas-jalan"
+                                class="sub-menu-item {{ Request::is('ruas-jalan') ? 'active' : '' }}">Ruas Jalan</a>
+                        </li>
+                        <li><a href="drainase"
+                                class="sub-menu-item {{ Request::is('drainase') ? 'active' : '' }}">Drainase</a></li>
                     </ul>
                 </li>
                 <li><a href="peraturan" class="sub-menu-item {{ Request::is('*peraturan') ? 'active' : '' }}">Peraturan</a></li>

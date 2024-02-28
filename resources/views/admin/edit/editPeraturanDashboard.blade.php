@@ -18,7 +18,7 @@
                     <div class="row mb-2">
                         <div class="col-sm-12">
                             <form id="form-input" enctype="multipart/form-data">
-                                <input type="text" id="id" value="{{ $data->id }}">
+                                <input type="hidden" id="id" value="{{ $data->id }}">
                                 <div class="form-group">
                                     <label for="jenis">Jenis<span class="text-danger">*</span></label>
                                     <select id="jenis" name="jenis" class="form-control">
@@ -41,9 +41,9 @@
                                         value="{{ $data->tahun }}">
                                 </div>
                                 <!-- <div class="form-group">
-                                                                                            <label for="instansi">Instansi<span class="text-danger">*</span></label>
-                                                                                            <input type="text" id="instansi" name="instansi" class="form-control" value="" required>
-                                                                                           </div> -->
+                                                                                                        <label for="instansi">Instansi<span class="text-danger">*</span></label>
+                                                                                                        <input type="text" id="instansi" name="instansi" class="form-control" value="" required>
+                                                                                                       </div> -->
                                 <div class="form-group">
                                     <label for="tentang">Tentang<span class="text-danger">*</span></label>
                                     <input type="text" id="tentang" name="tentang" class="form-control"
@@ -68,6 +68,8 @@
     </div>
     <script>
         $(document).ready(() => {
+            window.csrfToken = "{{ csrf_token() }}";
+            const token = localStorage.getItem('apiToken');
             const appName = "{{ env('APP_URL') }}" + ':8000'
             $('#form-input').on('submit', (e) => {
                 const formData = new FormData();
@@ -81,6 +83,10 @@
                     url: `${appName}/api/peraturan/${$('#id').val()}`,
                     method: 'POST',
                     data: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': window.csrfToken,
+                        'Authorization': `Bearer ${token}`
+                    },
                     contentType: false,
                     processData: false,
                     success: (res) => {

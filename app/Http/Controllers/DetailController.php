@@ -15,14 +15,14 @@ class DetailController extends Controller
     {
         return view('admin.detail.detailTanahDanLahan', [
             'title' => 'Detail Tanah dan Lahan',
-            'tanah' => Tanah::findOrFail($id)
+            'data' => Tanah::findOrFail($id)
         ]);
     }
     function detailRuasJalan($id)
     {
         return view('admin.detail.detailRuasJalanDashboard', [
             'title' => 'Detail Ruas Jalan',
-            'jalan' => Jalan::findOrFail($id)
+            'data' => Jalan::findOrFail($id)
         ]);
     }
     function detailPeraturan(Peraturan $peraturan, $id)

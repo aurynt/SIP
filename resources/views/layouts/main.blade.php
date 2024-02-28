@@ -28,18 +28,29 @@
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
 
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
+    <style>
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+
 </head>
 
 <body>
     <!-- Loader -->
-    <!-- <div id="preloader">
-            <div id="status">
-                <div class="spinner">
-                    <div class="double-bounce1"></div>
-                    <div class="double-bounce2"></div>
-                </div>
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner">
+                <div class="double-bounce1"></div>
+                <div class="double-bounce2"></div>
             </div>
-        </div> -->
+        </div>
+    </div>
     <!-- Loader -->
 
 
@@ -65,14 +76,6 @@
     <!--Note: All init js like tiny slider, counter, countdown, maintenance, lightbox, gallery, swiper slider, aos animation etc.-->
     <script src="assets/js/app.js"></script>
     <!--Note: All important javascript like page loader, menu, sticky menu, menu-toggler, one page menu etc. -->
-
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-
-    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-    <script>
-    let table = new DataTable('#myTable');
-    </script>
-
 </body>
 
 </html>

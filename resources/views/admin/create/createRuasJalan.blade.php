@@ -87,14 +87,14 @@
                                 </div>
 
                                 <!-- <div class="form-group">
-                                                    <label for="tipe_produk">Tipe Produk *</label>
-                                                    <input type="text" id="tipe_produk" name="tipe_produk" class="form-control" value="" required>
-                                                </div>
+                                                                    <label for="tipe_produk">Tipe Produk *</label>
+                                                                    <input type="text" id="tipe_produk" name="tipe_produk" class="form-control" value="" required>
+                                                                </div>
 
-                                                <div class="form-group">
-                                                    <label for="tipe_jalan">Tipe Jalan *</label>
-                                                    <input type="text" id="tipe_jalan" name="tipe_jalan" class="form-control" value="" required>
-                                                </div> -->
+                                                                <div class="form-group">
+                                                                    <label for="tipe_jalan">Tipe Jalan *</label>
+                                                                    <input type="text" id="tipe_jalan" name="tipe_jalan" class="form-control" value="" required>
+                                                                </div> -->
 
                                 <div class="form-group">
                                     <label for="hp">HP *</label>
@@ -151,14 +151,14 @@
                                 </div>
 
                                 <!-- <div class="form-group">
-                                                    <label for="vcr">VCR</label>
-                                                    <input type="text" id="vcr" name="vcr" class="form-control" value="">
-                                                </div>
+                                                                    <label for="vcr">VCR</label>
+                                                                    <input type="text" id="vcr" name="vcr" class="form-control" value="">
+                                                                </div>
 
-                                                <div class="form-group">
-                                                    <label for="mst">MST</label>
-                                                    <input type="text" id="mst" name="mst" class="form-control" value="">
-                                                </div> -->
+                                                                <div class="form-group">
+                                                                    <label for="mst">MST</label>
+                                                                    <input type="text" id="mst" name="mst" class="form-control" value="">
+                                                                </div> -->
 
                                 <div class="form-group">
                                     <label for="tanah">Tanah (meter)</label>
@@ -186,7 +186,7 @@
 
                                 <div class="flex flex-col mb-3">
                                     <label for="map" class="capitalize">Location *</label>
-                                    <div id="map" style="height: 300px"></div>
+                                    <div id="map" style="height: 450px"></div>
                                     <p id="mapError" class="text-red-500 text-xs"></p>
                                 </div>
 
@@ -204,12 +204,13 @@
 
     <script>
         $(document).ready(() => {
+            window.csrfToken = "{{ csrf_token() }}";
+            const token = localStorage.getItem('apiToken');
             const appName = "{{ env('APP_URL') }}" + ':8000'
             $('#kode_kec').on('change', (e) => {
                 $('#kode_kel').empty()
 
                 $.get(`${appName}/api/kelurahan/${e.target.value}`, (res) => {
-                    console.log(res);
                     res.map((item) => {
                         $('<option></option>').attr('value', item.id_kelurahan).text(item
                                 .nama_kelurahan)
@@ -263,6 +264,10 @@
                 url: "{{ route('jalan.add') }}",
                 method: 'POST',
                 data: formData,
+                headers: {
+                    'X-CSRF-TOKEN': window.csrfToken,
+                    'Authorization': `Bearer ${token}`
+                },
                 contentType: false,
                 processData: false,
                 success: (res) => {
@@ -286,77 +291,5 @@
                 }
             }).done((res) => console.log(res))
         })
-    </script>
-    <script>
-        var map = L.map('map').setView([-7.541410189934723, 110.44604864790085], 13);
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-        }).addTo(map);
-
-        var drawControl = new L.Control.Draw();
-        map.addControl(drawControl);
-        var drawnItems = new L.FeatureGroup();
-        map.addLayer(drawnItems);
-
-        map.on('draw:created', function(e) {
-            var type = e.layerType,
-                layer = e.layer;
-            $('#type').val(type)
-
-            switch (type) {
-                case 'polygon':
-                    drawnItems.clearLayers();
-                    drawnItems.addLayer(layer);
-                    var latlng = e.layer.getLatLngs();
-                    var coordinat = []
-                    for (var i = 0; i < latlng.length; i++) {
-                        for (var j = 0; j < latlng[i].length; j++) {
-                            coordinat.push([latlng[i][j].lat, latlng[i][j]
-                                .lng
-                            ])
-                        }
-                    }
-                    $('#coordinat').val(JSON.stringify(coordinat))
-                    break;
-                case 'circle':
-                    drawnItems.clearLayers();
-                    break;
-                case 'polyline':
-                    drawnItems.clearLayers();
-                    drawnItems.addLayer(layer);
-                    var latlng = e.layer.getLatLngs();
-                    var coordinat = []
-                    for (var i = 0; i < latlng.length; i++) {
-                        coordinat.push([latlng[i].lat, latlng[i]
-                            .lng
-                        ])
-                    }
-                    $('#coordinat').val(JSON.stringify(coordinat))
-                    break;
-                case 'rectangle':
-                    drawnItems.clearLayers();
-                    drawnItems.addLayer(layer);
-                    var latlng = e.layer.getLatLngs();
-                    var coordinat = []
-                    for (var i = 0; i < latlng.length; i++) {
-                        for (var j = 0; j < latlng[i].length; j++) {
-                            coordinat.push([latlng[i][j].lat, latlng[i][j]
-                                .lng
-                            ])
-                        }
-                    }
-                    $('#coordinat').val(JSON.stringify(coordinat))
-                    break;
-                case 'marker':
-                    drawnItems.clearLayers();
-                    drawnItems.addLayer(layer);
-                    var latlng = [e.layer.getLatLng().lat, e.layer.getLatLng().lng];
-                    $('#coordinat').val(JSON.stringify(latlng));
-                    break;
-
-                default:
-                    break;
-            }
-        });
     </script>
 @endsection

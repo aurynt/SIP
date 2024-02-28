@@ -13,10 +13,11 @@ class PeraturanController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Peraturan $peraturan)
     {
         try {
-            $res = Peraturan::all();
+            $res = $peraturan->select('peraturan.*', 'ref_jenis_peraturan.jenis')
+                ->join('ref_jenis_peraturan', 'peraturan.id_jenis', '=', 'ref_jenis_peraturan.id')->get();
             return response()->json($res);
         } catch (\Throwable $th) {
             throw $th;
@@ -84,7 +85,7 @@ class PeraturanController extends Controller
                     throw new Error('File cannot be null');
                 }
                 $file_peraturan = $file->store('public/peraturan/');
-                Storage::delete('public/peraturan/'.$getPeraturan->file);
+                Storage::delete('public/peraturan/' . $getPeraturan->file);
                 $dataToUpdate['file'] = $file_peraturan;
             } else {
                 $dataToUpdate['file'] = $getPeraturan->file;
@@ -104,7 +105,7 @@ class PeraturanController extends Controller
     {
         try {
             $getPeraturan = $peraturan->findOrFail($id);
-            Storage::delete('public/peraturan/'.$getPeraturan->file);
+            Storage::delete('public/peraturan/' . $getPeraturan->file);
             $res = $getPeraturan->delete();
             return response()->json($res);
         } catch (\Throwable $th) {

@@ -9,17 +9,14 @@
                             <select class="form-control" name="kecamatan" id="filter-kec" style="width: 100%;">
                                 <option value="">-- Semua Kecamatan --</option>
                                 @foreach ($kecamatan as $item)
-                                    <option value="{{ $item->id_kecamatan }}">{{ $item->nama_kecamatan }}</option>
+                                    <option value="{{ $item->id_kecamatan }}">{{ $item->nama_kecamatan }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group col-md-3 col-12">
                             <label for="filter-kel">Filter Kelurahan</label>
                             <select class="form-control" name="kelurahan" id="filter-kel" style="width: 100%;">
-                                <option value="">-- Semua Kelurahan --</option>
-                                @foreach ($kelurahan as $item)
-                                    <option value="{{ $item->id_kelurahan }}">{{ $item->nama_kelurahan }}</option>
-                                @endforeach
                             </select>
                         </div>
 
@@ -72,53 +69,6 @@
                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach ($ruas as $item)
-                                <tr>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $loop->iteration }}</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $item->nama_ruas }}</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $item->kecamatan }}</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $item->kel }}</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $item->luas_sertifikat }}</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $item->status }}</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $item->fungsi }}</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $item->tipe_hak }}</p>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $item->ruas_awal }}</p>
-                                    </td>
-                                    <td class="align-middle">
-                                        <div class="btn-group">
-                                            <a class="btn btn-outline-dark" href="{{ route('detail.jalan', $item->id) }}"
-                                                data-toggle="tooltip" data-placement="top" title=""
-                                                data-original-title="Detail"><i class="bx bx-detail"></i></a>
-                                            <a class="btn btn-outline-warning btn-update"
-                                                href="{{ route('edit.jalan', $item->id) }}" data-toggle="tooltip"
-                                                data-placement="top" title="" data-original-title="Ubah"><i
-                                                    class="bx bx-pencil"></i></a>
-                                            <button class="btn btn-outline-danger btn-remove" data-toggle="tooltip"
-                                                data-placement="top" title="" data-original-title="Hapus"
-                                                fdprocessedid="eru1p"><i class="bx bx-trash"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
                     </table>
                 </div>
             </div>
@@ -128,9 +78,26 @@
     <script>
         $(document).ready(() => {
             const appUrl = "{{ env('APP_URL') }}" + ':8000'
+            $('#filter-kec').on('change', (e) => {
+                $('#filter-kel').empty()
+                $('<option></option>').attr('value', '').text('-- pilih kelurahan --')
+                    .appendTo(
+                        '#filter-kel')
+
+                $.get(`${appUrl}/api/kelurahan/${e.target.value}`, (res) => {
+                    res.map((item) => (
+                        $('<option></option>').attr('value', item.id_kelurahan).text(item
+                            .nama_kelurahan)
+                        .appendTo(
+                            '#filter-kel')
+                    ))
+                })
+            })
 
             $(document).on('click', '.btn-remove', function() {
                 let id = $(this).data('id');
+                window.csrfToken = "{{ csrf_token() }}";
+                const token = localStorage.getItem('apiToken');
                 Swal.fire({
                     title: "Are you sure?",
                     text: "You won't be able to revert this!",
@@ -144,6 +111,10 @@
                         $.ajax({
                             url: `${appUrl}/api/jalan/${id}`,
                             method: "DELETE",
+                            headers: {
+                                'X-CSRF-TOKEN': window.csrfToken,
+                                'Authorization': `Bearer ${token}`
+                            },
                             success: (res) => {
                                 Swal.fire({
                                     title: "Done",
@@ -151,7 +122,7 @@
                                     icon: "success"
                                 });
 
-                                $('#myTable').load("/ruas-jalan-dashboard #myTable");
+                                $('#myTable').DataTable().ajax.reload();
 
                             },
                             error: (err) => {
@@ -166,5 +137,129 @@
                 });
             })
         })
+    </script>
+
+    <script>
+        window.csrfToken = "{{ csrf_token() }}";
+        const token = localStorage.getItem('apiToken');
+        new DataTable('#myTable', {
+            ajax: {
+                url: "{{ route('jalan.all') }}",
+                method: 'GET',
+                headers: {
+                    'X-CSRF-TOKEN': window.csrfToken,
+                    'Authorization': `Bearer ${token}`
+                },
+                dataSrc: (res) => {
+                    const datas = []
+                    const selectedValues = {
+                        kode_kec: $('#filter-kec').val(),
+                        kode_kel: $('#filter-kel').val(),
+                        // add more properties for other <select> elements as needed
+                    };
+                    const data = res.filter((item) => {
+                        for (const [key, value] of Object.entries(selectedValues)) {
+                            if (value && item[key] !== value) {
+                                return false;
+                            }
+                        }
+                        return true;
+                    }).map((item, i) => {
+                        const newdata = {
+                            no: i + 1,
+                            ...item
+                        }
+                        datas.push(newdata)
+                    });
+                    return datas
+                }
+            },
+            columns: [{
+                    data: 'no',
+                }, {
+                    data: 'nama_ruas',
+                },
+                {
+                    data: 'nama_kecamatan',
+                },
+                {
+                    data: 'nama_kelurahan',
+                },
+                {
+                    data: 'luas_sertifikat',
+                },
+                {
+                    data: 'status',
+                },
+                {
+                    data: 'fungsi',
+                },
+                {
+                    data: 'tipe_hak',
+                },
+                {
+                    data: 'ruas_awal',
+                },
+                {
+                    render: (data, type, row) => {
+                        const option = $('<div></div>', {
+                            class: 'btn-group',
+                            html: [
+                                $('<a/>', {
+                                    href: `/detail-ruas-jalan/${row.id}`,
+                                    class: 'btn btn-outline-dark btn-tooltip',
+                                    "data-bs-toggle": "tooltip",
+                                    "data-bs-placement": "top",
+                                    title: "Detail",
+                                    "data-container": "body",
+                                    "data-animation": "true",
+                                    html: [
+                                        $('<i/>', {
+                                            class: 'bx bx-detail'
+                                        })
+                                    ]
+                                }),
+                                $('<a/>', {
+                                    href: `/edit-ruas-jalan/${row.id}`,
+                                    class: 'btn btn-outline-warning btn-tooltip',
+                                    "data-bs-toggle": "tooltip",
+                                    "data-bs-placement": "top",
+                                    title: "Ubah",
+                                    "data-container": "body",
+                                    "data-animation": "true",
+                                    html: [
+                                        $('<i/>', {
+                                            class: 'bx bx-detail'
+                                        })
+                                    ]
+                                }),
+                                $('<button></button>', {
+                                    class: 'btn btn-outline-danger btn-remove btn-tooltip',
+                                    type: 'button',
+                                    "data-id": row.id,
+                                    "data-bs-toggle": "tooltip",
+                                    "data-bs-placement": "top",
+                                    title: "Hapus",
+                                    "data-container": "body",
+                                    "data-animation": "true",
+                                    html: [
+                                        $('<i/>', {
+                                            class: 'bx bx-trash'
+                                        })
+                                    ]
+                                })
+                            ]
+                        })
+                        return option.prop('outerHTML')
+                    }
+                },
+            ]
+        })
+        const selectElements = ['#filter-kec', '#filter-kel', ];
+        selectElements.forEach((id) => {
+            $(id).on('change', () => {
+                $('#myTable').DataTable().ajax.reload();
+            });
+        });
     </script>
 @endsection

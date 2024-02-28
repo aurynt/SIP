@@ -52,6 +52,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
 
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
+    <style>
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
@@ -160,102 +167,65 @@
 
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 
-    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script>
-        let table = new DataTable('#myTable');
-    </script>
-    <script>
-        var map = L.map('map').setView([-7.541410189934723, 110.44604864790085], 13);
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
+        var map = L.map('map').setView([-6.8674333, 109.1353434], 17);
+        L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
         }).addTo(map);
 
         @if (isset($data->type))
-            @switch($data->type)
-                @case('marker')
-                console.log("{{ $data->type }}");
-                L.marker({!! $data->coordinat !!}).addTo(map)
-                @break
+            const geojsonFeature = {
+                "type": "Feature",
+                "geometry": {
+                    "type": "{{ $data->type }}",
+                    "coordinates": {!! $data->koordinat !!},
+                },
+            };
 
-                @case('polygon')
-                L.polygon({!! $data->koordinat !!}).addTo(map)
-                @break
-
-                @case('polyline')
-                L.polyline({!! $data->coordinat !!}).addTo(map)
-                @break
-
-                @case('rectangle')
-                L.rectangle({!! $data->coordinat !!}, {
-                    weight: 1,
-                    color: 'red'
-                }).addTo(map)
-                @break
-            @endswitch
+            L.geoJSON(geojsonFeature, {
+                style: (feature) => ({
+                    fillColor: 'teal', // Warna isi
+                    fillOpacity: 0.5, // Opasitas isi
+                    color: 'blue', // Warna garis tepi
+                    weight: 2
+                })
+            }).addTo(map);
         @endif
-
-        var drawControl = new L.Control.Draw();
-        map.addControl(drawControl);
         var drawnItems = new L.FeatureGroup();
         map.addLayer(drawnItems);
+
+        var drawControl = new L.Control.Draw({
+            edit: {
+                featureGroup: drawnItems
+            },
+            draw: {
+                polygon: true,
+                multiPolygon: true,
+                polyline: false,
+                rectangle: false,
+                circle: false,
+                circlemarker: false,
+                marker: false
+            }
+        });
+        map.addControl(drawControl);
 
         map.on('draw:created', function(e) {
             var type = e.layerType,
                 layer = e.layer;
-            $('#type').val(type)
 
             switch (type) {
                 case 'polygon':
                     drawnItems.clearLayers();
                     drawnItems.addLayer(layer);
-                    var latlng = e.layer.getLatLngs();
-                    var coordinat = []
-                    for (var i = 0; i < latlng.length; i++) {
-                        for (var j = 0; j < latlng[i].length; j++) {
-                            coordinat.push([latlng[i][j].lat, latlng[i][j]
-                                .lng
-                            ])
-                        }
-                    }
+                    const coordinat = e.layer.toGeoJSON().geometry.coordinates;
+                    const type = e.layer.toGeoJSON().geometry.type;
+                    $('#type').val(type)
                     $('#coordinat').val(JSON.stringify(coordinat))
                     break;
-                case 'circle':
-                    drawnItems.clearLayers();
-                    break;
-                case 'polyline':
-                    drawnItems.clearLayers();
-                    drawnItems.addLayer(layer);
-                    var latlng = e.layer.getLatLngs();
-                    var coordinat = []
-                    for (var i = 0; i < latlng.length; i++) {
-                        coordinat.push([latlng[i].lat, latlng[i]
-                            .lng
-                        ])
-                    }
-                    $('#coordinat').val(JSON.stringify(coordinat))
-                    break;
-                case 'rectangle':
-                    drawnItems.clearLayers();
-                    drawnItems.addLayer(layer);
-                    var latlng = e.layer.getLatLngs();
-                    var coordinat = []
-                    for (var i = 0; i < latlng.length; i++) {
-                        for (var j = 0; j < latlng[i].length; j++) {
-                            coordinat.push([latlng[i][j].lat, latlng[i][j]
-                                .lng
-                            ])
-                        }
-                    }
-                    $('#coordinat').val(JSON.stringify(coordinat))
-                    break;
-                case 'marker':
-                    drawnItems.clearLayers();
-                    drawnItems.addLayer(layer);
-                    var latlng = [e.layer.getLatLng().lat, e.layer.getLatLng().lng];
-                    $('#coordinat').val(JSON.stringify(latlng));
-                    break;
-
                 default:
+                    drawnItems.clearLayers();
                     break;
             }
         });
