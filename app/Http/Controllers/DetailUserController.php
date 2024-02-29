@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Drainase;
 use App\Models\Jalan;
+use App\Models\Tanah;
 use Illuminate\Http\Request;
 
 class DetailUserController extends Controller
 {
-    public function detailUserTanahLahan(){
+    public function detailUserTanahLahan($id){
         return view('detailUser.detail-tanah-lahan',[
-            'title' => 'Detail Tanah dan Lahan'
+            'title' => 'Detail Tanah dan Lahan',
+            'tanah' => Tanah::findOrFail($id)
         ]);
     }
     public function detailUserRuasJalan($id){

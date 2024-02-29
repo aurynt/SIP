@@ -19,22 +19,6 @@
                         <select class="form-control" name="kelurahan" id="filter-kel" style="width: 100%;">
                         </select>
                     </div>
-                <div class="row">
-                    <div class="form-group col-md-3 col-12">
-                        <label for="filter-kec">Filter Kecamatan</label>
-                        <select class="form-control dropdown-toggle" name="kecamatan" id="filter-kec" style="width: 100%;">
-                            <option value="">-- Semua Kecamatan --</option>
-                            @foreach ($kecamatan as $item)
-                                <option value="{{ $item->id_kecamatan }}">{{ $item->nama_kecamatan }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group col-md-3 col-12 dropdown">
-                        <label for="filter-kel">Filter Kelurahan</label>
-                        <select class="form-control" name="kelurahan" id="filter-kel" style="width: 100%;">
-                        </select>
-                    </div>
 
                     <div class="form-group col-md-2 text-right">
                         <label>&nbsp;</label>
@@ -49,20 +33,6 @@
                             data-bs-target="#modal-import-tanah" id="btn-import"><i
                                 class="bx bx-cloud-upload font-size-16"></i> Import Excel</button>
                     </div>
-                    <div class="form-group col-md-2 text-left">
-                        <label>&nbsp;</label>
-                        <button class="btn btn-warning waves-effect waves-light w-md mt-4" data-bs-toggle="modal"
-                            data-bs-target="#modal-import-tanah" id="btn-import"><i
-                                class="bx bx-cloud-upload font-size-16"></i> Import Excel</button>
-                    </div>
-
-                    <div class="form-group col-md-2">
-                        <label>&nbsp;</label>
-                        <a href="{{ route('create.tanah-lahan') }}"
-                            class="btn btn-primary waves-effect waves-light w-md mt-4"><i
-                                class="bx bx-edit font-size-16"></i> Tambah</a>
-                    </div>
-                </div>
                     <div class="form-group col-md-2">
                         <label>&nbsp;</label>
                         <a href="{{ route('create.tanah-lahan') }}"
@@ -72,6 +42,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <div class="row mt-4">
         <div class="col-lg-12">
