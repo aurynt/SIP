@@ -13,6 +13,7 @@ class TanahLahanExport implements FromCollection, WithHeadings, WithEvents
     /**
      * @return \Illuminate\Support\Collection
      */
+
     public function collection()
     {
         $records = Tanah::all();
@@ -70,15 +71,16 @@ class TanahLahanExport implements FromCollection, WithHeadings, WithEvents
             'KODE KELURAHAN'
         ];
     }
-    public function registerEvents(): array{
-        return[
-            AfterSheet::class => function(AfterSheet $event){
+    public function registerEvents(): array
+    {
+        return [
+            AfterSheet::class => function (AfterSheet $event) {
                 $styleArray = [
                     'font' => [
                         'bold' => true,
                     ],
                 ];
-                $event->getDelegate()->getStyle('A1:'.$event->getDelegate()->getHighestColumn().'1')->applyFromArray($styleArray);
+                $event->getDelegate()->getStyle('A1:' . $event->getDelegate()->getHighestColumn() . '1')->applyFromArray($styleArray);
 
                 $event->getDelegate()->getColumnDimension('A')->setAutoSize(true);
                 $event->getDelegate()->getColumnDimension('B')->setAutoSize(true);

@@ -8,6 +8,7 @@ use App\Exports\TanahLahanExport;
 use App\Exports\TanahLahanOnlyHeading;
 use App\Imports\RuasJalanImport;
 use App\Imports\TanahLahanImport;
+use App\Models\Tanah;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Facades\Excel;

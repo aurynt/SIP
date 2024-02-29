@@ -22,9 +22,9 @@
 
                     <div class="form-group col-md-2 text-right">
                         <label>&nbsp;</label>
-                        <button id="export" {{-- href="{{ route('file.tanah-lahan') }}" --}}
+                        <a href="{{ route('file.tanah-lahan') }}"
                             class="btn btn-success waves-effect waves-light w-md mt-4"><i
-                                class="bx bx-cloud-download font-size-16"></i> Export Excel</button>
+                                class="bx bx-cloud-download font-size-16"></i> Export Excel</a>
                     </div>
 
                     <div class="form-group col-md-2 text-left">
@@ -33,7 +33,6 @@
                             data-bs-target="#modal-import-tanah" id="btn-import"><i
                                 class="bx bx-cloud-upload font-size-16"></i> Import Excel</button>
                     </div>
-
                     <div class="form-group col-md-2">
                         <label>&nbsp;</label>
                         <a href="{{ route('create.tanah-lahan') }}"
@@ -43,6 +42,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <div class="row mt-4">
         <div class="col-lg-12">

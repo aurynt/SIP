@@ -126,6 +126,10 @@
                 ))
             })
         })
+        $(document).on('click', '.btn-detail', function () {
+            const id = $(this).data('id');
+            window.location.href = '{{ route("detailUser.drainase", ["id" => ":id"]) }}'.replace(':id', id);
+        });
         new DataTable('#myTable', {
             ajax: {
                 serverSide: true,

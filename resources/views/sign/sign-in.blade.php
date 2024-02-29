@@ -47,7 +47,7 @@
                         <label>Username</label>
                         <div class="input-group mb-3">
                             <input id="username" type="text" class="form-control" placeholder="Username"
-                                aria-label="Username" name="username">
+                                aria-label="Username" name="username" autofocus>
                         </div>
                         <label>Password</label>
                         <div class="input-group mb-3">

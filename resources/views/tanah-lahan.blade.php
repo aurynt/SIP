@@ -216,7 +216,10 @@
                 ))
             })
         })
-
+        $(document).on('click', '.btn-detail', function () {
+            const id = $(this).data('id');
+            window.location.href = '{{ route("detailUser.tanah-lahan", ["id" => ":id"]) }}'.replace(':id', id);
+        });
         new DataTable('#myTable', {
             ajax: {
                 serverSide: true,
