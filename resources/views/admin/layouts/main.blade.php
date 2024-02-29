@@ -53,6 +53,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
 
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script lang="javascript" src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
 
     <style>
         ::-webkit-scrollbar {
@@ -166,14 +167,48 @@
     <script src="assets/admin/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
 
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-
+    <!-- use version 0.20.1 -->
     <script>
-        var map = L.map('map').setView([-6.8674333, 109.1353434], 17);
-        L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-            maxZoom: 20,
-            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-        }).addTo(map);
+        const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 23,
+            attribution: '© OpenStreetMap'
+        });
 
+        const satelite = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+            maxZoom: 23,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        });
+
+        const googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+            maxZoom: 23,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        });
+
+        const googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+            maxZoom: 23,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        });
+
+        const googleTerrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
+            maxZoom: 23,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        });
+
+        var map = L.map('map', {
+            center: [-6.8674333, 109.1353434],
+            zoom: 14,
+            layers: [googleHybrid],
+        })
+
+        var baseMaps = {
+            "Open Street Map": osm,
+            "Google Hybrid": googleHybrid,
+            "Google Satelite": satelite,
+            "Google Street": googleStreets,
+            "Google Terrain": googleTerrain,
+        };
+
+        var layerControl = L.control.layers(baseMaps).addTo(map);
         @if (isset($data->type))
             const geojsonFeature = {
                 "type": "Feature",
@@ -185,7 +220,7 @@
 
             L.geoJSON(geojsonFeature, {
                 style: (feature) => ({
-                    fillColor: 'teal', // Warna isi
+                    fillColor: 'teal', // Warna isib
                     fillOpacity: 0.5, // Opasitas isi
                     color: 'blue', // Warna garis tepi
                     weight: 2
