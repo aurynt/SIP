@@ -167,6 +167,7 @@
 
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 
+
     <script>
         var map = L.map('map').setView([-6.8674333, 109.1353434], 17);
         L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
