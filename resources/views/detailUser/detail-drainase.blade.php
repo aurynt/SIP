@@ -69,7 +69,7 @@
                     </table>
                     <button class="btn btn-danger mt-3" disabled="">Tidak Ada Sertifikat</button>
                 </div>
-                <input type="hidden" id="saved_coordinates"                   >
+                <input type="hidden" id="saved_coordinates">
                 <input type="hidden" id="type">
                 <div class="col-6 border d-flex justify-content-center align-items-center">
                     <div id="map"
@@ -80,6 +80,61 @@
             </div>
         </div>
     </section>
+    <script>
+        const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 23,
+            attribution: '© OpenStreetMap'
+        });
+
+        const satelite = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+            maxZoom: 23,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        });
+
+        const googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+            maxZoom: 23,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        });
+
+        const googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+            maxZoom: 23,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        });
+
+        const googleTerrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
+            maxZoom: 23,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        });
+
+        var map = L.map('map', {
+            layers: [googleHybrid]
+        });
+
+        @if (isset($drainase->type))
+            const geojsonFeature = {
+                "type": "Feature",
+                "geometry": {
+                    "type": "{{ $drainase->type }}",
+                    "coordinates": {!! $drainase->koordinat !!},
+                },
+            };
+
+            L.geoJSON(geojsonFeature, {
+                style: (feature) => ({
+                    fillColor: 'teal',
+                    fillOpacity: 0.5,
+                    color: 'blue',
+                    weight: 2
+                })
+            }).addTo(map);
+
+            const coordinates = {!! $drainase->koordinat !!};
+            const bounds = L.geoJSON(geojsonFeature).getBounds();
+            const center = bounds.getCenter();
+
+            map.setView(center, 18);
+        @endif
+    </script>
     <!-- data filter ends -->
 
     @include('layouts.footer')
