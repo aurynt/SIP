@@ -220,6 +220,10 @@
             const id = $(this).data('id');
             window.location.href = '{{ route("detailUser.tanah-lahan", ["id" => ":id"]) }}'.replace(':id', id);
         });
+        $(document).on('click', '.btn-cetak', function () {
+            const id = $(this).data('id');
+            window.location.href = '{{ route("print.tanah-lahan", ["id" => ":id"]) }}'.replace(':id', id);
+        });
         new DataTable('#myTable', {
             ajax: {
                 serverSide: true,
@@ -298,7 +302,7 @@
                                 $('<button></button>', {
                                     class: 'btn btn-warning btn-sm btn-cetak',
                                     type: 'button',
-                                    "data-d": row.id,
+                                    "data-id": row.id,
                                     "data-toggle": "tooltip",
                                     "data-placement": "top",
                                     title: "Cetak",
