@@ -8,6 +8,7 @@ use App\Http\Controllers\DetailController;
 use App\Http\Controllers\DetailUserController;
 use App\Http\Controllers\EditController;
 use App\Http\Controllers\ExcelController;
+use App\Http\Controllers\PrintController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -124,10 +125,13 @@ Route::group(['middleware' => 'auth'], function () {
         });
     });
 
-
     Route::name('detailUser.')->group(function () {
         Route::get('detail-tanah-lahan/{id}', [DetailUserController::class, 'detailUserTanahLahan'])->name('tanah-lahan');
         Route::get('detail-ruas-jalan/{id}', [DetailUserController::class, 'detailUserRuasJalan'])->name('jalan');
         Route::get('detail-drainase/{id}', [DetailUserController::class, 'detailUserDrainase'])->name('drainase');
+    });
+
+    Route::name('print.')->group(function () {
+        Route::get('ruas-jalan/print/{id}',[PrintController::class,'ruasJalan'])->name('ruas-jalan');
     });
 });
