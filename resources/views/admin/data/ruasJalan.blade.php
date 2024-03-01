@@ -267,7 +267,7 @@
                                 class: 'btn-group',
                                 html: [
                                     $('<a/>', {
-                                        href: `/detail-ruas-jalan/${row.id}`,
+                                        href: `/dashboard/detail-ruas-jalan/${row.id}`,
                                         class: 'btn btn-outline-dark btn-tooltip',
                                         "data-bs-toggle": "tooltip",
                                         "data-bs-placement": "top",
