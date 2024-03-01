@@ -132,6 +132,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::name('print.')->group(function () {
-        Route::get('ruas-jalan/print/{id}',[PrintController::class,'ruasJalan'])->name('ruas-jalan');
+        Route::get('ruas-jalan/print/{id}', [PrintController::class, 'ruasJalan'])->name('ruas-jalan');
+        Route::get('tanah-lahan/print/{id}', [PrintController::class, 'tanahLahan'])->name('tanah-lahan');
     });
 });
