@@ -195,20 +195,9 @@
         });
 
         var map = L.map('map', {
-            center: [-6.8674333, 109.1353434],
-            zoom: 14,
-            layers: [googleHybrid],
-        })
+            layers: [googleHybrid]
+        });
 
-        var baseMaps = {
-            "Open Street Map": osm,
-            "Google Hybrid": googleHybrid,
-            "Google Satelite": satelite,
-            "Google Street": googleStreets,
-            "Google Terrain": googleTerrain,
-        };
-
-        var layerControl = L.control.layers(baseMaps).addTo(map);
         @if (isset($data->type))
             const geojsonFeature = {
                 "type": "Feature",
@@ -220,12 +209,18 @@
 
             L.geoJSON(geojsonFeature, {
                 style: (feature) => ({
-                    fillColor: 'teal', // Warna isib
-                    fillOpacity: 0.5, // Opasitas isi
-                    color: 'blue', // Warna garis tepi
+                    fillColor: 'teal',
+                    fillOpacity: 0.5,
+                    color: 'blue',
                     weight: 2
                 })
             }).addTo(map);
+
+            const coordinates = {!! $data->koordinat !!};
+            const bounds = L.geoJSON(geojsonFeature).getBounds();
+            const center = bounds.getCenter();
+
+            map.setView(center, 18);
         @endif
         var drawnItems = new L.FeatureGroup();
         map.addLayer(drawnItems);
