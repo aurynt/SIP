@@ -158,9 +158,13 @@
                 ))
             })
         })
-        $(document).on('click', '.btn-detail', function () {
+        $(document).on('click', '.btn-detail', function() {
             const id = $(this).data('id');
-            window.location.href = '{{ route("detailUser.jalan", ["id" => ":id"]) }}'.replace(':id', id);
+            window.location.href = '{{ route('detailUser.jalan', ['id' => ':id']) }}'.replace(':id', id);
+        });
+        $(document).on('click', '.btn-cetak', function() {
+            const id = $(this).data('id');
+            window.location.href = '{{ route('print.ruas-jalan', ['id' => ':id']) }}'.replace(':id', id);
         });
         new DataTable('#myTable', {
             ajax: {
@@ -236,7 +240,7 @@
                                 $('<button></button>', {
                                     class: 'btn btn-warning btn-sm btn-cetak',
                                     type: 'button',
-                                    "data-d": row.id,
+                                    "data-id": row.id,
                                     "data-toggle": "tooltip",
                                     "data-placement": "top",
                                     title: "Cetak",
