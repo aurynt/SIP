@@ -138,7 +138,7 @@
                             html: [
                                 $('<a/>', {
                                     href: `/detail-drainase/${row.id}`,
-                                    class: 'btn btn-outline-dark btn-tooltip',
+                                    class:  'btn btn-outline-dark btn-tooltip',
                                     "data-bs-toggle": "tooltip",
                                     "data-bs-placement": "top",
                                     title: "Detail",

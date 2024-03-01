@@ -211,7 +211,7 @@
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="Patok"
                                         data-container="body" data-animation="true"><i class="bx bx-map"></i></a>
                                     <a class="btn btn-outline-dark btn-tooltip"
-                                        href="/detail-tanah-lahan/${row.id}"
+                                        href="/dashboard/detail-tanah-lahan/${row.id}"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="Detail"
                                         data-container="body" data-animation="true"><i
                                             class="bx bx-detail"></i></a>
@@ -280,10 +280,6 @@
                 })
             })
         }
-
-
-
-
         const selectElements = ['#filter-kec', '#filter-kel', ];
         selectElements.forEach((id) => {
             $(id).on('change', () => {
