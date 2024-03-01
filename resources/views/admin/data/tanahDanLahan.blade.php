@@ -22,8 +22,7 @@
 
                     <div class="form-group col-md-2 text-right">
                         <label>&nbsp;</label>
-                        <button id="export" {{-- href="{{ route('file.tanah-lahan') }}" --}}
-                            class="btn btn-success waves-effect waves-light w-md mt-4"><i
+                        <button id="export" class="btn btn-success waves-effect waves-light w-md mt-4"><i
                                 class="bx bx-cloud-download font-size-16"></i> Export Excel</button>
                     </div>
 
@@ -143,12 +142,13 @@
     <script>
         window.csrfToken = "{{ csrf_token() }}";
         const token = localStorage.getItem('apiToken');
-        getTanahLahan().then((dataTanah) => {
+
+        function filterTanah(data) {
             const selectedValues = {
                 kode_kec: $('#filter-kec').val(),
                 kode_kel: $('#filter-kel').val(),
             };
-            const data = dataTanah.filter((item) => {
+            return data.filter((item) => {
                 for (const [key, value] of Object.entries(selectedValues)) {
                     if (value && item[key] !== value) {
                         return false;
@@ -156,15 +156,10 @@
                 }
                 return true;
             })
-
-            generateDataTable(data);
-            $('#export').on('click', () => {
-                exportExcel(data, 'tanahreport')
-            })
-        })
+        }
 
         function generateDataTable(data) {
-            new DataTable('#myTable', {
+            return new DataTable('#myTable', {
                 data: data,
                 columns: [{
                         data: 'no',
@@ -195,39 +190,39 @@
                     {
                         render: (data, type, row) => {
                             return `
-                            <td class="align-middle">
-                                <div class="btn-group">
-                                    <button data-id="${row.id}" class="btn btn-outline-success btn-up-sertifikat btn-tooltip"
-                                        data-bs-toggle="modal" data-bs-target="#modal-sertifikat"
-                                        data-bs-toggle="tooltip" data-bs-placement="top"
-                                        title="Upload Sertifikat" data-container="body" data-animation="true"><i
-                                            class="bx bxs-file-pdf"></i></button>
-                                    <button class="btn btn-outline-info btn-up-lokasi btn-tooltip"
-                                        data-bs-toggle="modal" data-bs-target="#modal-tanah"
-                                        data-bs-toggle="tooltip" data-bs-placement="top"
-                                        title="Upload Foto Tanah" data-container="body" data-animation="true"><i
-                                            class="bx bx-image-add"></i></button>
-                                    <a class="btn btn-outline-primary btn-tooltip" href="#" target="_blank"
-                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Patok"
-                                        data-container="body" data-animation="true"><i class="bx bx-map"></i></a>
-                                    <a class="btn btn-outline-dark btn-tooltip"
-                                        href="/detail-tanah-lahan/${row.id}"
-                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Detail"
-                                        data-container="body" data-animation="true"><i
-                                            class="bx bx-detail"></i></a>
-                                    <a class="btn btn-outline-warning btn-update btn-tooltip"
-                                        href="/detail-tanah-lahan/${row.id}"
-                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah"
-                                        data-container="body" data-animation="true"><i
-                                            class="bx bx-pencil"></i></a>
-                                    <button data-id="${row.id}"
-                                        class="btn btn-outline-danger btn-remove btn-tooltip"
-                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"
-                                        data-container="body" data-animation="true"><i
-                                            class="bx bx-trash"></i></button>
-                                </div>
-                            </td>
-                            `
+                        <td class="align-middle">
+                            <div class="btn-group">
+                                <button data-id="${row.id}" class="btn btn-outline-success btn-up-sertifikat btn-tooltip"
+                                    data-bs-toggle="modal" data-bs-target="#modal-sertifikat"
+                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                    title="Upload Sertifikat" data-container="body" data-animation="true"><i
+                                        class="bx bxs-file-pdf"></i></button>
+                                <button class="btn btn-outline-info btn-up-lokasi btn-tooltip"
+                                    data-bs-toggle="modal" data-bs-target="#modal-tanah"
+                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                    title="Upload Foto Tanah" data-container="body" data-animation="true"><i
+                                        class="bx bx-image-add"></i></button>
+                                <a class="btn btn-outline-primary btn-tooltip" href="#" target="_blank"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Patok"
+                                    data-container="body" data-animation="true"><i class="bx bx-map"></i></a>
+                                <a class="btn btn-outline-dark btn-tooltip"
+                                    href="/detail-tanah-lahan/${row.id}"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Detail"
+                                    data-container="body" data-animation="true"><i
+                                        class="bx bx-detail"></i></a>
+                                <a class="btn btn-outline-warning btn-update btn-tooltip"
+                                    href="/detail-tanah-lahan/${row.id}"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah"
+                                    data-container="body" data-animation="true"><i
+                                        class="bx bx-pencil"></i></a>
+                                <button data-id="${row.id}"
+                                    class="btn btn-outline-danger btn-remove btn-tooltip"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"
+                                    data-container="body" data-animation="true"><i
+                                        class="bx bx-trash"></i></button>
+                            </div>
+                        </td>
+                        `
                         },
                     },
                 ]
@@ -235,7 +230,30 @@
         }
 
         function exportExcel(data, nameFile) {
-            const worksheet = XLSX.utils.json_to_sheet(data);
+            const dataExport = data.map((item) => {
+                return {
+                    'KECAMATAN': item.kecamatan,
+                    'KELURAHAN': item.kelurahan,
+                    'NOMOR': item.nomor,
+                    'NOMOR REGISTRASI': item.noreg,
+                    'STATUS': item.status,
+                    'TAHUN SERTIFIKAT': item.tahun_sertifikat,
+                    'KODE': item.kode,
+                    'PAPAN NAMA': item.papan_nama,
+                    'PENGGUNAAN': item.penggunaan,
+                    'RENCANA POLA': item.rencana_pola,
+                    'ALAMAT': item.alamat,
+                    'LUAS': item.luas,
+                    'PEMEGANG HAK': item.pemegang_hak,
+                    'PENGGUNAAN BARANG': item.pengguna_barang,
+                    'LAHAN TERBANGUN': item.lahan_terbangun,
+                    'PATOK': item.patok,
+                    'ZONA NILAI': item.zona_nilai,
+                    'KODE KECAMATAN': item.kode_kec,
+                    'KODE KELURAHAN': item.kode_kel
+                }
+            })
+            const worksheet = XLSX.utils.json_to_sheet(dataExport);
             const workbook = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(workbook, worksheet, "Dates");
             XLSX.writeFile(workbook, `${nameFile}.xlsx`, {
@@ -254,18 +272,7 @@
                         'Authorization': `Bearer ${token}`
                     },
                     success: (res) => {
-                        const selectedValues = {
-                            kode_kec: $('#filter-kec').val(),
-                            kode_kel: $('#filter-kel').val(),
-                        };
-                        const data = res.filter((item) => {
-                            for (const [key, value] of Object.entries(selectedValues)) {
-                                if (value && item[key] !== value) {
-                                    return false;
-                                }
-                            }
-                            return true;
-                        }).map((item, i) => {
+                        res.map((item, i) => {
                             const newdata = {
                                 no: i + 1,
                                 ...item
@@ -281,13 +288,18 @@
             })
         }
 
-
-
-
-        const selectElements = ['#filter-kec', '#filter-kel', ];
-        selectElements.forEach((id) => {
-            $(id).on('change', () => {
-                $('#myTable').DataTable().ajax.reload();
+        getTanahLahan().then((res) => {
+            const table = generateDataTable(res);
+            const selectElements = ['#filter-kec', '#filter-kel', ];
+            selectElements.forEach((id) => {
+                $(id).on('change', () => {
+                    const filteredData = filterTanah(res);
+                    table.clear().rows.add(filteredData).draw();
+                });
+            });
+            $('#export').on('click', () => {
+                const filteredData = filterTanah(res);
+                exportExcel(filteredData, `tanah_report_${Date.now()}`);
             });
         });
     </script>
