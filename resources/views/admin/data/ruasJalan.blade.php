@@ -3,42 +3,42 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card h-100 p-4">
-                    <div class="row">
-                        <div class="form-group col-md-3 col-12">
-                            <label for="filter-kec">Filter Kecamatan</label>
-                            <select class="form-control" name="kecamatan" id="filter-kec" style="width: 100%;">
-                                <option value="">-- Semua Kecamatan --</option>
-                                @foreach ($kecamatan as $item)
-                                    <option value="{{ $item->id_kecamatan }}">{{ $item->nama_kecamatan }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group col-md-3 col-12">
-                            <label for="filter-kel">Filter Kelurahan</label>
-                            <select class="form-control" name="kelurahan" id="filter-kel" style="width: 100%;">
-                            </select>
-                        </div>
-
-                        <div class="form-group col-md-2 col-12 text-right">
-                            <label>&nbsp;</label>
-                            <a href="{{ route('file.jalan') }}" class="btn btn-success waves-effect waves-light w-md mt-4"><i
-                                class="bx bx-cloud-download font-size-16"></i> Export Excel</a>
-                        </div>
-
-                        <div class="form-group col-md-2 col-12 text-left">
-                            <label>&nbsp;</label>
-                            <button class="btn btn-warning waves-effect waves-light w-md mt-4" data-bs-toggle="modal" data-bs-target="#modal-import-jalan"
-                                id="btn-import"><i class="bx bx-cloud-upload font-size-16"></i> Import Excel</button>
-                        </div>
-
-                        <div class="form-group col-md-2 col-12">
-                            <label>&nbsp;</label>
-                            <a href="{{ route('create.jalan') }}"
-                                class="btn btn-primary waves-effect waves-light w-md mt-4"><i
-                                    class="bx bx-edit font-size-16"></i> Tambah</a>
-                        </div>
+                <div class="row">
+                    <div class="form-group col-md-3 col-12">
+                        <label for="filter-kec">Filter Kecamatan</label>
+                        <select class="form-control" name="kecamatan" id="filter-kec" style="width: 100%;">
+                            <option value="">-- Semua Kecamatan --</option>
+                            @foreach ($kecamatan as $item)
+                                <option value="{{ $item->id_kecamatan }}">{{ $item->nama_kecamatan }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
+                    <div class="form-group col-md-3 col-12">
+                        <label for="filter-kel">Filter Kelurahan</label>
+                        <select class="form-control" name="kelurahan" id="filter-kel" style="width: 100%;">
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-2 col-12 text-right">
+                        <label>&nbsp;</label>
+                        <button id="export" class="btn btn-success waves-effect waves-light w-md mt-4"><i
+                                class="bx bx-cloud-download font-size-16"></i> Export Excel</button>
+                    </div>
+
+                    <div class="form-group col-md-2 col-12 text-left">
+                        <label>&nbsp;</label>
+                        <button class="btn btn-warning waves-effect waves-light w-md mt-4" data-bs-toggle="modal"
+                            data-bs-target="#modal-import-jalan" id="btn-import"><i
+                                class="bx bx-cloud-upload font-size-16"></i> Import Excel</button>
+                    </div>
+
+                    <div class="form-group col-md-2 col-12">
+                        <label>&nbsp;</label>
+                        <a href="{{ route('create.jalan') }}" class="btn btn-primary waves-effect waves-light w-md mt-4"><i
+                                class="bx bx-edit font-size-16"></i> Tambah</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -142,123 +142,192 @@
     <script>
         window.csrfToken = "{{ csrf_token() }}";
         const token = localStorage.getItem('apiToken');
-        new DataTable('#myTable', {
-            ajax: {
-                url: "{{ route('jalan.all') }}",
-                method: 'GET',
-                headers: {
-                    'X-CSRF-TOKEN': window.csrfToken,
-                    'Authorization': `Bearer ${token}`
-                },
-                dataSrc: (res) => {
-                    const datas = []
-                    const selectedValues = {
-                        kode_kec: $('#filter-kec').val(),
-                        kode_kel: $('#filter-kel').val(),
-                        // add more properties for other <select> elements as needed
-                    };
-                    const data = res.filter((item) => {
-                        for (const [key, value] of Object.entries(selectedValues)) {
-                            if (value && item[key] !== value) {
-                                return false;
-                            }
-                        }
-                        return true;
-                    }).map((item, i) => {
-                        const newdata = {
-                            no: i + 1,
-                            ...item
-                        }
-                        datas.push(newdata)
-                    });
-                    return datas
-                }
-            },
-            columns: [{
-                    data: 'no',
-                }, {
-                    data: 'nama_ruas',
-                },
-                {
-                    data: 'nama_kecamatan',
-                },
-                {
-                    data: 'nama_kelurahan',
-                },
-                {
-                    data: 'luas_sertifikat',
-                },
-                {
-                    data: 'status',
-                },
-                {
-                    data: 'fungsi',
-                },
-                {
-                    data: 'tipe_hak',
-                },
-                {
-                    data: 'ruas_awal',
-                },
-                {
-                    render: (data, type, row) => {
-                        const option = $('<div></div>', {
-                            class: 'btn-group',
-                            html: [
-                                $('<a/>', {
-                                    href: `/detail-ruas-jalan/${row.id}`,
-                                    class: 'btn btn-outline-dark btn-tooltip',
-                                    "data-bs-toggle": "tooltip",
-                                    "data-bs-placement": "top",
-                                    title: "Detail",
-                                    "data-container": "body",
-                                    "data-animation": "true",
-                                    html: [
-                                        $('<i/>', {
-                                            class: 'bx bx-detail'
-                                        })
-                                    ]
-                                }),
-                                $('<a/>', {
-                                    href: `/edit-ruas-jalan/${row.id}`,
-                                    class: 'btn btn-outline-warning btn-tooltip',
-                                    "data-bs-toggle": "tooltip",
-                                    "data-bs-placement": "top",
-                                    title: "Ubah",
-                                    "data-container": "body",
-                                    "data-animation": "true",
-                                    html: [
-                                        $('<i/>', {
-                                            class: 'bx bx-detail'
-                                        })
-                                    ]
-                                }),
-                                $('<button></button>', {
-                                    class: 'btn btn-outline-danger btn-remove btn-tooltip',
-                                    type: 'button',
-                                    "data-id": row.id,
-                                    "data-bs-toggle": "tooltip",
-                                    "data-bs-placement": "top",
-                                    title: "Hapus",
-                                    "data-container": "body",
-                                    "data-animation": "true",
-                                    html: [
-                                        $('<i/>', {
-                                            class: 'bx bx-trash'
-                                        })
-                                    ]
-                                })
-                            ]
-                        })
-                        return option.prop('outerHTML')
+
+        function filterTanah(data) {
+            const selectedValues = {
+                kode_kec: $('#filter-kec').val(),
+                kode_kel: $('#filter-kel').val(),
+            };
+            return data.filter((item) => {
+                for (const [key, value] of Object.entries(selectedValues)) {
+                    if (value && item[key] !== value) {
+                        return false;
                     }
-                },
-            ]
-        })
-        const selectElements = ['#filter-kec', '#filter-kel', ];
-        selectElements.forEach((id) => {
-            $(id).on('change', () => {
-                $('#myTable').DataTable().ajax.reload();
+                }
+                return true;
+            })
+        }
+
+        function exportExcel(data, nameFile) {
+            const dataExport = data.map((item) => {
+                return {
+                    'NAMA RUAS': item.nama_ruas,
+                    'KECAMATAN': item.kecamatan,
+                    'KELURAHAN': item.kel,
+                    'KODE KECAMATAN': item.kode_kec,
+                    'KODE KELURAHAN': item.kode_kel,
+                    'PANJANG': item.panjang,
+                    'LEBAR': item.lebar,
+                    'LUAS SERTIFIKAT': item.luas_sertifikat,
+                    'LUAS PETA': item.luas_peta,
+                    'STATUS': item.status,
+                    'FUNGSI': item.fungsi,
+                    'TIPE HAK': item.tipe_hak,
+                    'TIPE PRODUK': item.tipe_produk,
+                    'TIPE JALAN': item.tipe_jalan,
+                    'HP': item.hp,
+                    'NIB': item.nib,
+                    'KODE PATOK': item.kode_patok,
+                    'RUAS AWAL': item.ruas_awal,
+                    'RUAS AKHIR': item.ruas_akhir,
+                    'KM AWAL': item.km_awal,
+                    'KM FEEDER': item.km_akhir,
+                    'KONDISI RINGAN': item.kondisi_ringan,
+                    'KONDISI SEDANG': item.kondisi_sedang,
+                    'KONDISI RUSAK': item.kondisi_rusak,
+                    'LHRT': item.lhrt,
+                    'VCR': item.vcr,
+                    'MST': item.mst,
+                    'TANAH': item.tanah,
+                    'MACADAM': item.macadam,
+                    'ASPAL': item.aspal,
+                    'TAHUN': item.tahun
+                }
+            })
+            console.log(dataExport);
+            const worksheet = XLSX.utils.json_to_sheet(dataExport);
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "Dates");
+            XLSX.writeFile(workbook, `${nameFile}.xlsx`, {
+                compression: true
+            });
+        }
+
+        function getJalan() {
+            return new Promise((resolve, reject) => {
+                const datas = []
+                $.ajax({
+                    url: "{{ route('jalan.all') }}",
+                    method: "GET",
+                    headers: {
+                        'X-CSRF-TOKEN': window.csrfToken,
+                        'Authorization': `Bearer ${token}`
+                    },
+                    success: (res) => {
+                        res.map((item, i) => {
+                            const newdata = {
+                                no: i + 1,
+                                ...item
+                            }
+                            datas.push(newdata)
+                        });
+                        resolve(datas)
+                    },
+                    error: (err) => {
+                        reject(err)
+                    }
+                })
+            })
+        }
+
+        function generateDataTable(data) {
+            return new DataTable('#myTable', {
+                data: data,
+                columns: [{
+                        data: 'no',
+                    }, {
+                        data: 'nama_ruas',
+                    },
+                    {
+                        data: 'nama_kecamatan',
+                    },
+                    {
+                        data: 'nama_kelurahan',
+                    },
+                    {
+                        data: 'luas_sertifikat',
+                    },
+                    {
+                        data: 'status',
+                    },
+                    {
+                        data: 'fungsi',
+                    },
+                    {
+                        data: 'tipe_hak',
+                    },
+                    {
+                        data: 'ruas_awal',
+                    },
+                    {
+                        render: (data, type, row) => {
+                            const option = $('<div></div>', {
+                                class: 'btn-group',
+                                html: [
+                                    $('<a/>', {
+                                        href: `/detail-ruas-jalan/${row.id}`,
+                                        class: 'btn btn-outline-dark btn-tooltip',
+                                        "data-bs-toggle": "tooltip",
+                                        "data-bs-placement": "top",
+                                        title: "Detail",
+                                        "data-container": "body",
+                                        "data-animation": "true",
+                                        html: [
+                                            $('<i/>', {
+                                                class: 'bx bx-detail'
+                                            })
+                                        ]
+                                    }),
+                                    $('<a/>', {
+                                        href: `/edit-ruas-jalan/${row.id}`,
+                                        class: 'btn btn-outline-warning btn-tooltip',
+                                        "data-bs-toggle": "tooltip",
+                                        "data-bs-placement": "top",
+                                        title: "Ubah",
+                                        "data-container": "body",
+                                        "data-animation": "true",
+                                        html: [
+                                            $('<i/>', {
+                                                class: 'bx bx-detail'
+                                            })
+                                        ]
+                                    }),
+                                    $('<button></button>', {
+                                        class: 'btn btn-outline-danger btn-remove btn-tooltip',
+                                        type: 'button',
+                                        "data-id": row.id,
+                                        "data-bs-toggle": "tooltip",
+                                        "data-bs-placement": "top",
+                                        title: "Hapus",
+                                        "data-container": "body",
+                                        "data-animation": "true",
+                                        html: [
+                                            $('<i/>', {
+                                                class: 'bx bx-trash'
+                                            })
+                                        ]
+                                    })
+                                ]
+                            })
+                            return option.prop('outerHTML')
+                        }
+                    },
+                ]
+            })
+        }
+
+        getJalan().then((res) => {
+            const table = generateDataTable(res);
+            const selectElements = ['#filter-kec', '#filter-kel', ];
+            selectElements.forEach((id) => {
+                $(id).on('change', () => {
+                    const filteredData = filterTanah(res);
+                    table.clear().rows.add(filteredData).draw();
+                });
+            });
+            $('#export').on('click', () => {
+                const filteredData = filterTanah(res);
+                exportExcel(filteredData, `tanah_report_${Date.now()}`);
             });
         });
     </script>
