@@ -22,54 +22,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index', [
-        'title' => ''
-    ]);
-});
-
-Route::get('/tanah-lahan', function () {
-    return view('tanah-lahan', [
-        'title' => 'Tanah dan Lahan |',
-        'kecamatan' => DB::table('ref_kecamatan')->get(),
-        'kelurahan' => DB::table('ref_kelurahan')->get(),
-    ]);
-});
-
-Route::get('/ruas-jalan', function () {
-    return view('ruas-jalan', [
-        'title' => 'Ruas Jalan |',
-        'kecamatan' => DB::table('ref_kecamatan')->get(),
-        'kelurahan' => DB::table('ref_kelurahan')->get(),
-    ]);
-});
-
-Route::get('/peraturan', function () {
-    return view('peraturan', [
-        'title' => 'Peraturan |'
-    ]);
-});
-
-Route::get('/statistik', function () {
-    return view('statistik', [
-        'title' => 'Statistik |'
-    ]);
-});
-
-Route::get('/drainase', function () {
-    return view('drainase', [
-        'title' => 'Drainase |',
-        'kecamatan' => DB::table('ref_kecamatan')->get(),
-        'kelurahan' => DB::table('ref_kelurahan')->get(),
-    ]);
-});
-
-Route::get('/peta', function () {
-    return view('peta', [
-        'title' => 'Peta |'
-    ]);
-});
-
 
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/sign-in', function () {
@@ -85,7 +37,55 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/auth/logout', [AuthController::class, 'logout'])->name('logout-web');
 
-    Route::prefix('dashboard')->group(function(){
+    Route::get('/', function () {
+        return view('index', [
+            'title' => ''
+        ]);
+    });
+
+    Route::get('/tanah-lahan', function () {
+        return view('tanah-lahan', [
+            'title' => 'Tanah dan Lahan |',
+            'kecamatan' => DB::table('ref_kecamatan')->get(),
+            'kelurahan' => DB::table('ref_kelurahan')->get(),
+        ]);
+    });
+
+    Route::get('/ruas-jalan', function () {
+        return view('ruas-jalan', [
+            'title' => 'Ruas Jalan |',
+            'kecamatan' => DB::table('ref_kecamatan')->get(),
+            'kelurahan' => DB::table('ref_kelurahan')->get(),
+        ]);
+    });
+
+    Route::get('/peraturan', function () {
+        return view('peraturan', [
+            'title' => 'Peraturan |'
+        ]);
+    });
+
+    Route::get('/statistik', function () {
+        return view('statistik', [
+            'title' => 'Statistik |'
+        ]);
+    });
+
+    Route::get('/drainase', function () {
+        return view('drainase', [
+            'title' => 'Drainase |',
+            'kecamatan' => DB::table('ref_kecamatan')->get(),
+            'kelurahan' => DB::table('ref_kelurahan')->get(),
+        ]);
+    });
+
+    Route::get('/peta', function () {
+        return view('peta', [
+            'title' => 'Peta |'
+        ]);
+    });
+
+    Route::prefix('dashboard')->group(function () {
         Route::name('page.')->group(function () {
             Route::get('/', [AppController::class, 'dashboard'])->name('home');
             Route::get('/pengaturan-beranda', [AppController::class, 'pengaturanBeranda'])->name('setBeranda');
@@ -123,9 +123,9 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('import-ruas-jalan', [ExcelController::class, 'JalanImport'])->name('ruas-jalan-import');
         });
     });
-    
 
-    Route::name('detailUser.')->group(function(){
+
+    Route::name('detailUser.')->group(function () {
         Route::get('detail-tanah-lahan/{id}', [DetailUserController::class, 'detailUserTanahLahan'])->name('tanah-lahan');
         Route::get('detail-ruas-jalan/{id}', [DetailUserController::class, 'detailUserRuasJalan'])->name('jalan');
         Route::get('detail-drainase/{id}', [DetailUserController::class, 'detailUserDrainase'])->name('drainase');
