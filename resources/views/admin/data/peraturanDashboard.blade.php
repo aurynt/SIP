@@ -163,7 +163,7 @@
                             class: 'btn-group',
                             html: [
                                 $('<a/>', {
-                                    href: `/detail-peraturan/${row.id}`,
+                                    href: `/dashboard/detail-peraturan/${row.id}`,
                                     class: 'btn btn-outline-dark btn-tooltip',
                                     "data-bs-toggle": "tooltip",
                                     "data-bs-placement": "top",
