@@ -85,44 +85,46 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/auth/logout', [AuthController::class, 'logout'])->name('logout-web');
 
-    Route::name('page.')->group(function () {
-        Route::get('/dashboard', [AppController::class, 'dashboard'])->name('home');
-        Route::get('/pengaturan-beranda', [AppController::class, 'pengaturanBeranda'])->name('setBeranda');
-        Route::get('/pengaturan-disclaimer', [AppController::class, 'pengaturanDisclaimer'])->name('setDisclaimer');
-        Route::get('/tanah-lahan-dashboard', [AppController::class, 'tanahDanLahan'])->name('tanah-lahan');
-        Route::get('/ruas-jalan-dashboard', [AppController::class, 'ruasJalan'])->name('jalan');
-        Route::get('/peraturan-dashboard', [AppController::class, 'peraturanDashboard'])->name('peraturan');
-        Route::get('/drainase-dashboard', [AppController::class, 'drainaseDashboard'])->name('drainase');
-    });
+    Route::prefix('dashboard')->group(function(){
+        Route::name('page.')->group(function () {
+            Route::get('/', [AppController::class, 'dashboard'])->name('home');
+            Route::get('/pengaturan-beranda', [AppController::class, 'pengaturanBeranda'])->name('setBeranda');
+            Route::get('/pengaturan-disclaimer', [AppController::class, 'pengaturanDisclaimer'])->name('setDisclaimer');
+            Route::get('/tanah-lahan-dashboard', [AppController::class, 'tanahDanLahan'])->name('tanah-lahan');
+            Route::get('/ruas-jalan-dashboard', [AppController::class, 'ruasJalan'])->name('jalan');
+            Route::get('/peraturan-dashboard', [AppController::class, 'peraturanDashboard'])->name('peraturan');
+            Route::get('/drainase-dashboard', [AppController::class, 'drainaseDashboard'])->name('drainase');
+        });
+        Route::name('detail.')->group(function () {
+            Route::get('detail-tanah-lahan/{id}', [DetailController::class, 'detailTanahLahan'])->name('detail-tanah');
+            Route::get('detail-ruas-jalan/{id}', [DetailController::class, 'detailRuasJalan'])->name('jalan');
+            Route::get('detail-peraturan/{id}', [DetailController::class, 'detailPeraturan'])->name('peraturan');
+            Route::get('detail-drainase/{id}', [DetailController::class, 'detailDrainase'])->name('drainase');
+        });
+        Route::name('create.')->group(function () {
+            Route::get('tambah-tanah-lahan', [CreateController::class, 'tanahDanLahan'])->name('tanah-lahan');
+            Route::get('tambah-ruas-jalan', [CreateController::class, 'ruasJalan'])->name('jalan');
+            Route::get('tambah-peraturan', [CreateController::class, 'peraturan'])->name('peraturan');
+            Route::get('tambah-drainase', [CreateController::class, 'drainase'])->name('drainase');
+        });
 
-    Route::name('detail.')->group(function () {
-        Route::get('detail-tanah-lahan/{id}', [DetailController::class, 'detailTanahLahan'])->name('detail-tanah');
-        Route::get('detail-ruas-jalan/{id}', [DetailController::class, 'detailRuasJalan'])->name('jalan');
-        Route::get('detail-peraturan/{id}', [DetailController::class, 'detailPeraturan'])->name('peraturan');
-        Route::get('detail-drainase/{id}', [DetailController::class, 'detailDrainase'])->name('drainase');
+        Route::name('edit.')->group(function () {
+            Route::get('edit-tanah-lahan/{id}', [EditController::class, 'editTanahLahan'])->name('tanah-lahan');
+            Route::get('edit-ruas-jalan/{id}', [EditController::class, 'editRuasJalan'])->name('jalan');
+            Route::get('edit-peraturan/{id}', [EditController::class, 'editPeraturan'])->name('peraturan');
+            Route::get('edit-drainase/{id}', [EditController::class, 'editDrainase'])->name('drainase');
+        });
+        Route::name('file.')->group(function () {
+            Route::get('export-tanah-lahan', [ExcelController::class, 'TanahExport'])->name('tanah-lahan');
+            Route::get('export-ruas-jalan', [ExcelController::class, 'JalanExport'])->name('jalan');
+            Route::get('export-template-excel', [ExcelController::class, 'TanahExportOnlyHeading'])->name('template-excel');
+            Route::get('export-template-excel-jalan', [ExcelController::class, 'JalanExportOnlyHeading'])->name('template-excel-jalan');
+            Route::post('import-tanah-lahan', [ExcelController::class, 'TanahImport'])->name('tanah-lahan-import');
+            Route::post('import-ruas-jalan', [ExcelController::class, 'JalanImport'])->name('ruas-jalan-import');
+        });
     });
+    
 
-    Route::name('create.')->group(function () {
-        Route::get('tambah-tanah-lahan', [CreateController::class, 'tanahDanLahan'])->name('tanah-lahan');
-        Route::get('tambah-ruas-jalan', [CreateController::class, 'ruasJalan'])->name('jalan');
-        Route::get('tambah-peraturan', [CreateController::class, 'peraturan'])->name('peraturan');
-        Route::get('tambah-drainase', [CreateController::class, 'drainase'])->name('drainase');
-    });
-
-    Route::name('edit.')->group(function () {
-        Route::get('edit-tanah-lahan/{id}', [EditController::class, 'editTanahLahan'])->name('tanah-lahan');
-        Route::get('edit-ruas-jalan/{id}', [EditController::class, 'editRuasJalan'])->name('jalan');
-        Route::get('edit-peraturan/{id}', [EditController::class, 'editPeraturan'])->name('peraturan');
-        Route::get('edit-drainase/{id}', [EditController::class, 'editDrainase'])->name('drainase');
-    });
-    Route::name('file.')->group(function () {
-        Route::get('export-tanah-lahan', [ExcelController::class, 'TanahExport'])->name('tanah-lahan');
-        Route::get('export-ruas-jalan', [ExcelController::class, 'JalanExport'])->name('jalan');
-        Route::get('export-template-excel', [ExcelController::class, 'TanahExportOnlyHeading'])->name('template-excel');
-        Route::get('export-template-excel-jalan', [ExcelController::class, 'JalanExportOnlyHeading'])->name('template-excel-jalan');
-        Route::post('import-tanah-lahan', [ExcelController::class, 'TanahImport'])->name('tanah-lahan-import');
-        Route::post('import-ruas-jalan', [ExcelController::class, 'JalanImport'])->name('ruas-jalan-import');
-    });
     Route::name('detailUser.')->group(function(){
         Route::get('detail-tanah-lahan/{id}', [DetailUserController::class, 'detailUserTanahLahan'])->name('tanah-lahan');
         Route::get('detail-ruas-jalan/{id}', [DetailUserController::class, 'detailUserRuasJalan'])->name('jalan');
