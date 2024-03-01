@@ -211,7 +211,7 @@
                                         data-container="body" data-animation="true"><i
                                             class="bx bx-detail"></i></a>
                                     <a class="btn btn-outline-warning btn-update btn-tooltip"
-                                        href="/detail-tanah-lahan/${row.id}"
+                                        href="/dashboard/detail-tanah-lahan/${row.id}"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah"
                                         data-container="body" data-animation="true"><i
                                             class="bx bx-pencil"></i></a>

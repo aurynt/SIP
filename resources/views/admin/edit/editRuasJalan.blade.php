@@ -302,4 +302,5 @@
             })
         })
     </script>
+    @include('admin.script.map')
 @endsection

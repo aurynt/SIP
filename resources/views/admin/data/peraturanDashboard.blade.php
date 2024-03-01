@@ -177,7 +177,7 @@
                                     ]
                                 }),
                                 $('<a/>', {
-                                    href: `/edit-peraturan/${row.id}`,
+                                    href: `/dashboard/edit-peraturan/${row.id}`,
                                     class: 'btn btn-outline-warning btn-tooltip',
                                     "data-bs-toggle": "tooltip",
                                     "data-bs-placement": "top",
@@ -186,7 +186,7 @@
                                     "data-animation": "true",
                                     html: [
                                         $('<i/>', {
-                                            class: 'bx bx-detail'
+                                            class: 'bx bx-pencil'
                                         })
                                     ]
                                 }),

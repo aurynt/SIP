@@ -281,7 +281,7 @@
                                         ]
                                     }),
                                     $('<a/>', {
-                                        href: `/edit-ruas-jalan/${row.id}`,
+                                        href: `/dashboard/edit-ruas-jalan/${row.id}`,
                                         class: 'btn btn-outline-warning btn-tooltip',
                                         "data-bs-toggle": "tooltip",
                                         "data-bs-placement": "top",
@@ -290,7 +290,7 @@
                                         "data-animation": "true",
                                         html: [
                                             $('<i/>', {
-                                                class: 'bx bx-detail'
+                                                class: 'bx bx-pencil'
                                             })
                                         ]
                                     }),
